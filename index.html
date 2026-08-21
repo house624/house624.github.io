@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture Perfect Window Solutions</title>
+    <link rel="icon" type="image/jpg" href="4110dc67616da56f9c61ba9bc10cdbff.jpg">
+
+    <!-- Tailwind CSS CDN for modern responsive grid layouts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Styles matching Google Sites Theme <link */
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+        }
+
+            .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-radius: 4px;
+            }
+        /* Dropdown custom behavior rules */
+        .dropdown-menu {
+            display: none;
+        }
+
+        .dropdown-container:hover .dropdown-menu, .dropdown-container:focus-within .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="bg-[#0056b3] text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 flex-wrap md:flex-nowrap py-2 md:py-0">
+
+                <!-- Branding / Title -->
+                <div class="flex-shrink-0 flex items-center font-semibold text-lg tracking-wide">
+                    Picture Perfect Window Solutions
+                </div>
+
+                <!-- Navigation Items Links with Dropdown Feature -->
+                <nav class="flex space-x-1 md:space-x-2 text-sm font-medium w-full md:w-auto justify-center md:justify-end mt-2 md:mt-0 whitespace-nowrap">
+                    <a href="index.html" class="nav-link px-3 py-2 bg-white/20 rounded-md">Home</a>
+                    <a href="Our Work.html" class="nav-link px-3 py-2">Our Work</a>
+                    <a href="How to Measure.html" class="nav-link px-3 py-2">How to Measure</a>
+                    <a href="Free Quote.html" class="nav-link px-3 py-2">Free Quote</a>
+
+                    <!-- SERVICE AREAS DROPDOWN CONTAINER -->
+                    <!-- FIXED: Removed 'py-2' container padding to restore standard baseline alignment -->
+                    <div class="relative dropdown-container group">
+                        <!-- FIXED: Changed button padding from 'py-1' back to 'py-2' to perfectly line up with standard nav-links -->
+                        <button class="nav-link px-3 py-2 inline-flex items-center gap-1 focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                            <span>Service Areas</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://w3.org">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <!-- Nested Dropdown Sub-menu Grid Container -->
+                        <!-- NOTE: Added 'pt-4' to the top margin context to act as an invisible bridge so your mouse can glide smoothly to the dropdown without a gap -->
+                        <div class="dropdown-menu absolute left-0 md:right-0 md:left-auto pt-2 w-64 z-50
+                                opacity-0 invisible pointer-events-none transition-all duration-200 delay-1000
+                                group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto group-hover:delay-0">
+                            <div class="bg-white rounded-md shadow-xl border border-gray-200 py-1 text-gray-800">
+                                <a href="Dallas TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Dallas, TX - Glass & Window Services</a>
+                                <a href="Fort Worth TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Fort Worth, TX - Glass & Window Services</a>
+                                <a href="Burleson TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Burleson, TX - Glass & Window Services</a>
+                                <a href="Crowley TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Crowley, TX - Glass & Window Services</a>
+                                <a href="Cleburne TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Cleburne, TX - Glass & Window Services</a>
+                                <a href="Alvarado TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Alvarado, TX - Glass & Window Services</a>
+                                <a href="Godley TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Godley, TX - Glass & Window Services</a>
+                                <a href="Midlothian TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Midlothian, TX - Glass & Window Services</a>
+                                <a href="Mansfield TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700">Mansfield, TX - Glass & Window Services</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="Contact Us.html" class="nav-link px-3 py-2">Contact us</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- NEW HOME MAIN BODY CONTENT CONTAINER -->
+    <main class="flex-grow max-w-5xl mx-auto w-full px-4 py-12">
+
+        <!-- Hero Header Branding Section -->
+        <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-16 text-center md:text-left">
+            <!-- Circular Logo Artwork pointing to local relative folder asset file -->
+            <div class="w-48 h-48 flex-shrink-0">
+                <img src="Home\logo.jpg" alt="Picture Perfect Window Solutions Logo" class="w-full h-full object-contain">
+            </div>
+            <div>
+                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl mb-2">
+                    Picture Perfect Window Solutions
+                </h1>
+                <h2 class="text-xl font-semibold text-blue-700 mb-4">Serving the DFW area</h2>
+                <p class="text-base text-gray-700 max-w-xl leading-relaxed">
+                    Call or text: <strong class="text-gray-900">(817)647-0229</strong> or fill out the form on our
+                    <a href="Contact us.html" class="text-[#0056b3] underline font-medium hover:text-blue-800">Contact us page</a>
+
+                </p>
+            </div>
+        </div>
+
+        <!-- Layout Grid splitting Core Services and Sidebar Image -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
+            <!-- Left Side: Window / Brick Frame Showcase Image pointing to local relative folder asset file -->
+            <div class="lg:col-span-5 bg-gray-200 rounded-xl overflow-hidden shadow-sm border border-gray-200 aspect-[4/3] sm:aspect-video lg:aspect-auto lg:h-[480px]">
+                <img src="Home\showcase.jpg" alt="Window showcase installation" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Right Side: Clean Core Services Index Layout -->
+            <div class="lg:col-span-7 space-y-6">
+                <div class="flex items-center gap-3 border-b border-gray-200 pb-3">
+                    <span class="text-2xl">🛠️</span>
+                    <h3 class="text-2xl font-bold text-gray-900">Core Services</h3>
+                </div>
+
+                <ul class="space-y-4 text-sm text-gray-600 leading-relaxed">
+
+                    <li class="pl-4 border-l-4 border-amber-400">
+                        <strong class="text-gray-900">Foggy Window Repair <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded ml-1">MOST POPULAR</span> :</strong>
+                        Restore clarity and eliminate moisture trapped inside double-pane glass.
+                    </li>
+                    <li class="pl-4 border-l-4 border-blue-500">
+                        <strong class="text-gray-900">Window Washing:</strong>
+                        Professional, streak-free window cleaning for crystal-clear exterior views. Ask about our multi-service bundles while we clean!
+                    </li>
+                    <li class="pl-4 border-l-4 border-blue-500">
+                        <strong class="text-gray-900">Weatherising:</strong>
+                        Replace worn frame seals to stop leaks, lock in HVAC air, and cut energy bills.
+                    </li>
+                    <li class="pl-4 border-l-4 border-blue-500">
+                        <strong class="text-gray-900">Residential Broken Panes:</strong>
+                        Fast glass replacement for cracked or shattered home windows.
+                    </li>
+                    <li class="pl-4 border-l-4 border-blue-500">
+                        <strong class="text-gray-900">Custom Mirrored Walls:</strong>
+                        Expand your living space visually with custom-fit decorative wall mirrors.
+
+                    </li>
+                    <li class="pl-4 border-l-4 border-blue-500">
+                        <strong class="text-gray-900">Frameless Glass Showers:</strong>
+                        Upgrade old framed enclosures into luxury, modern frameless showers.
+                    </li>
+                </ul>
+
+                <div class="pt-4">
+                    <a href="Free Quote.html" class="inline-block text-center bg-[#0056b3] text-white font-medium py-3 px-8 rounded-lg shadow-sm hover:bg-blue-700 transition-all text-sm tracking-wide">
+                        Get a Free Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Value Propositions Matrix Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-gray-200 pt-12 mb-16">
+            <div class="space-y-2">
+                <h4 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+
+                    <span>📍</span> 100% Local & Reliable
+                </h4>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                    Based right here in the South DFW area. We are active members of our local community, arriving on time, every time, with reliable Texas service.
+                </p>
+            </div>
+            <div class="space-y-2">
+                <h4 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                    <span>💰</span> Fair, Upfront Pricing
+                </h4>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                    No hidden trip fees or surprise charges. Your travel and fuel are factored entirely into our clear, straightforward invoice estimates.
+                </p>
+            </div>
+            <div class="space-y-2">
+                <h4 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                    <span>🛠️</span> Quality Craftsmanship
+                </h4>
+                <p class="text-sm text-gray-600 leading-relaxed">
+
+                    We take immense pride in our attention to detail. Every window, mirror, and shower enclosure is treated with the highest professional care to protect your home.
+                </p>
+            </div>
+        </div>
+
+        <!-- About the Owners Segment -->
+        <div class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-16">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">About the Owners</h3>
+            <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
+                <p>
+                    We are long-time DFW residents who founded Picture Perfect Window Solutions out of a passion for working with our hands and serving our local community. After seeing how big glass corporations often overcharge homeowners with hidden fees and impersonal service, we decided to build a business rooted in honesty, fair pricing, and true local reliability.
+                </p>
+                <p>
+                    When we step onto your property, our promise to you is simple: polite communication, immaculate workspaces, and treating your home with the exact same care and respect as our own. We aren't here just to fix windows; we are here to build lasting relationships with our neighbors.
+                </p>
+            </div>
+        </div>
+
+        <!-- DFW Service Area Footer Text List -->
+
+        <div class="text-center border-t border-gray-200 pt-8">
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-3">Our DFW Service Area</span>
+            <div class="flex flex-wrap justify-center gap-3 md:gap-6 text-sm font-medium text-gray-700">
+                <span>Fort Worth</span> <span class="text-gray-300">|</span>
+                <span>Dallas</span> <span class="text-gray-300">|</span>
+                <span>Burleson</span> <span class="text-gray-300">|</span>
+                <span>Crowley</span> <span class="text-gray-300">|</span>
+                <span>Cleburne</span> <span class="text-gray-300">|</span>
+                <span>Alvarado</span> <span class="text-gray-300">|</span>
+                <span>Godley</span> <span class="text-gray-300">|</span>
+                <span>Midlothian</span> <span class="text-gray-300">|</span>
+                <span>Mansfield</span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER BANNER ARCHITECTURE -->
+    <footer class="bg-gray-800 text-gray-300 text-xs py-6 border-t border-gray-700 mt-auto">
+
+        <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <span class="font-bold block text-sm text-white mb-1">Hours</span>
+                Mon – Sat: 7 A.M. – 3 P.M. | Sun: Closed
+            </div>
+            <div class="sm:text-right">
+                <span class="font-bold block text-sm text-white mb-1">Payment Methods Accepted</span>
+                Cash | Debit | Credit Card
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+

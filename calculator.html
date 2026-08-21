@@ -1,0 +1,1438 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Service Specification Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --primary-blue: #0076CE; /* Brand primary blue matching "Get a Free Quote" */
+            --dark-text: #2C2C2C; /* Body copy charcoal tone */
+            --light-gray: #F8FAFC;
+            --border-color: #E2E8F0;
+            --muted-text: #64748B;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--dark-text);
+            background-color: #ffffff;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .calculator-container {
+            max-width: 580px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            box-sizing: border-box;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .master-checklist-box {
+            margin-bottom: 20px;
+            padding: 16px;
+            background-color: var(--light-gray);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .master-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+
+        @media (max-width: 480px) {
+            .master-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .global-section-field {
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .bottom-modifier-box {
+            margin-top: 16px;
+            padding: 14px;
+            background-color: var(--light-gray);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+
+        .pane-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .pane-header {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary-blue);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .field-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .field-group label {
+                font-size: 12px;
+                color: var(--muted-text);
+                margin-bottom: 4px;
+                font-weight: 500;
+            }
+
+        .conditional-qty-box {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: #ffffff;
+            outline: none;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+            select:focus, input[type="number"]:focus {
+                border-color: var(--primary-blue);
+                box-shadow: 0 0 0 3px rgba(0, 118, 206, 0.1);
+            }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+        }
+
+            .checkbox-label input[type="checkbox"] {
+                width: 17px;
+                height: 17px;
+                margin-right: 10px;
+                accent-color: var(--primary-blue);
+                cursor: pointer;
+            }
+
+        .btn-add-pane {
+            display: block;
+            width: 100%;
+            background-color: var(--light-gray);
+            color: var(--dark-text);
+            border: 1px dashed var(--border-color);
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+            .btn-add-pane:hover {
+                background-color: #f1f5f9;
+                border-color: var(--muted-text);
+            }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #EF4444;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0;
+        }
+
+            .remove-btn:hover {
+                text-decoration: underline;
+            }
+
+        .totals-box {
+            display: none; /* Hidden from user view as requested */
+            background-color: var(--light-gray);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px;
+            text-align: left;
+        }
+
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+            .summary-row:last-child {
+                margin-bottom: 0;
+            }
+
+        .summary-label {
+            color: var(--muted-text);
+            font-weight: 500;
+        }
+
+        .summary-value {
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .warning-text {
+            color: #EF4444;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 8px;
+            display: none;
+            line-height: 1.4;
+        }
+
+        .action-calculate-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-blue);
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.2s;
+            margin-top: 14px;
+        }
+
+            .action-calculate-btn:hover {
+                background-color: #005FA3;
+            }
+
+        .estimate-output-card {
+            display: none;
+            background-color: var(--light-gray);
+            border: 2px solid var(--primary-blue);
+            border-radius: 8px;
+            padding: 18px;
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h2>Rough Estimate Quote</h2>
+
+        <!-- Master Service Toggles Block Container -->
+        <div class="master-checklist-box">
+            <label style="font-size: 13px; color: var(--muted-text); font-weight: 600; uppercase; tracking: 0.3px;">Select Requested Services</label>
+            <div class="master-grid">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="master-foggy-chk" onchange="updateCalculations()">
+                    Foggy Window Repair
+                </label>
+                <label class="checkbox-label">
+
+                    <input type="checkbox" id="master-washing-chk" onchange="updateCalculations()">
+                    Window Washing
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="master-weatherising-chk" onchange="updateCalculations()">
+                    Weatherising
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="master-broken-chk" onchange="updateCalculations()">
+                    Residential Broken Panes
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="master-mirror-chk" onchange="updateCalculations()">
+                    Custom Mirrored Walls
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="master-shower-chk" onchange="updateCalculations()">
+                    Frameless Glass Showers
+                </label>
+
+            </div>
+        </div>
+
+        <!-- Section 1 Wrapper: Foggy Window Repair Specs -->
+        <div id="wrapper-foggy" style="display: none; margin-bottom: 24px; padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; background: #ffffff;">
+            <h3 style="font-size: 15px; font-weight: 600; margin-top: 0; margin-bottom: 12px; color: var(--primary-blue);">Foggy Window Repair Specs</h3>
+
+            <!-- Single Section-Wide Glass Type Selection Dropdown Layout -->
+            <div class="field-group global-section-field">
+                <label style="font-size: 12px; color: var(--muted-text); margin-bottom: 6px; font-weight: 600;">Glass Type</label>
+                <select id="global-glass-type" onchange="updateCalculations()">
+                    <option value="Select Glass Type">Select Glass Type</option>
+                    <option value="clear-annealed">Clear Annealed Glass (Single Pane)</option>
+                    <option value="standard-igu">Standard Clear Insulated Glass Unit (Double Pane)</option>
+                    <option value="low-e-igu">Low-E (Energy Efficient) Insulated Glass Unit (Double Pane)</option>
+                </select>
+            </div>
+
+
+            <div id="panes-list"></div>
+            <button type="button" class="btn-add-pane" onclick="addNewPaneRow()">+ Add Another Glass Pane Size</button>
+
+            <!-- Second Story Modifier Box -->
+            <div class="bottom-modifier-box">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="top-story-chk" onchange="toggleStoryQty(this); updateCalculations();">
+                    Any glass on the second story?
+                </label>
+                <div id="story-qty-container" class="conditional-qty-box">
+                    <div class="field-group">
+                        <label id="story-label-text">How many windows on the second story?</label>
+                        <input type="number" id="second-story-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="ensureValidStoryQty()">
+                    </div>
+                    <div id="story-warning" class="warning-text">
+                        ⚠️ Warning: Second-story windows cannot exceed total window panes. Please add more glass sizes above if you have additional windows.
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Foggy Windows Arches Modifier Box -->
+            <div class="bottom-modifier-box" style="margin-bottom: 0;">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="foggy-arch-chk" onchange="toggleFoggyArchQty(this); updateCalculations();">
+                    Any windows have arches?
+                </label>
+                <div id="foggy-arch-qty-container" class="conditional-qty-box">
+                    <div class="field-group">
+                        <label>How many windows have arches?</label>
+                        <input type="number" id="foggy-arch-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="ensureValidFoggyArchQty()">
+                    </div>
+                    <div id="foggy-arch-warning" class="warning-text">
+                        ⚠️ Warning: Arched windows cannot exceed total window panes. Please add more glass sizes above if you have additional windows.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 Wrapper: Window Washing Specs Container Block -->
+
+        <div id="wrapper-washing" style="display: none; margin-bottom: 24px; padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; background: #ffffff;">
+            <h3 style="font-size: 15px; font-weight: 600; margin-top: 0; margin-bottom: 12px; color: var(--primary-blue);">Window Washing Specs</h3>
+            <div class="field-group">
+                <label>How many glass panes?</label>
+                <input type="number" id="washing-qty" value="1" min="0" oninput="updateCalculations()" onfocus="this.select()" onblur="validateWashingInput(this, 1)">
+            </div>
+        </div>
+
+        <!-- Section 3 Wrapper: Weatherising Specs Container Block -->
+        <div id="wrapper-weatherising" style="display: none; margin-bottom: 24px; padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; background: #ffffff;">
+            <h3 style="font-size: 15px; font-weight: 600; margin-top: 0; margin-bottom: 12px; color: var(--primary-blue);">Weatherising Specs</h3>
+            <div class="field-group">
+                <label>How many window frames?</label>
+                <input type="number" id="weatherising-qty" value="1" min="0" oninput="updateCalculations()" onfocus="this.select()" onblur="validateWeatherisingInput(this, 1)">
+            </div>
+        </div>
+
+        <!-- Section 4 Wrapper: Residential Broken Panes Specs Container Block -->
+        <div id="wrapper-broken" style="display: none; margin-bottom: 24px; padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; background: #ffffff;">
+
+            <h3 style="font-size: 15px; font-weight: 600; margin-top: 0; margin-bottom: 12px; color: var(--primary-blue);">Residential Broken Panes Specs</h3>
+
+            <div id="broken-panes-list"></div>
+            <button type="button" class="btn-add-pane" onclick="addNewBrokenPaneRow()">+ Add Another Broken Glass Size</button>
+
+            <!-- Section-Bound Broken Glass Second Story Modifier -->
+            <div class="bottom-modifier-box" style="margin-top: 16px;">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="broken-story-chk" onchange="toggleBrokenStoryQty(this); updateCalculations();">
+                    Any broken glass on the second story?
+                </label>
+                <div id="broken-story-qty-container" class="conditional-qty-box">
+                    <div class="field-group">
+                        <label>How many broken windows on the second story?</label>
+                        <input type="number" id="broken-second-story-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="ensureValidBrokenStoryQty()">
+                    </div>
+                    <div id="broken-story-warning" class="warning-text">
+                        ⚠️ Warning: Second-story broken windows cannot exceed total broken glass panes. Please add more broken glass sizes above if you have additional windows.
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Broken Glass Arches Modifier Box -->
+            <div class="bottom-modifier-box" style="margin-bottom: 0;">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="broken-arch-chk" onchange="toggleBrokenArchQty(this); updateCalculations();">
+                    Any windows have arches?
+                </label>
+                <div id="broken-arch-qty-container" class="conditional-qty-box">
+                    <div class="field-group">
+                        <label>How many broken windows have arches?</label>
+                        <input type="number" id="broken-arch-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="ensureValidBrokenArchQty()">
+                    </div>
+                    <div id="broken-arch-warning" class="warning-text">
+                        ⚠️ Warning: Arched broken windows cannot exceed total broken glass panes. Please add more broken glass sizes above if you have additional windows.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Section 5 Wrapper: Custom Mirrored Walls Specs Container Block -->
+        <div id="wrapper-mirror" style="display: none; margin-bottom: 24px; padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; background: #ffffff;">
+            <h3 style="font-size: 15px; font-weight: 600; margin-top: 0; margin-bottom: 12px; color: var(--primary-blue);">Custom Mirrored Walls Specs</h3>
+
+            <div id="mirror-list"></div>
+            <button type="button" class="btn-add-pane" onclick="addNewMirrorRow()">+ Add Another Mirror Size</button>
+        </div>
+
+        <!-- Section 6 Wrapper: Frameless Glass Showers Specs Container Block -->
+        <div id="wrapper-shower" style="display: none; margin-bottom: 24px; padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; background: #ffffff;">
+            <h3 style="font-size: 15px; font-weight: 600; margin-top: 0; margin-bottom: 12px; color: var(--primary-blue);">Frameless Glass Showers Specs</h3>
+            <div class="field-group">
+                <label>How many glass walls?</label>
+                <input type="number" id="shower-walls-qty" value="1" min="0" oninput="updateCalculations()" onfocus="this.select()" onblur="validateShowerInput(this, 1)">
+            </div>
+            <div style="font-size: 13px; color: #B45309; background-color: #FFFBEB; border: 1px solid #FDE68A; padding: 10px; border-radius: 6px; margin-top: 8px; line-height: 1.4; display: flex; align-items: flex-start; gap: 6px;">
+                <span>💡</span>
+
+                <span><strong>Important Hint:</strong> Do not count the shower door panel. Please ignore the door entirely and only enter the total number of fixed stationary glass walls.</span>
+            </div>
+        </div>
+
+        <!-- Persistent Estimate Accuracy Warning Banner Component -->
+        <div style="font-size: 13px; color: #1E293B; background-color: #F1F5F9; border: 1px solid #CBD5E1; padding: 12px; border-radius: 6px; margin-top: 20px; line-height: 1.4; text-align: left;">
+            <strong>Please Note:</strong> This is strictly a rough estimate for your convenience. To get a final official quote, we will need to go out there to measure everything ourselves.
+        </div>
+
+        <!-- Calculation Trigger Action Button Element Layout Block -->
+        <button type="button" class="action-calculate-btn" onclick="generateEstimateTotal()">Calculate Rough Estimate</button>
+
+        <!-- Final Price Result Block Card (Hidden until explicitly generated) -->
+        <div id="estimate-output-container" class="estimate-output-card">
+            <div style="font-size: 13px; font-weight: 600; text-transform: uppercase; color: var(--muted-text); letter-spacing: 0.5px;"> ⚠️ Please Note: This calculation is strictly a rough estimate for planning purposes. Glass and custom shower specs require millimeter-perfect accuracy. To lock in a final, official contract quote, our local team will come out to your property to physically measure everything ourselves before installation. </div>
+            <div id="estimate-output-display" style="font-size: 34px; font-weight: 700; color: var(--primary-blue); margin-top: 4px;">$0</div>
+            <div style="font-size: 11px; color: var(--muted-text); margin-top: 8px; font-style: italic;">This is strictly a rough estimate for your convenience.</div>
+        </div>
+
+
+        <!-- Hidden Master Counts Tracking Element Structure -->
+        <div class="totals-box">
+            <div class="summary-row"><span class="summary-label">Second Story Foggy Windows:</span><span class="summary-value" id="second-story-display">0</span></div>
+            <div class="summary-row"><span class="summary-label">Second Story Broken Windows:</span><span class="summary-value" id="broken-second-story-display">0</span></div>
+            <div class="summary-row" style="margin-top: 4px; padding-top: 4px; border-top: 1px dashed var(--border-color);"><span class="summary-label">Total Foggy Window Panes:</span><span class="summary-value" id="total-qty-display">0</span></div>
+            <div class="summary-row"><span class="summary-label">Total Washing Panes:</span><span class="summary-value" id="washing-display">0</span></div>
+            <div class="summary-row"><span class="summary-label">Total Weatherising Frames:</span><span class="summary-value" id="weatherising-display">0</span></div>
+            <div class="summary-row"><span class="summary-label">Total Broken Glass Panes:</span><span class="summary-value" id="total-broken-qty-display">0</span></div>
+            <div class="summary-row"><span class="summary-label">Total Mirror Panels:</span><span class="summary-value" id="total-mirror-display">0</span></div>
+            <div class="summary-row"><span class="summary-label">Total Shower Glass Walls:</span><span class="summary-value" id="shower-display">0</span></div>
+        </div>
+    </div>
+
+    <script>
+        let paneCounter = 0;
+        let brokenPaneCounter = 0;
+        let mirrorCounter = 0;
+        let internalPaneData = {};
+        let internalBrokenPaneData = {};
+        let globalFoggySummaryText = ""; 
+        let globalBrokenSummaryText = "";
+        let globalMirrorSummaryText = "";
+
+
+        let internalMirrorData = {};
+
+        // Base glass pricing tables configuration records matching criteria
+        const section1Rates = {
+            'Select Glass Type': 15,
+            'clear-annealed': 6.35,                          // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+            'standard-igu': 7.98,                           // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+            'low-e-igu': 15                               // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+        };
+
+        window.onload = function () {
+            addNewPaneRow();
+            addNewBrokenPaneRow();
+            addNewMirrorRow();
+            updateCalculations();
+        };
+
+        function toggleStoryQty(checkbox) {
+            const container = document.getElementById('story-qty-container');
+
+            container.style.display = checkbox.checked ? 'block' : 'none';
+        }
+
+        function toggleBrokenStoryQty(checkbox) {
+            const container = document.getElementById('broken-story-qty-container');
+            container.style.display = checkbox.checked ? 'block' : 'none';
+        }
+
+        function toggleFoggyArchQty(checkbox) {
+            const container = document.getElementById('foggy-arch-qty-container');
+            container.style.display = checkbox.checked ? 'block' : 'none';
+        }
+
+        function toggleBrokenArchQty(checkbox) {
+            const container = document.getElementById('broken-arch-qty-container');
+            container.style.display = checkbox.checked ? 'block' : 'none';
+        }
+
+        function addNewPaneRow() {
+
+            paneCounter++;
+            const panesList = document.getElementById('panes-list');
+
+            const paneCard = document.createElement('div');
+            paneCard.className = 'pane-card';
+            paneCard.id = `pane-row-${paneCounter}`;
+
+            paneCard.innerHTML = `
+                        <div class="pane-header">
+                            <span>Glass Pane Size #${paneCounter}</span>
+                            ${paneCounter > 1 ? `<button type="button" class="remove-btn" onclick="removePaneRow(${paneCounter})">Remove</button>` : ''}
+                        </div>
+
+                        <div class="field-grid">
+                            <div class="field-group">
+                                <label>Width (Inches)</label>
+                                <input type="number" class="pane-width" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validatePaneInput(this, 24)">
+                            </div>
+                            <div class="field-group">
+
+                                <label>Height (Inches)</label>
+                                <input type="number" class="pane-height" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validatePaneInput(this, 24)">
+                            </div>
+                            <div class="field-group">
+                                <label>Quantity</label>
+                                <input type="number" class="pane-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validatePaneInput(this, 1)">
+                            </div>
+                        </div>
+
+                        <div class="checkbox-label" style="margin-top: 10px;">
+                            <input type="checkbox" class="tempered-upgrade-chk" onchange="updateCalculations()">
+                            Tempered Safety Glass Upgrade
+                        </div>
+                    `;
+
+            panesList.appendChild(paneCard);
+            updateCalculations();
+        }
+
+
+        function addNewBrokenPaneRow() {
+            brokenPaneCounter++;
+            const brokenPanesList = document.getElementById('broken-panes-list');
+
+            const paneCard = document.createElement('div');
+            paneCard.className = 'pane-card';
+            paneCard.id = `broken-pane-row-${brokenPaneCounter}`;
+
+            paneCard.innerHTML = `
+                        <div class="pane-header">
+                            <span>Broken Glass Size #${brokenPaneCounter}</span>
+                            ${brokenPaneCounter > 1 ? `<button type="button" class="remove-btn" onclick="removeBrokenPaneRow(${brokenPaneCounter})">Remove</button>` : ''}
+                        </div>
+
+                        <div class="field-grid">
+                            <div class="field-grid-item field-group">
+                                <label>Width (Inches)</label>
+                                <input type="number" class="broken-pane-width" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateBrokenPaneInput(this, 24)">
+                            </div>
+
+                            <div class="field-grid-item field-group">
+                                <label>Height (Inches)</label>
+                                <input type="number" class="broken-pane-height" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateBrokenPaneInput(this, 24)">
+                            </div>
+                            <div class="field-grid-item field-group">
+                                <label>Quantity</label>
+                                <input type="number" class="broken-pane-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateBrokenPaneInput(this, 1)">
+                            </div>
+                        </div>
+
+                        <div class="checkbox-label" style="margin-top: 10px;">
+                            <input type="checkbox" class="broken-tempered-upgrade-chk" onchange="updateCalculations()">
+                            Tempered Safety Glass Upgrade
+                        </div>
+                    `;
+
+            brokenPanesList.appendChild(paneCard);
+            updateCalculations();
+        }
+
+
+        function addNewMirrorRow() {
+            mirrorCounter++;
+            const mirrorList = document.getElementById('mirror-list');
+
+            const paneCard = document.createElement('div');
+            paneCard.className = 'pane-card';
+            paneCard.id = `mirror-row-${mirrorCounter}`;
+
+            paneCard.innerHTML = `
+                        <div class="pane-header">
+                            <span>Mirror Size #${mirrorCounter}</span>
+                            ${mirrorCounter > 1 ? `<button type="button" class="remove-btn" onclick="removeMirrorRow(${mirrorCounter})">Remove</button>` : ''}
+                        </div>
+
+                        <div class="field-grid">
+                            <div class="field-group">
+                                <label>Length (Inches)</label>
+                                <input type="number" class="mirror-length" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateMirrorInput(this, 24)">
+                            </div>
+
+                            <div class="field-group">
+                                <label>Height (Inches)</label>
+                                <input type="number" class="mirror-height" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateMirrorInput(this, 24)">
+                            </div>
+                            <div class="field-group">
+                                <label>Quantity</label>
+                                <input type="number" class="mirror-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateMirrorInput(this, 1)">
+                            </div>
+                        </div>
+                    `;
+
+            mirrorList.appendChild(mirrorList.appendChild(paneCard));
+            updateCalculations();
+        }
+
+        function removePaneRow(id) {
+            const row = document.getElementById(`pane-row-${id}`);
+            if (row) {
+                row.remove();
+
+                delete internalPaneData[id];
+                updateCalculations();
+            }
+        }
+
+        function removeBrokenPaneRow(id) {
+            const row = document.getElementById(`broken-pane-row-${id}`);
+            if (row) {
+                row.remove();
+                delete internalBrokenPaneData[id];
+                updateCalculations();
+            }
+        }
+
+        function removeMirrorRow(id) {
+            const row = document.getElementById(`mirror-row-${id}`);
+            if (row) {
+                row.remove();
+                delete internalMirrorData[id];
+
+                updateCalculations();
+            }
+        }
+
+        function validatePaneInput(input, defaultValue) {
+            let val = parseFloat(input.value);
+            if (isNaN(val) || val < 1 || input.value.trim() === "") {
+                input.value = defaultValue;
+            }
+            updateCalculations();
+        }
+
+        function validateBrokenPaneInput(input, defaultValue) {
+            let val = parseFloat(input.value);
+            if (isNaN(val) || val < 1 || input.value.trim() === "") {
+                input.value = defaultValue;
+            }
+            updateCalculations();
+        }
+
+
+        function validateMirrorInput(input, defaultValue) {
+            let val = parseFloat(input.value);
+            if (isNaN(val) || val < 1 || input.value.trim() === "") {
+                input.value = defaultValue;
+            }
+            updateCalculations();
+        }
+
+        // Input parameters validation criteria tracking
+        function validateWashingInput(input, defaultValue) {
+            let val = parseInt(input.value);
+            if (isNaN(val) || val < 0 || input.value.trim() === "") {
+                input.value = defaultValue;
+            }
+            updateCalculations();
+        }
+
+        function validateWeatherisingInput(input, defaultValue) {
+            let val = parseInt(input.value);
+
+            if (isNaN(val) || val < 0 || input.value.trim() === "") {
+                input.value = defaultValue;
+            }
+            updateCalculations();
+        }
+
+        function validateShowerInput(input, defaultValue) {
+            let val = parseInt(input.value);
+            if (isNaN(val) || val < 0 || input.value.trim() === "") {
+                input.value = defaultValue;
+            }
+            updateCalculations();
+        }
+
+        function ensureValidStoryQty() {
+            const storyQtyInput = document.getElementById('second-story-qty');
+            const totalPanes = parseInt(document.getElementById('total-qty-display').innerText) || 0;
+            let val = parseInt(storyQtyInput.value);
+
+
+            if (isNaN(val) || val < 1 || storyQtyInput.value.trim() === "") {
+                storyQtyInput.value = 1;
+            } else if (val > totalPanes) {
+                storyQtyInput.value = totalPanes;
+            }
+            updateCalculations();
+        }
+
+        function ensureValidBrokenStoryQty() {
+            const storyQtyInput = document.getElementById('broken-second-story-qty');
+            const totalBroken = parseInt(document.getElementById('total-broken-qty-display').innerText) || 0;
+            let val = parseInt(storyQtyInput.value);
+
+            if (isNaN(val) || val < 1 || storyQtyInput.value.trim() === "") {
+                storyQtyInput.value = 1;
+            } else if (val > totalBroken) {
+                storyQtyInput.value = totalBroken;
+            }
+            updateCalculations();
+
+        }
+
+        function ensureValidFoggyArchQty() {
+            const archQtyInput = document.getElementById('foggy-arch-qty');
+            const totalPanes = parseInt(document.getElementById('total-qty-display').innerText) || 0;
+            let val = parseInt(archQtyInput.value);
+
+            if (isNaN(val) || val < 1 || archQtyInput.value.trim() === "") {
+                archQtyInput.value = 1;
+            } else if (val > totalPanes) {
+                archQtyInput.value = totalPanes;
+            }
+            updateCalculations();
+        }
+
+        function ensureValidBrokenArchQty() {
+            const archQtyInput = document.getElementById('broken-arch-qty');
+            const totalBroken = parseInt(document.getElementById('total-broken-qty-display').innerText) || 0;
+            let val = parseInt(archQtyInput.value);
+
+
+            if (isNaN(val) || val < 1 || archQtyInput.value.trim() === "") {
+                archQtyInput.value = 1;
+            } else if (val > totalBroken) {
+                archQtyInput.value = totalBroken;
+            }
+            updateCalculations();
+        }
+
+        function updateCalculations() {
+            // Evaluate Master Activation Toggle Inputs Checkboxes
+            const isFoggyActive = document.getElementById('master-foggy-chk').checked;
+            const isWashingActive = document.getElementById('master-washing-chk').checked;
+            const isWeatherisingActive = document.getElementById('master-weatherising-chk').checked;
+            const isBrokenActive = document.getElementById('master-broken-chk').checked;
+            const isMirrorActive = document.getElementById('master-mirror-chk').checked;
+            const isShowerActive = document.getElementById('master-shower-chk').checked;
+
+            // Toggle layout container wrapper display visibility
+            document.getElementById('wrapper-foggy').style.display = isFoggyActive ? 'block' : 'none';
+
+            document.getElementById('wrapper-washing').style.display = isWashingActive ? 'block' : 'none';
+            document.getElementById('wrapper-weatherising').style.display = isWeatherisingActive ? 'block' : 'none';
+            document.getElementById('wrapper-broken').style.display = isBrokenActive ? 'block' : 'none';
+            document.getElementById('wrapper-mirror').style.display = isMirrorActive ? 'block' : 'none';
+            document.getElementById('wrapper-shower').style.display = isShowerActive ? 'block' : 'none';
+
+            // 1. Process Section 1: Foggy Window Repair
+            let totalPanes = 0;
+            let storyCount = 0;
+            if (isFoggyActive) {
+                const panesList = document.getElementById('panes-list').children;
+                const globalGlassType = document.getElementById('global-glass-type').value;
+                internalPaneData = {};
+
+                for (let card of panesList) {
+                    const rowId = card.id.split('-')[2];
+                    const w = parseFloat(card.querySelector('.pane-width').value) || 0;
+                    const h = parseFloat(card.querySelector('.pane-height').value) || 0;
+                    const qty = parseInt(card.querySelector('.pane-qty').value) || 0;
+
+                    const isTempered = card.querySelector('.tempered-upgrade-chk').checked;
+
+                    let unitSqFt = (w * h) / 144;
+                    totalPanes += qty;
+
+                    internalPaneData[rowId] = {
+                        glassType: globalGlassType,
+                        width: w,
+                        height: h,
+                        quantity: qty,
+                        unitSqFt: unitSqFt,
+                        tempered: isTempered
+                    };
+                }
+
+                const storyChk = document.getElementById('top-story-chk');
+                const storyQtyInput = document.getElementById('second-story-qty');
+                const warningDiv = document.getElementById('story-warning');
+
+
+                if (storyChk.checked) {
+                    storyQtyInput.max = totalPanes;
+                    let typedQtyStr = storyQtyInput.value;
+                    if (typedQtyStr === "") {
+                        storyCount = 0;
+                        warningDiv.style.display = 'none';
+                    } else {
+                        let typedQty = parseInt(typedQtyStr) || 0;
+                        if (typedQty > totalPanes) {
+                            warningDiv.style.display = 'block';
+                            storyCount = totalPanes;
+                        } else {
+                            warningDiv.style.display = 'none';
+                            storyCount = typedQty;
+                        }
+                    }
+                } else {
+                    warningDiv.style.display = 'none';
+                }
+
+
+                // Boundary handling loop updates for foggy arches modifier
+                const archChk = document.getElementById('foggy-arch-chk');
+                const archQtyInput = document.getElementById('foggy-arch-qty');
+                const archWarningDiv = document.getElementById('foggy-arch-warning');
+
+                if (archChk.checked) {
+                    archQtyInput.max = totalPanes;
+                    let typedArchStr = archQtyInput.value;
+                    if (typedArchStr !== "") {
+                        let typedArchQty = parseInt(typedArchStr) || 0;
+                        if (typedArchQty > totalPanes) {
+                            archWarningDiv.style.display = 'block';
+                        } else {
+                            archWarningDiv.style.display = 'none';
+                        }
+                    }
+                } else {
+                    archWarningDiv.style.display = 'none';
+                }
+
+            } else {
+                document.getElementById('story-warning').style.display = 'none';
+                document.getElementById('foggy-arch-warning').style.display = 'none';
+            }
+
+            // 2. Process Section 4: Residential Broken Panes
+            let totalBrokenPanes = 0;
+            let brokenStoryCount = 0;
+            if (isBrokenActive) {
+                const brokenPanesList = document.getElementById('broken-panes-list').children;
+                internalBrokenPaneData = {};
+
+                for (let card of brokenPanesList) {
+                    const rowId = card.id.split('-')[3];
+                    const w = parseFloat(card.querySelector('.broken-pane-width').value) || 0;
+                    const h = parseFloat(card.querySelector('.broken-pane-height').value) || 0;
+                    const qty = parseInt(card.querySelector('.broken-pane-qty').value) || 0;
+                    const isTempered = card.querySelector('.broken-tempered-upgrade-chk').checked;
+
+
+                    let unitSqFt = (w * h) / 144;
+                    totalBrokenPanes += qty;
+
+                    internalBrokenPaneData[rowId] = {
+                        width: w,
+                        height: h,
+                        quantity: qty,
+                        unitSqFt: unitSqFt,
+                        tempered: isTempered
+                    };
+                }
+
+                const brokenStoryChk = document.getElementById('broken-story-chk');
+                const brokenStoryQtyInput = document.getElementById('broken-second-story-qty');
+                const brokenWarningDiv = document.getElementById('broken-story-warning');
+
+                if (brokenStoryChk.checked) {
+                    brokenStoryQtyInput.max = totalBrokenPanes;
+                    let typedBrokenStr = brokenStoryQtyInput.value;
+
+                    if (typedBrokenStr === "") {
+                        brokenStoryCount = 0;
+                        brokenWarningDiv.style.display = 'none';
+                    } else {
+                        let typedBrokenQty = parseInt(typedBrokenStr) || 0;
+                        if (typedBrokenQty > totalBrokenPanes) {
+                            brokenWarningDiv.style.display = 'block';
+                            brokenStoryCount = totalBrokenPanes;
+                        } else {
+                            brokenWarningDiv.style.display = 'none';
+                            brokenStoryCount = typedBrokenQty;
+                        }
+                    }
+                } else {
+                    brokenWarningDiv.style.display = 'none';
+                }
+
+                // Boundary handling loop updates for broken arches modifier
+                const brokenArchChk = document.getElementById('broken-arch-chk');
+
+                const brokenArchQtyInput = document.getElementById('broken-arch-qty');
+                const brokenArchWarningDiv = document.getElementById('broken-arch-warning');
+
+                if (brokenArchChk.checked) {
+                    brokenArchQtyInput.max = totalBrokenPanes;
+                    let typedBrokenArchStr = brokenArchQtyInput.value;
+                    if (typedBrokenArchStr !== "") {
+                        let typedBrokenArchQty = parseInt(typedBrokenArchStr) || 0;
+                        if (typedBrokenArchQty > totalBrokenPanes) {
+                            brokenArchWarningDiv.style.display = 'block';
+                        } else {
+                            brokenArchWarningDiv.style.display = 'none';
+                        }
+                    }
+                } else {
+                    brokenArchWarningDiv.style.display = 'none';
+                }
+            } else {
+                document.getElementById('broken-story-warning').style.display = 'none';
+
+                document.getElementById('broken-arch-warning').style.display = 'none';
+            }
+
+            // 3. Process Section 5: Custom Mirrored Walls
+            let totalMirrors = 0;
+            if (isMirrorActive) {
+                const mirrorList = document.getElementById('mirror-list').children;
+                internalMirrorData = {};
+
+                
+
+                for (let card of mirrorList) {
+                    const rowId = card.id.split('-')[2];
+                    const l = parseFloat(card.querySelector('.mirror-length').value) || 0;
+                    const h = parseFloat(card.querySelector('.mirror-height').value) || 0;
+                    const qty = parseInt(card.querySelector('.mirror-qty').value) || 0;
+
+                    totalMirrors += qty;
+
+                    
+
+                    internalMirrorData[rowId] = {
+                        length: l,
+
+                        height: h,
+                        quantity: qty
+                    };
+                }
+            }
+
+            // 4. Process Section 2: Window Washing
+            let washingCount = 0;
+            if (isWashingActive) {
+                const washingQtyInput = document.getElementById('washing-qty');
+                if (washingQtyInput && washingQtyInput.value !== "") {
+                    washingCount = parseInt(washingQtyInput.value) || 0;
+                }
+            }
+
+            // 5. Process Section 3: Weatherising
+            let weatherisingCount = 0;
+            if (isWeatherisingActive) {
+                const weatherisingQtyInput = document.getElementById('weatherising-qty');
+
+                if (weatherisingQtyInput && weatherisingQtyInput.value !== "") {
+                    weatherisingCount = parseInt(weatherisingQtyInput.value) || 0;
+                }
+            }
+
+            // 6. Process Section 6: Frameless Glass Showers
+            let showerWallsCount = 0;
+            if (isShowerActive) {
+                const showerQtyInput = document.getElementById('shower-walls-qty');
+                if (showerQtyInput && showerQtyInput.value !== "") {
+                    showerWallsCount = parseInt(showerQtyInput.value) || 0;
+                }
+            }
+
+            // Render metrics into background tracking nodes safely
+            document.getElementById('total-qty-display').innerText = totalPanes;
+            document.getElementById('second-story-display').innerText = storyCount;
+            document.getElementById('total-broken-qty-display').innerText = totalBrokenPanes;
+            document.getElementById('broken-second-story-display').innerText = brokenStoryCount;
+
+            document.getElementById('total-mirror-display').innerText = totalMirrors;
+            document.getElementById('shower-display').innerText = showerWallsCount;
+            document.getElementById('washing-display').innerText = washingCount;
+            document.getElementById('weatherising-display').innerText = weatherisingCount;
+        }
+
+        // Static pricing processor triggered only by click event listener
+        function generateEstimateTotal() {
+            let runningCostSum = 0;
+            let activeServiceDetected = false;
+
+            const isFoggyActive = document.getElementById('master-foggy-chk').checked;
+            const isWashingActive = document.getElementById('master-washing-chk').checked;
+            const isWeatherisingActive = document.getElementById('master-weatherising-chk').checked;
+            const isBrokenActive = document.getElementById('master-broken-chk').checked;
+            const isMirrorActive = document.getElementById('master-mirror-chk').checked;
+            const isShowerActive = document.getElementById('master-shower-chk').checked;
+
+            // A. Process Foggy Window Repair Section Calculations
+
+            if (isFoggyActive) {
+                activeServiceDetected = true;
+                const panesList = document.getElementById('panes-list').children;
+                const chosenGlassKey = document.getElementById('global-glass-type').value;
+                let baseGlassRatePerSqFt = section1Rates[chosenGlassKey] || 0;
+
+                let foggyQtySum = 0;
+
+                globalFoggySummaryText = `--- FOGGY WINDOW DETAILS ---<br>Glass Type: ${chosenGlassKey}<br>`;
+                let windowIndex = 1;
+
+                for (let card of panesList) {
+                    const w = parseFloat(card.querySelector('.pane-width').value) || 0;
+                    const h = parseFloat(card.querySelector('.pane-height').value) || 0;
+                    const qty = parseInt(card.querySelector('.pane-qty').value) || 0;
+                    const hasTemperedUpgrade = card.querySelector('.tempered-upgrade-chk').checked;
+
+                    foggyQtySum += qty;
+
+                    // --- ADD THESE LINES TO BUILD YOUR ITEMISED TEXT LINE ---
+                    if (qty > 0) {
+                      let temperedText = hasTemperedUpgrade ? "Tempered⚠️ " : "";
+                      globalFoggySummaryText += `${temperedText}Size: ${w}" x ${h}" | Qty: ${qty}<br>`;
+                      windowIndex++;
+                    }
+
+                    let rowSquareFootage = (w * h) / 144;
+                    if (rowSquareFootage < 3 && rowSquareFootage > 0) {
+                        rowSquareFootage = 3; // Rule: Apply 3 sq ft factory minimum
+
+                    }
+
+                    let finalRate = baseGlassRatePerSqFt + (hasTemperedUpgrade ? 10 : 0);   // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+
+                    // Rule: For sq ft components, round up on pricing item layers
+                    let productUnitCost = Math.ceil(rowSquareFootage * finalRate);
+
+                    // Rule: For all windows and mirrors charge double product price to match standard
+                    let doubledProductRowCost = (productUnitCost * 2) * qty;
+                    runningCostSum += doubledProductRowCost;
+                }
+
+                // Rule: Add window base labor of $100 per window pane
+                runningCostSum += (100 * foggyQtySum);                        // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+
+                // Rule: If second story windows are active, append $150 per unit onto labor budget
+                const storyChk = document.getElementById('top-story-chk');
+                if (storyChk.checked) {
+                    let storyQty = parseInt(document.getElementById('second-story-qty').value) || 0;
+
+                    if (storyQty > foggyQtySum) storyQty = foggyQtySum;
+                    runningCostSum += (150 * storyQty);                        // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                }
+
+                // Rule: Foggy windows with arches add an extra $100 per arched window unit
+                const foggyArchChk = document.getElementById('foggy-arch-chk');
+                if (foggyArchChk && foggyArchChk.checked) {
+                    let foggyArchQty = parseInt(document.getElementById('foggy-arch-qty').value) || 0;
+                    if (foggyArchQty > foggyQtySum) foggyArchQty = foggyQtySum;
+                    runningCostSum += (100 * foggyArchQty);                    // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                }
+            }
+
+            // B. Process Window Washing Section Calculations
+            if (isWashingActive) {
+                activeServiceDetected = true;
+                const washingQty = parseInt(document.getElementById('washing-qty').value) || 0;
+                // Rule: Window washing is $12 per window pane, no secondary labor
+                runningCostSum += (washingQty * 12);                              // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+
+            }
+
+            // C. Process Weatherising Section Calculations
+            if (isWeatherisingActive) {
+                activeServiceDetected = true;
+                const weatherisingQty = parseInt(document.getElementById('weatherising-qty').value) || 0;
+                // Rule: Weatherising is $10 per window unit framework, no labor surcharge
+                runningCostSum += (weatherisingQty * 10);                          // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+            }
+
+            // D. Process Residential Broken Panes Section Calculations
+            if (isBrokenActive) {
+                activeServiceDetected = true;
+                const brokenPanesList = document.getElementById('broken-panes-list').children;
+                let brokenQtySum = 0;
+
+                globalBrokenSummaryText = `--- BROKEN WINDOW DETAILS ---<br>`;
+                let windowIndex = 1;
+
+                for (let card of brokenPanesList) {
+                    const w = parseFloat(card.querySelector('.broken-pane-width').value) || 0;
+                    const h = parseFloat(card.querySelector('.broken-pane-height').value) || 0;
+
+                    const qty = parseInt(card.querySelector('.broken-pane-qty').value) || 0;
+                    const hasTemperedUpgrade = card.querySelector('.broken-tempered-upgrade-chk').checked;
+
+                    brokenQtySum += qty;
+
+                    // --- ADD THESE LINES TO BUILD YOUR ITEMISED TEXT LINE ---
+                    if (qty > 0) {
+                      let temperedText = hasTemperedUpgrade ? "Tempered⚠️ " : "";
+                      globalBrokenSummaryText += `${temperedText}Size: ${w}" x ${h}" | Qty: ${qty}<br>`;
+                      windowIndex++;
+                    }
+
+                    let rowSquareFootage = (w * h) / 144;
+                    if (rowSquareFootage < 3 && rowSquareFootage > 0) {
+                        rowSquareFootage = 3; // Rule: Apply 3 sq ft production minimum
+                    }
+
+                    // Rule: Broken glass default the glass base price to extra $5 per square foot     //Includes product materials, specialized labor parameters, and base flat gas fees.
+                    let finalRate = 20 + (hasTemperedUpgrade ? 10 : 0);                     // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                    let productUnitCost = Math.ceil(rowSquareFootage * finalRate);
+
+                    // Rule: Double product price to match standard criteria
+                    let doubledProductRowCost = (productUnitCost * 2) * qty;
+                    runningCostSum += doubledProductRowCost;
+                }
+
+
+                // Rule: Window base labor of $150 per window pane
+                runningCostSum += (150 * brokenQtySum);                                  // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+
+                // Rule: Second story broken windows surcharge of $200 per pane
+                const brokenStoryChk = document.getElementById('broken-story-chk');
+                if (brokenStoryChk.checked) {
+                    let brokenStoryQty = parseInt(document.getElementById('broken-second-story-qty').value) || 0;
+                    if (brokenStoryQty > brokenQtySum) brokenStoryQty = brokenQtySum;
+                    runningCostSum += (200 * brokenStoryQty);                               // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                }
+
+                // Rule: Broken glass windows with arches add an extra $120 per arched window unit
+                const brokenArchChk = document.getElementById('broken-arch-chk');
+                if (brokenArchChk && brokenArchChk.checked) {
+                    let brokenArchQty = parseInt(document.getElementById('broken-arch-qty').value) || 0;
+                    if (brokenArchQty > brokenQtySum) brokenArchQty = brokenQtySum;
+                    runningCostSum += (120 * brokenArchQty);                             // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                }
+            }
+
+
+            // E. Process Custom Mirrored Walls Section Calculations
+            if (isMirrorActive) {
+                activeServiceDetected = true;
+                const mirrorList = document.getElementById('mirror-list').children;
+
+                // --- ADD THIS LINE TO CLEAR ANY PREVIOUS CALCULATION TEXTS ---
+                globalMirrorSummaryText = `--- MIRROR DETAILS ---<br>`;
+                let MirrorIndex = 1;
+
+                for (let card of mirrorList) {
+                    const l = parseFloat(card.querySelector('.mirror-length').value) || 0;
+                    const h = parseFloat(card.querySelector('.mirror-height').value) || 0;
+                    const qty = parseInt(card.querySelector('.mirror-qty').value) || 0;
+
+                    // --- ADD THESE LINES TO BUILD YOUR ITEMISED TEXT LINE ---
+                    if (qty > 0) {
+                      globalMirrorSummaryText += `Size: ${l}" x ${h}" | Qty: ${qty}<br>`;
+                      MirrorIndex++;
+                    }
+
+                    let rowSquareFootage = (l * h) / 144;
+                    if (rowSquareFootage < 3 && rowSquareFootage > 0) {
+                        rowSquareFootage = 3; // Rule: Enforce 3 sq ft baseline parameter
+                    }
+
+                    // Rule: Mirror pricing is $12 per square foot base asset charge
+                    let productUnitCost = Math.ceil(rowSquareFootage * 7.21);               // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+
+                    // Rule: Double product price criteria matrix loop matching
+
+                    let doubledProductRowCost = (productUnitCost * 2) * qty;
+                    runningCostSum += doubledProductRowCost;
+
+                    // Rule: Mirrors add $200 labor surcharge directly per unit row pane item
+                    runningCostSum += (200 * qty);                                        // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                }
+            }
+
+            // F. Process Frameless Glass Showers Section Calculations
+            if (isShowerActive) {
+                activeServiceDetected = true;
+                const showerWalls = parseInt(document.getElementById('shower-walls-qty').value) || 0;
+                // Rule: Shower framework is flat $1200 per stationary wall panel structure, no manual labor add
+                runningCostSum += (showerWalls * 1336);                                  // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+            }
+
+            // G. Process Global Base Utilities Surcharges (Gas Fee Layer)
+            if (activeServiceDetected) {
+                // Rule: Add a flat gas transport operational fee tracking overhead parameter of $30
+
+                runningCostSum += 30;                                                     // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+            }
+
+            // Reveal container and output calculated balance safely into the structural display nodes
+            document.getElementById('estimate-output-display').innerText = '$' + Math.round(runningCostSum).toLocaleString();
+            document.getElementById('estimate-output-container').style.display = 'none';
+
+            // Unhide the CTA button after calculating results                   
+            document.getElementById('cta-button-container').style.display = 'none';
+
+              // ==========================================
+              // 🚨 UPDATED INTERCEPTOR WORKFLOW (PASTED INSIDE CALC FUNCTION)
+              // ==========================================
+
+              // Pull exact quantities and text directly from your page elements.
+              // (Make sure these element IDs in quotes match the inputs on your page!)
+              var pendingFormData = {
+              // 🌫️ Foggy Windows Section
+              "Foggy_Window Qty": parseInt(document.getElementById('total-qty-display')?.innerText) || 0,
+              "Foggy_Second Level Window Qty": parseInt(document.getElementById('second-story-display')?.innerText) || 0, 
+              "Foggy_Arched Window": document.getElementById('foggy-arch-chk')?.checked ? "Yes" : "No",
+              "Foggy_Unit Cost Per Sq Ft": section1Rates[document.getElementById('global-glass-type').value] || 0,
+              "Foggy_Labor Cost": ((parseInt(document.getElementById('second-story-display')?.innerText) * 150)+(parseInt(document.getElementById('total-qty-display')?.innerText) * 100)) || 0,
+              "Foggy_Summary": globalFoggySummaryText || "none provided",
+
+              // 🔨 Broken Windows Section
+              "Broken_Window Qty": parseInt(document.getElementById('total-broken-qty-display')?.innerText) || 0,
+              "Broken_Second Level Window Qty": parseInt(document.getElementById('broken-second-story-display')?.innerText) || 0, 
+              "Broken_Arched Window": document.getElementById('broken-arch-chk')?.checked ? "Yes" : "No", 
+              "Broken_Unit Cost Per Sq Ft": 15,
+              "Broken_Labor Cost": ((parseInt(document.getElementById('total-broken-qty-display')?.innerText) * 150) + (parseInt(document.getElementById('broken-second-story-display')?.innerText) * 200))|| 0,
+              "Broken_Summary": globalBrokenSummaryText || "none provided",
+
+              // 🧼 Washing Windows Section
+              "Washing_Windows Qty": parseInt(document.getElementById('washing-display')?.innerText) || 0, 
+              "Washing_Windows Cost": 12,
+
+              // 🛡️ Weatherizing Section
+              "Weatherizing_Windows Qty": parseInt(document.getElementById('weatherising-display')?.innerText) || 0, 
+              "Weatherizing_Windows Cost": 10,
+
+              // 🪞 Mirrored Walls Section
+              "Mirrored_Mirror Qty": parseInt(document.getElementById('total-mirror-display')?.innerText) || 0,
+              "Mirrored_Unit Cost Per Sq Ft": 7.21,
+              "Mirrored_Labor Cost": (parseInt(document.getElementById('total-mirror-display')?.innerText) * 200) || 0,
+              "Mirrored_Summary": globalMirrorSummaryText || "none provided",
+
+              // 🚿 Showers Section
+              "Showers_Shower Wall Panels Qty": parseInt(document.getElementById('shower-display')?.innerText) || 0, 
+              "Showers_Shower Walls Cost Per Wall": 1336, 
+
+              // 💼 Labor & Fees Section
+              "Fees_Labor for foggy Glass": 100, 
+              "Fees_Second Story Glass Fee": 150, 
+              "Fees_Arched Glass Fee": 100, 
+              "Fees_Labor for Broken Glass": 150, 
+              "Fees_Second Story Broken Glass Fee": 200, 
+              "Fees_Broken Arched Glass Fee": 120, 
+              "Fees_Added Tempered Glass Fee Per Sq Ft": 10, 
+              "Fees_Labor For Mirrors": 200, 
+              "Fees_Gas": 30, 
+
+              // 📈 Totals Section
+              "Totals_Sub Total Cost": runningCostSum || 0,
+              "Totals_Estimated Tax (8.25%)": (runningCostSum * 0.0825) || 0,
+              "Totals_Grand Total Cost": (runningCostSum * 1.0825) || 0
+            };
+
+
+              // Force the lead capture pop-up modal overlay screen to open
+              document.getElementById('leadModal').style.display = 'flex';
+
+              // Handle the backend form submission link tracking logic
+              document.getElementById('leadForm').onsubmit = function(e) {
+                e.preventDefault();
+    
+                document.getElementById('submitLeadBtn').innerText = "Processing...";
+                document.getElementById('submitLeadBtn').disabled = true;
+
+                var payload = {
+                  firstName: document.getElementById('leadFirstName').value,
+                  lastName: document.getElementById('leadLastName').value,
+                  phone: document.getElementById('leadPhone').value,
+                  email: document.getElementById('leadEmail').value,
+                  calculatorData: pendingFormData
+                };
+
+                // Keep using your unique published Google Apps Script URL link right here!
+                var webAppUrl = "https://script.google.com/macros/s/AKfycbwgx--sTv0QCRQ3YIYehgYl8IDiId_3FYdoZSpNM_hi7t0qStIrBSclBeoyYHvXBILZ/exec";
+
+                fetch(webAppUrl, {
+                  method: "POST",
+                  mode: "no-cors",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(payload)
+                })
+                .then(function() {
+                  document.getElementById('leadModal').style.display = 'none';
+                  document.getElementById('estimate-output-container').style.display = 'block';
+                  document.getElementById('cta-button-container').style.display = 'none';
+                })
+                .catch(function(err) {
+                  console.error("Transmission Error:", err);
+                  document.getElementById('leadModal').style.display = 'none';
+                  document.getElementById('estimate-output-container').style.display = 'block';
+                  document.getElementById('cta-button-container').style.display = 'none';
+                });
+              };
+
+
+
+        }
+    </script>
+    <!-- START OF PICTURE PERFECT CTA BUTTON -->
+    <div id="cta-button-container" style="display: none; text-align: center; margin-top: 30px; margin-bottom: 20px; width: 100%;">
+        <a target="_blank"
+           href="https://www.pictureperfectwindowsolutions.com/contact-us"
+           style="display: inline-block;
+            background-color: var(--primary-blue);
+            color: #ffffff;
+            padding: 15px 30px;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            transition: background-color 0.2s ease, transform 0.1s ease; ">
+            Click Here to Book Your On-Site Measurement ➡️
+        </a>
+    </div>
+    <!-- END OF PICTURE PERFECT CTA BUTTON -->
+    <!-- AUTO-RESIZE FOR FREE QUOTE IFRAME BRIDGE -->
+    <script>
+        (function() {
+            function sendHeightToParent() {
+                // Measures the exact container height of the calculator page right now
+                const currentHeight = document.body.scrollHeight;
+
+                // Broadcasts the height up to the Free Quote.html parent page securely
+                window.parent.postMessage({
+                    type: 'resizeIframe',
+                    height: currentHeight
+                }, '*');
+            }
+
+            // Run immediately when the widget loads up
+            if (document.readyState === 'complete') {
+                sendHeightToParent();
+            } else {
+                window.addEventListener('load', sendHeightToParent);
+            }
+
+            // Watch for user interactions (clicks, checkbox selections, adding rows)
+            // and update the page length automatically after a tiny 100ms cushion delay
+            window.addEventListener('click', function() {
+                setTimeout(sendHeightToParent, 100);
+            });
+            window.addEventListener('change', function() {
+                setTimeout(sendHeightToParent, 100);
+            });
+        })();
+    </script>
+
+    <!-- START OF PICTURE PERFECT LEAD CAPTURE MODAL -->
+    <div id="leadModal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); align-items: center; justify-content: center;">
+        <div style="background-color: #ffffff; padding: 30px; border-radius: 8px; width: 90%; max-width: 450px; box-shadow: 0 4px 20px rgba(0,0,0,0.25); font-family: 'Arial', sans-serif;">
+            <h3 style="margin-top: 0; color: #333333; text-align: center; font-size: 20px;">🔒 Unlock Your Rough Estimate</h3>
+            <p style="color: #666666; font-size: 14px; text-align: center; margin-bottom: 20px;">Enter your details below to instantly view your custom price baseline and lock in your local 10% discount profile.</p>
+
+            <form id="leadForm">
+                <label style="display:block; font-weight:bold; margin-bottom:5px; font-size:13px; color:#444;">First Name *</label>
+                <input type="text" id="leadFirstName" required style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
+
+                <label style="display:block; font-weight:bold; margin-bottom:5px; font-size:13px; color:#444;">Last Name *</label>
+                <input type="text" id="leadLastName" required style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
+
+                <label style="display:block; font-weight:bold; margin-bottom:5px; font-size:13px; color:#444;">Phone Number *</label>
+                <input type="tel" id="leadPhone" required style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
+
+                <label style="display:block; font-weight:bold; margin-bottom:5px; font-size:13px; color:#444;">Email Address *</label>
+                <input type="email" id="leadEmail" required style="width:100%; padding:10px; margin-bottom:20px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
+
+                <button type="submit" id="submitLeadBtn" style="width:100%; background-color:#0056b3; color:white; padding:14px; border:none; border-radius:4px; font-weight:bold; font-size:16px; cursor:pointer; transition:0.2s;">
+                    View My Estimate ➡️
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- END OF PICTURE PERFECT LEAD CAPTURE MODAL -->
+
+
+</body>
+</html>
+
+
+

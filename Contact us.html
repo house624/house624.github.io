@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Picture Perfect Window Solutions</title>
+    <link rel="icon" type="image/jpg" href="4110dc67616da56f9c61ba9bc10cdbff.jpg">
+
+    <!-- Tailwind CSS CDN for modern responsive grid layouts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Styles matching Google Sites Theme .jpg  */
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+        }
+
+            .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-radius: 4px;
+            }
+        /* Dropdown custom behavior rules */
+        .dropdown-menu {
+            display: none;
+        }
+
+        .dropdown-container:hover .dropdown-menu, .dropdown-container:focus-within .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="bg-[#0056b3] text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 flex-wrap md:flex-nowrap py-2 md:py-0">
+
+                <!-- Branding / Title -->
+                <div class="flex-shrink-0 flex items-center font-semibold text-lg tracking-wide">
+                    Picture Perfect Window Solutions
+                </div>
+
+                <!-- Navigation Items Links with Dropdown Feature -->
+                <nav class="flex space-x-1 md:space-x-2 text-sm font-medium w-full md:w-auto justify-center md:justify-end mt-2 md:mt-0 whitespace-nowrap">
+                    <a href="index.html" class="nav-link px-3 py-2">Home</a>
+                    <a href="Our Work.html" class="nav-link px-3 py-2">Our Work</a>
+                    <a href="How to Measure.html" class="nav-link px-3 py-2">How to Measure</a>
+                    <a href="Free Quote.html" class="nav-link px-3 py-2">Free Quote</a>
+
+                    <!-- SERVICE AREAS DROPDOWN CONTAINER -->
+                    <!-- FIXED: Removed 'py-2' container padding to restore standard baseline alignment -->
+                    <div class="relative dropdown-container group">
+                        <!-- FIXED: Changed button padding from 'py-1' back to 'py-2' to perfectly line up with standard nav-links -->
+                        <button class="nav-link px-3 py-2 inline-flex items-center gap-1 focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                            <span>Service Areas</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://w3.org">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <!-- Nested Dropdown Sub-menu Grid Container -->
+                        <!-- NOTE: Added 'pt-4' to the top margin context to act as an invisible bridge so your mouse can glide smoothly to the dropdown without a gap -->
+                        <div class="dropdown-menu absolute left-0 md:right-0 md:left-auto pt-2 w-64 z-50
+                                opacity-0 invisible pointer-events-none transition-all duration-200 delay-1000
+                                group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto group-hover:delay-0">
+                            <div class="bg-white rounded-md shadow-xl border border-gray-200 py-1 text-gray-800">
+                                <a href="Dallas TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Dallas, TX - Glass & Window Services</a>
+                                <a href="Fort Worth TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Fort Worth, TX - Glass & Window Services</a>
+                                <a href="Burleson TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Burleson, TX - Glass & Window Services</a>
+                                <a href="Crowley TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Crowley, TX - Glass & Window Services</a>
+                                <a href="Cleburne TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Cleburne, TX - Glass & Window Services</a>
+                                <a href="Alvarado TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Alvarado, TX - Glass & Window Services</a>
+                                <a href="Godley TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Godley, TX - Glass & Window Services</a>
+                                <a href="Midlothian TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Midlothian, TX - Glass & Window Services</a>
+                                <a href="Mansfield TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700">Mansfield, TX - Glass & Window Services</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="Contact Us.html" class="nav-link px-3 py-2 bg-white/20 rounded-md">Contact us</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN BODY CONTENT CONTAINER -->
+    <main class="flex-grow max-w-4xl mx-auto w-full px-4 py-12">
+
+        <!-- Contact Page Main Title -->
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-2">
+                Contact us
+            </h1>
+            <p class="text-base text-gray-600 max-w-xl mx-auto">
+                Get in touch with Picture Perfect Window Solutions for premium glass repairs, window replacements, and washing service solutions.
+            </p>
+        </div>
+
+        <!-- Contact Options Container Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+
+            <!-- Quick Contact / Info Card -->
+
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Business Information</h2>
+                    <div class="space-y-4 text-sm text-gray-600">
+                        <div>
+                            <span class="font-bold block text-gray-700">Phone Number:</span>
+                            (817)647-0229
+                        </div>
+                        <div>
+                            <span class="font-bold block text-gray-700">Operating Hours:</span>
+                            Mon – Sat: 7 A.M. – 3 P.M. <br> Sun: Closed
+                        </div>
+                        <div>
+                            <span class="font-bold block text-gray-700">Payment Methods Accepted:</span>
+                            Cash | Debit | Credit Card
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-4 border-t border-gray-100">
+                    <p class="text-xs text-gray-400 italic">
+                        Located in Alvarado, TX. Serving Dallas, Fort Worth, and surrounding local areas.
+                    </p>
+
+                </div>
+            </div>
+
+            <!-- Reach Out Form Integrated with Google Script AJAX Handler -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Send a Message</h2>
+                <form id="contactForm" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Your Name</label>
+                        <input type="text" id="formName" required class="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Phone Number</label>
+                        <input type="tel" id="formPhone" required class="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Message Detail</label>
+                        <textarea id="formMessage" rows="3" required class="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                    </div>
+
+
+                    <!-- Dynamic form feedback status alert box placeholder -->
+                    <div id="formStatus" class="hidden p-3 rounded-md text-xs font-medium text-center"></div>
+
+                    <button type="submit" id="submitBtn" class="w-full bg-[#0056b3] text-white font-medium py-2 rounded-lg text-sm shadow-sm hover:bg-blue-700 focus:outline-none transition-all">
+                        Submit Inquiry
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER BANNER ARCHITECTURE -->
+    <footer class="bg-gray-800 text-gray-300 text-xs py-6 border-t border-gray-700 mt-auto">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <span class="font-bold block text-sm text-white mb-1">Hours</span>
+
+                Mon – Sat: 7 A.M. – 3 P.M. | Sun: Closed
+            </div>
+            <div class="sm:text-right">
+                <span class="font-bold block text-sm text-white mb-1">Payment Methods Accepted</span>
+                Cash | Debit | Credit Card
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE FORM SUBMISSION ROUTING ENGINE -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // PASTE YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL BETWEEN THE QUOTES BELOW:
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbxt2_fFM5m1ih2uB2R1hTSxdo-mTojG5roQ_cXv5pJG6tnByrzvPd4Lv6DwYte-5mjA/exec';
+            const statusBox = document.getElementById('formStatus');
+            const submitBtn = document.getElementById('submitBtn');
+
+
+            // Update UI components to visual loading state
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Sending...';
+            statusBox.classList.remove('hidden', 'bg-green-50', 'text-green-800', 'bg-red-50', 'text-red-800');
+
+            // Pack user input data strings together
+            const formData = new FormData();
+            formData.append('name', document.getElementById('formName').value);
+            formData.append('phone', document.getElementById('formPhone').value);
+            formData.append('message', document.getElementById('formMessage').value);
+
+            // Dispatch AJAX data stream to Google backend infrastructure setup
+            fetch(scriptUrl, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // Bypasses cross-origin validation checks securely
+            })
+            .then(() => {
+                statusBox.innerText = 'Inquiry sent successfully! We will get back to you soon.';
+
+                statusBox.classList.add('bg-green-50', 'text-green-800');
+                statusBox.classList.remove('hidden');
+                document.getElementById('contactForm').reset();
+            })
+            .catch(error => {
+                statusBox.innerText = 'Something went wrong. Please try calling us directly.';
+                statusBox.classList.add('bg-red-50', 'text-red-800');
+                statusBox.classList.remove('hidden');
+                console.error('Submission tracking breakdown:', error);
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Submit Inquiry';
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+<!--
+======================================================================================
+     GOOGLE APPS SCRIPT BACKEND ENGINE CODE (PASTE THIS CODE INTO SCRIPT.GOOGLE.COM)
+======================================================================================
+function doPost(e) {
+  try {
+    // Extract data parameters sent from your Netlify website form layout
+    var name = e.parameter.name;
+    var phone = e.parameter.phone;
+    var message = e.parameter.message;
+
+    // Construct a professional text email notification layout message block
+    var emailBody = "New Lead Inquiry - Picture Perfect Window Solutions\n\n" +
+                    "Customer Name: " + name + "\n" +
+                    "Phone Number: " + phone + "\n\n" +
+                    "Message Details:\n" + message;
+
+    // CHANGE THE EMAIL ADDRESS BELOW TO YOUR OWN PERSONAL INBOX ADDRESS:
+    var myEmail = "YOUR_PERSONAL_EMAIL@GMAIL.COM";
+
+
+    // Send the email using your Google account's free native background mail app
+    MailApp.sendEmail(myEmail, "New Website Inquiry - " + name, emailBody);
+
+    // Return standard success response status parameters
+    return ContentService.createTextOutput(JSON.stringify({"result": "success"}))
+                         .setMimeType(ContentService.MimeType.JSON);
+
+  } catch(error) {
+    // Graceful error logging block routing configurations
+    return ContentService.createTextOutput(JSON.stringify({"result": "error", "error": error.toString()}))
+                         .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+======================================================================================
+-->
