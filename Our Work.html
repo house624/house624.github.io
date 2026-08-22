@@ -43,47 +43,48 @@
 
                 <!-- Branding / Title -->
                 <div class="flex-shrink-0 flex items-center font-semibold text-lg tracking-wide">
-                    Picture Perfect Window Solutions
+                    <a href="index.html" class="hover:text-blue-100">Picture Perfect Window Solutions</a>
                 </div>
 
                 <!-- Navigation Items Links with Dropdown Feature -->
                 <nav class="flex space-x-1 md:space-x-2 text-sm font-medium w-full md:w-auto justify-center md:justify-end mt-2 md:mt-0 whitespace-nowrap">
                     <a href="index.html" class="nav-link px-3 py-2">Home</a>
-                    <a href="Our Work.html" class="nav-link px-3 py-2 bg-white/20 rounded-md">Our Work</a>
+                    <a href="Our Work.html" class="nav-link px-3 py-2">Our Work</a>
                     <a href="How to Measure.html" class="nav-link px-3 py-2">How to Measure</a>
                     <a href="Free Quote.html" class="nav-link px-3 py-2">Free Quote</a>
 
                     <!-- SERVICE AREAS DROPDOWN CONTAINER -->
-                    <!-- FIXED: Removed 'py-2' container padding to restore standard baseline alignment -->
                     <div class="relative dropdown-container group">
-                        <!-- FIXED: Changed button padding from 'py-1' back to 'py-2' to perfectly line up with standard nav-links -->
-                        <button class="nav-link px-3 py-2 inline-flex items-center gap-1 focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                        <button id="serviceAreasBtn"
+                                type="button"
+                                class="nav-link px-3 py-2 inline-flex items-center gap-1 focus:outline-none cursor-pointer"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                aria-controls="serviceAreasMenu">
                             <span>Service Areas</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://w3.org">
+                            <svg class="w-4 h-4 transition-transform duration-200" id="dropdownArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://w3.org">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
 
-                        <!-- Nested Dropdown Sub-menu Grid Container -->
-                        <!-- NOTE: Added 'pt-4' to the top margin context to act as an invisible bridge so your mouse can glide smoothly to the dropdown without a gap -->
-                        <div class="dropdown-menu absolute left-0 md:right-0 md:left-auto pt-2 w-64 z-50
-                                opacity-0 invisible pointer-events-none transition-all duration-200 delay-1000
-                                group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto group-hover:delay-0">
+                        <!-- Dropdown Sub-menu Grid Container -->
+                        <div id="serviceAreasMenu"
+                             class="dropdown-menu absolute left-0 md:right-0 md:left-auto pt-2 w-64 z-50 hidden opacity-0 transition-opacity duration-200 group-hover:block group-hover:opacity-100">
                             <div class="bg-white rounded-md shadow-xl border border-gray-200 py-1 text-gray-800">
-                                <a href="Dallas TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Dallas, TX - Glass & Window Services</a>
-                                <a href="Fort Worth TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Fort Worth, TX - Glass & Window Services</a>
-                                <a href="Burleson TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Burleson, TX - Glass & Window Services</a>
-                                <a href="Crowley TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Crowley, TX - Glass & Window Services</a>
-                                <a href="Cleburne TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Cleburne, TX - Glass & Window Services</a>
-                                <a href="Alvarado TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Alvarado, TX - Glass & Window Services</a>
-                                <a href="Godley TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Godley, TX - Glass & Window Services</a>
-                                <a href="Midlothian TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Midlothian, TX - Glass & Window Services</a>
-                                <a href="Mansfield TX - Glass  Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700">Mansfield, TX - Glass & Window Services</a>
+                                <a href="Dallas TX - Glass Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Dallas, TX - Glass & Window Services</a>
+                                <a href="Fort Worth TX - Glass Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Fort Worth, TX - Glass & Window Services</a>
+                                <a href="Burleson TX - Glass Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Burleson, TX - Glass & Window Services</a>
+                                <a href="Crowley TX - Glass Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Crowley, TX - Glass & Window Services</a>
+                                <a href="Cleburne TX - Glass Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Cleburne, TX - Glass & Window Services</a>
+                                <a href="Alvarado TX - Glass Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Alvarado, TX - Glass & Window Services</a>
+                                <a href="Godley TX - Glass Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Godley, TX - Glass & Window Services</a>
+                                <a href="Midlothian TX - Glass Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700 border-b border-gray-50">Midlothian, TX - Glass & Window Services</a>
+                                <a href="Mansfield TX - Glass Window Services.html" class="block px-4 py-2 text-xs hover:bg-blue-50 hover:text-blue-700">Mansfield, TX - Glass & Window Services</a>
                             </div>
                         </div>
                     </div>
 
-                    <a href="Contact Us.html" class="nav-link px-3 py-2">Contact us</a>
+                    <a href="Contact Us.html" class="nav-link px-3 py-2 bg-white/20 rounded-md hover:bg-white/30 transition-colors">Contact us</a>
                 </nav>
             </div>
         </div>
@@ -209,6 +210,43 @@
             }
         }
     </script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const serviceBtn = document.getElementById('serviceAreasBtn');
+    const serviceMenu = document.getElementById('serviceAreasMenu');
+    const dropdownArrow = document.getElementById('dropdownArrow');
+
+    if (serviceBtn && serviceMenu) {
+      serviceBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = !serviceMenu.classList.contains('hidden');
+
+        if (isOpen) {
+          serviceMenu.classList.add('hidden');
+          serviceMenu.classList.remove('opacity-100');
+          serviceBtn.setAttribute('aria-expanded', 'false');
+          if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+        } else {
+          serviceMenu.classList.remove('hidden');
+          // Short delay to allow smooth opacity transition
+          setTimeout(() => serviceMenu.classList.add('opacity-100'), 10);
+          serviceBtn.setAttribute('aria-expanded', 'true');
+          if (dropdownArrow) dropdownArrow.classList.add('rotate-180');
+        }
+      });
+
+      // Close the dropdown when tapping anywhere else on the screen
+      document.addEventListener('click', (event) => {
+        if (!serviceMenu.contains(event.target) && !serviceBtn.contains(event.target)) {
+          serviceMenu.classList.add('hidden');
+          serviceMenu.classList.remove('opacity-100');
+          serviceBtn.setAttribute('aria-expanded', 'false');
+          if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+        }
+      });
+    }
+  });</script>
+
 </body>
 </html>
 
