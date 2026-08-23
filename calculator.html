@@ -279,6 +279,26 @@
             margin-top: 20px;
             animation: fadeIn 0.3s ease-in-out;
         }
+        /* ========================================================
+   IFRAME HEIGHT BLOCK & CLIPPING ELIMINATION
+   ======================================================== */
+        html,
+        body {
+            height: auto !important; /* Keeps page size flexible instead of locked */
+            min-height: 100% !important;
+            overflow-y: visible !important; /* Allows container elements to scale naturally */
+            overflow-x: hidden !important; /* Prevents horizontal layout shifting */
+        }
+
+        /* Unlocks the elements ONLY when they are actively called by your script */
+        .estimate-container,
+        #estimate-output-container,
+        #main-calculator-wrapper {
+            height: auto !important;
+            max-height: none !important;
+            overflow: visible !important; /* Eliminates the cut-off boundary line */
+        }
+
     </style>
 </head>
 <body>
@@ -328,9 +348,8 @@
                 <label style="font-size: 12px; color: var(--muted-text); margin-bottom: 6px; font-weight: 600;">Glass Type</label>
                 <select id="global-glass-type" onchange="updateCalculations()">
                     <option value="Select Glass Type">Select Glass Type</option>
-                    <option value="clear-annealed">Clear Annealed Glass (Single Pane)</option>
-                    <option value="standard-igu">Standard Clear Insulated Glass Unit (Double Pane)</option>
-                    <option value="low-e-igu">Low-E (Energy Efficient) Insulated Glass Unit (Double Pane)</option>
+                    <option value="Single Pane">Single Pane</option>
+                    <option value="Double Pane">Double Pane</option>
                 </select>
             </div>
 
@@ -495,7 +514,7 @@
         let mirrorCounter = 0;
         let internalPaneData = {};
         let internalBrokenPaneData = {};
-        let globalFoggySummaryText = ""; 
+        let globalFoggySummaryText = "";
         let globalBrokenSummaryText = "";
         let globalMirrorSummaryText = "";
 
@@ -505,9 +524,8 @@
         // Base glass pricing tables configuration records matching criteria
         const section1Rates = {
             'Select Glass Type': 15,
-            'clear-annealed': 6.35,                          // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
-            'standard-igu': 7.98,                           // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
-            'low-e-igu': 15                               // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+            'Single Pane': 7.98,                           // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+            'Double Pane': 15                               // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
         };
 
         window.onload = function () {
@@ -548,32 +566,32 @@
             paneCard.id = `pane-row-${paneCounter}`;
 
             paneCard.innerHTML = `
-                        <div class="pane-header">
-                            <span>Glass Pane Size #${paneCounter}</span>
-                            ${paneCounter > 1 ? `<button type="button" class="remove-btn" onclick="removePaneRow(${paneCounter})">Remove</button>` : ''}
-                        </div>
+                                    <div class="pane-header">
+                                        <span>Glass Pane Size #${paneCounter}</span>
+                                        ${paneCounter > 1 ? `<button type="button" class="remove-btn" onclick="removePaneRow(${paneCounter})">Remove</button>` : ''}
+                                    </div>
 
-                        <div class="field-grid">
-                            <div class="field-group">
-                                <label>Width (Inches)</label>
-                                <input type="number" class="pane-width" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validatePaneInput(this, 24)">
-                            </div>
-                            <div class="field-group">
+                                    <div class="field-grid">
+                                        <div class="field-group">
+                                            <label>Width (Inches)</label>
+                                            <input type="number" class="pane-width" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validatePaneInput(this, 24)">
+                                        </div>
+                                        <div class="field-group">
 
-                                <label>Height (Inches)</label>
-                                <input type="number" class="pane-height" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validatePaneInput(this, 24)">
-                            </div>
-                            <div class="field-group">
-                                <label>Quantity</label>
-                                <input type="number" class="pane-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validatePaneInput(this, 1)">
-                            </div>
-                        </div>
+                                            <label>Height (Inches)</label>
+                                            <input type="number" class="pane-height" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validatePaneInput(this, 24)">
+                                        </div>
+                                        <div class="field-group">
+                                            <label>Quantity</label>
+                                            <input type="number" class="pane-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validatePaneInput(this, 1)">
+                                        </div>
+                                    </div>
 
-                        <div class="checkbox-label" style="margin-top: 10px;">
-                            <input type="checkbox" class="tempered-upgrade-chk" onchange="updateCalculations()">
-                            Tempered Safety Glass Upgrade
-                        </div>
-                    `;
+                                    <div class="checkbox-label" style="margin-top: 10px;">
+                                        <input type="checkbox" class="tempered-upgrade-chk" onchange="updateCalculations()">
+                                        Tempered Safety Glass Upgrade
+                                    </div>
+                                `;
 
             panesList.appendChild(paneCard);
             updateCalculations();
@@ -589,32 +607,32 @@
             paneCard.id = `broken-pane-row-${brokenPaneCounter}`;
 
             paneCard.innerHTML = `
-                        <div class="pane-header">
-                            <span>Broken Glass Size #${brokenPaneCounter}</span>
-                            ${brokenPaneCounter > 1 ? `<button type="button" class="remove-btn" onclick="removeBrokenPaneRow(${brokenPaneCounter})">Remove</button>` : ''}
-                        </div>
+                                    <div class="pane-header">
+                                        <span>Broken Glass Size #${brokenPaneCounter}</span>
+                                        ${brokenPaneCounter > 1 ? `<button type="button" class="remove-btn" onclick="removeBrokenPaneRow(${brokenPaneCounter})">Remove</button>` : ''}
+                                    </div>
 
-                        <div class="field-grid">
-                            <div class="field-grid-item field-group">
-                                <label>Width (Inches)</label>
-                                <input type="number" class="broken-pane-width" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateBrokenPaneInput(this, 24)">
-                            </div>
+                                    <div class="field-grid">
+                                        <div class="field-grid-item field-group">
+                                            <label>Width (Inches)</label>
+                                            <input type="number" class="broken-pane-width" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateBrokenPaneInput(this, 24)">
+                                        </div>
 
-                            <div class="field-grid-item field-group">
-                                <label>Height (Inches)</label>
-                                <input type="number" class="broken-pane-height" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateBrokenPaneInput(this, 24)">
-                            </div>
-                            <div class="field-grid-item field-group">
-                                <label>Quantity</label>
-                                <input type="number" class="broken-pane-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateBrokenPaneInput(this, 1)">
-                            </div>
-                        </div>
+                                        <div class="field-grid-item field-group">
+                                            <label>Height (Inches)</label>
+                                            <input type="number" class="broken-pane-height" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateBrokenPaneInput(this, 24)">
+                                        </div>
+                                        <div class="field-grid-item field-group">
+                                            <label>Quantity</label>
+                                            <input type="number" class="broken-pane-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateBrokenPaneInput(this, 1)">
+                                        </div>
+                                    </div>
 
-                        <div class="checkbox-label" style="margin-top: 10px;">
-                            <input type="checkbox" class="broken-tempered-upgrade-chk" onchange="updateCalculations()">
-                            Tempered Safety Glass Upgrade
-                        </div>
-                    `;
+                                    <div class="checkbox-label" style="margin-top: 10px;">
+                                        <input type="checkbox" class="broken-tempered-upgrade-chk" onchange="updateCalculations()">
+                                        Tempered Safety Glass Upgrade
+                                    </div>
+                                `;
 
             brokenPanesList.appendChild(paneCard);
             updateCalculations();
@@ -630,27 +648,27 @@
             paneCard.id = `mirror-row-${mirrorCounter}`;
 
             paneCard.innerHTML = `
-                        <div class="pane-header">
-                            <span>Mirror Size #${mirrorCounter}</span>
-                            ${mirrorCounter > 1 ? `<button type="button" class="remove-btn" onclick="removeMirrorRow(${mirrorCounter})">Remove</button>` : ''}
-                        </div>
+                                    <div class="pane-header">
+                                        <span>Mirror Size #${mirrorCounter}</span>
+                                        ${mirrorCounter > 1 ? `<button type="button" class="remove-btn" onclick="removeMirrorRow(${mirrorCounter})">Remove</button>` : ''}
+                                    </div>
 
-                        <div class="field-grid">
-                            <div class="field-group">
-                                <label>Length (Inches)</label>
-                                <input type="number" class="mirror-length" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateMirrorInput(this, 24)">
-                            </div>
+                                    <div class="field-grid">
+                                        <div class="field-group">
+                                            <label>Length (Inches)</label>
+                                            <input type="number" class="mirror-length" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateMirrorInput(this, 24)">
+                                        </div>
 
-                            <div class="field-group">
-                                <label>Height (Inches)</label>
-                                <input type="number" class="mirror-height" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateMirrorInput(this, 24)">
-                            </div>
-                            <div class="field-group">
-                                <label>Quantity</label>
-                                <input type="number" class="mirror-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateMirrorInput(this, 1)">
-                            </div>
-                        </div>
-                    `;
+                                        <div class="field-group">
+                                            <label>Height (Inches)</label>
+                                            <input type="number" class="mirror-height" value="24" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateMirrorInput(this, 24)">
+                                        </div>
+                                        <div class="field-group">
+                                            <label>Quantity</label>
+                                            <input type="number" class="mirror-qty" value="1" min="1" oninput="updateCalculations()" onfocus="this.select()" onblur="validateMirrorInput(this, 1)">
+                                        </div>
+                                    </div>
+                                `;
 
             mirrorList.appendChild(mirrorList.appendChild(paneCard));
             updateCalculations();
@@ -889,7 +907,7 @@
                 document.getElementById('foggy-arch-warning').style.display = 'none';
             }
 
-            // 2. Process Section 4: Residential Broken Panes
+            // 2. Process Section 4: Residential Broken Panes     button
             let totalBrokenPanes = 0;
             let brokenStoryCount = 0;
             if (isBrokenActive) {
@@ -973,7 +991,7 @@
                 const mirrorList = document.getElementById('mirror-list').children;
                 internalMirrorData = {};
 
-                
+
 
                 for (let card of mirrorList) {
                     const rowId = card.id.split('-')[2];
@@ -983,7 +1001,7 @@
 
                     totalMirrors += qty;
 
-                    
+
 
                     internalMirrorData[rowId] = {
                         length: l,
@@ -1069,9 +1087,9 @@
 
                     // --- ADD THESE LINES TO BUILD YOUR ITEMISED TEXT LINE ---
                     if (qty > 0) {
-                      let temperedText = hasTemperedUpgrade ? "Tempered⚠️ " : "";
-                      globalFoggySummaryText += `${temperedText}Size: ${w}" x ${h}" | Qty: ${qty}<br>`;
-                      windowIndex++;
+                        let temperedText = hasTemperedUpgrade ? "Tempered⚠️ " : "";
+                        globalFoggySummaryText += `${temperedText}Size: ${w}" x ${h}" | Qty: ${qty}<br>`;
+                        windowIndex++;
                     }
 
                     let rowSquareFootage = (w * h) / 144;
@@ -1148,9 +1166,9 @@
 
                     // --- ADD THESE LINES TO BUILD YOUR ITEMISED TEXT LINE ---
                     if (qty > 0) {
-                      let temperedText = hasTemperedUpgrade ? "Tempered⚠️ " : "";
-                      globalBrokenSummaryText += `${temperedText}Size: ${w}" x ${h}" | Qty: ${qty}<br>`;
-                      windowIndex++;
+                        let temperedText = hasTemperedUpgrade ? "Tempered⚠️ " : "";
+                        globalBrokenSummaryText += `${temperedText}Size: ${w}" x ${h}" | Qty: ${qty}<br>`;
+                        windowIndex++;
                     }
 
                     let rowSquareFootage = (w * h) / 144;
@@ -1205,8 +1223,8 @@
 
                     // --- ADD THESE LINES TO BUILD YOUR ITEMISED TEXT LINE ---
                     if (qty > 0) {
-                      globalMirrorSummaryText += `Size: ${l}" x ${h}" | Qty: ${qty}<br>`;
-                      MirrorIndex++;
+                        globalMirrorSummaryText += `Size: ${l}" x ${h}" | Qty: ${qty}<br>`;
+                        MirrorIndex++;
                     }
 
                     let rowSquareFootage = (l * h) / 144;
@@ -1246,134 +1264,187 @@
             document.getElementById('estimate-output-display').innerText = '$' + Math.round(runningCostSum).toLocaleString();
             document.getElementById('estimate-output-container').style.display = 'none';
 
-            // Unhide the CTA button after calculating results                   
-            document.getElementById('cta-button-container').style.display = 'none';
 
-              // ==========================================
-              // 🚨 UPDATED INTERCEPTOR WORKFLOW (PASTED INSIDE CALC FUNCTION)
-              // ==========================================
+            // ==========================================
+            // 🚨 UPDATED INTERCEPTOR WORKFLOW (PASTED INSIDE CALC FUNCTION)
+            // ==========================================
 
-              // Pull exact quantities and text directly from your page elements.
-              // (Make sure these element IDs in quotes match the inputs on your page!)
-              var pendingFormData = {
-              // 🌫️ Foggy Windows Section
-              "Foggy_Window Qty": parseInt(document.getElementById('total-qty-display')?.innerText) || 0,
-              "Foggy_Second Level Window Qty": parseInt(document.getElementById('second-story-display')?.innerText) || 0, 
-              "Foggy_Arched Window": document.getElementById('foggy-arch-chk')?.checked ? "Yes" : "No",
-              "Foggy_Unit Cost Per Sq Ft": section1Rates[document.getElementById('global-glass-type').value] || 0,
-              "Foggy_Labor Cost": ((parseInt(document.getElementById('second-story-display')?.innerText) * 150)+(parseInt(document.getElementById('total-qty-display')?.innerText) * 100)) || 0,
-              "Foggy_Summary": globalFoggySummaryText || "none provided",
+            // Pull exact quantities and text directly from your page elements.
+            // (Make sure these element IDs in quotes match the inputs on your page!)
+            var pendingFormData = {
+                // 🌫️ Foggy Windows Section
+                "Foggy_Window Qty": parseInt(document.getElementById('total-qty-display')?.innerText) || 0,
+                "Foggy_Second Level Window Qty": parseInt(document.getElementById('second-story-display')?.innerText) || 0,
+                "Foggy_Arched Window": document.getElementById('foggy-arch-chk')?.checked ? "Yes" : "No",
+                "Foggy_Unit Cost Per Sq Ft": section1Rates[document.getElementById('global-glass-type').value] || 0,
+                "Foggy_Labor Cost": ((parseInt(document.getElementById('second-story-display')?.innerText) * 150) + (parseInt(document.getElementById('total-qty-display')?.innerText) * 100)) || 0,
+                "Foggy_Summary": globalFoggySummaryText || "none provided",
 
-              // 🔨 Broken Windows Section
-              "Broken_Window Qty": parseInt(document.getElementById('total-broken-qty-display')?.innerText) || 0,
-              "Broken_Second Level Window Qty": parseInt(document.getElementById('broken-second-story-display')?.innerText) || 0, 
-              "Broken_Arched Window": document.getElementById('broken-arch-chk')?.checked ? "Yes" : "No", 
-              "Broken_Unit Cost Per Sq Ft": 15,
-              "Broken_Labor Cost": ((parseInt(document.getElementById('total-broken-qty-display')?.innerText) * 150) + (parseInt(document.getElementById('broken-second-story-display')?.innerText) * 200))|| 0,
-              "Broken_Summary": globalBrokenSummaryText || "none provided",
+                // 🔨 Broken Windows Section
+                "Broken_Window Qty": parseInt(document.getElementById('total-broken-qty-display')?.innerText) || 0,
+                "Broken_Second Level Window Qty": parseInt(document.getElementById('broken-second-story-display')?.innerText) || 0,
+                "Broken_Arched Window": document.getElementById('broken-arch-chk')?.checked ? "Yes" : "No",
+                "Broken_Unit Cost Per Sq Ft": 15,
+                "Broken_Labor Cost": ((parseInt(document.getElementById('total-broken-qty-display')?.innerText) * 150) + (parseInt(document.getElementById('broken-second-story-display')?.innerText) * 200)) || 0,
+                "Broken_Summary": globalBrokenSummaryText || "none provided",
 
-              // 🧼 Washing Windows Section
-              "Washing_Windows Qty": parseInt(document.getElementById('washing-display')?.innerText) || 0, 
-              "Washing_Windows Cost": 12,
+                // 🧼 Washing Windows Section
+                "Washing_Windows Qty": parseInt(document.getElementById('washing-display')?.innerText) || 0,
+                "Washing_Windows Cost": 12,
 
-              // 🛡️ Weatherizing Section
-              "Weatherizing_Windows Qty": parseInt(document.getElementById('weatherising-display')?.innerText) || 0, 
-              "Weatherizing_Windows Cost": 10,
+                // 🛡️ Weatherizing Section
+                "Weatherizing_Windows Qty": parseInt(document.getElementById('weatherising-display')?.innerText) || 0,
+                "Weatherizing_Windows Cost": 10,
 
-              // 🪞 Mirrored Walls Section
-              "Mirrored_Mirror Qty": parseInt(document.getElementById('total-mirror-display')?.innerText) || 0,
-              "Mirrored_Unit Cost Per Sq Ft": 7.21,
-              "Mirrored_Labor Cost": (parseInt(document.getElementById('total-mirror-display')?.innerText) * 200) || 0,
-              "Mirrored_Summary": globalMirrorSummaryText || "none provided",
+                // 🪞 Mirrored Walls Section
+                "Mirrored_Mirror Qty": parseInt(document.getElementById('total-mirror-display')?.innerText) || 0,
+                "Mirrored_Unit Cost Per Sq Ft": 7.21,
+                "Mirrored_Labor Cost": (parseInt(document.getElementById('total-mirror-display')?.innerText) * 200) || 0,
+                "Mirrored_Summary": globalMirrorSummaryText || "none provided",
 
-              // 🚿 Showers Section
-              "Showers_Shower Wall Panels Qty": parseInt(document.getElementById('shower-display')?.innerText) || 0, 
-              "Showers_Shower Walls Cost Per Wall": 1336, 
+                // 🚿 Showers Section
+                "Showers_Shower Wall Panels Qty": parseInt(document.getElementById('shower-display')?.innerText) || 0,
+                "Showers_Shower Walls Cost Per Wall": 1336,
 
-              // 💼 Labor & Fees Section
-              "Fees_Labor for foggy Glass": 100, 
-              "Fees_Second Story Glass Fee": 150, 
-              "Fees_Arched Glass Fee": 100, 
-              "Fees_Labor for Broken Glass": 150, 
-              "Fees_Second Story Broken Glass Fee": 200, 
-              "Fees_Broken Arched Glass Fee": 120, 
-              "Fees_Added Tempered Glass Fee Per Sq Ft": 10, 
-              "Fees_Labor For Mirrors": 200, 
-              "Fees_Gas": 30, 
+                // 💼 Labor & Fees Section
+                "Fees_Labor for foggy Glass": 100,
+                "Fees_Second Story Glass Fee": 150,
+                "Fees_Arched Glass Fee": 100,
+                "Fees_Labor for Broken Glass": 150,
+                "Fees_Second Story Broken Glass Fee": 200,
+                "Fees_Broken Arched Glass Fee": 120,
+                "Fees_Added Tempered Glass Fee Per Sq Ft": 10,
+                "Fees_Labor For Mirrors": 200,
+                "Fees_Gas": 30,
 
-              // 📈 Totals Section
-              "Totals_Sub Total Cost": runningCostSum || 0,
-              "Totals_Estimated Tax (8.25%)": (runningCostSum * 0.0825) || 0,
-              "Totals_Grand Total Cost": (runningCostSum * 1.0825) || 0
+                // 📈 Totals Section
+                "Totals_Sub Total Cost": runningCostSum || 0,
+                "Totals_Estimated Tax (8.25%)": (runningCostSum * 0.0825) || 0,
+                "Totals_Grand Total Cost": (runningCostSum * 1.0825) || 0
             };
 
 
-              // Force the lead capture pop-up modal overlay screen to open
-              document.getElementById('leadModal').style.display = 'flex';
+            // Force the lead capture pop-up modal overlay screen to open
+            // Keep this exactly where it is inside your generateEstimateTotal() function!
+            // Drop this exact block inside the bottom of your generateEstimateTotal() function
+            var popModal = document.getElementById('leadModal');
+            if (popModal) {
+                // Sets the overlay box to active flex mode so it anchors to the screen base instantly
+                popModal.style.display = 'flex';
 
-              // Handle the backend form submission link tracking logic
-              document.getElementById('leadForm').onsubmit = function(e) {
+                // Freezes background layout scrolling while they type their information
+                document.body.style.overflow = 'hidden';
+            }
+
+
+
+            // Handle the backend form submission link tracking logic
+            document.getElementById('leadForm').onsubmit = function (e) {
                 e.preventDefault();
-    
                 document.getElementById('submitLeadBtn').innerText = "Processing...";
                 document.getElementById('submitLeadBtn').disabled = true;
+                document.body.style.overflow = 'auto';
 
                 var payload = {
-                  firstName: document.getElementById('leadFirstName').value,
-                  lastName: document.getElementById('leadLastName').value,
-                  phone: document.getElementById('leadPhone').value,
-                  email: document.getElementById('leadEmail').value,
-                  calculatorData: pendingFormData
+                    firstName: document.getElementById('leadFirstName').value,
+                    lastName: document.getElementById('leadLastName').value,
+                    phone: document.getElementById('leadPhone').value,
+                    email: document.getElementById('leadEmail').value,
+                    calculatorData: pendingFormData
                 };
 
-                // Keep using your unique published Google Apps Script URL link right here!
                 var webAppUrl = "https://script.google.com/macros/s/AKfycbwgx--sTv0QCRQ3YIYehgYl8IDiId_3FYdoZSpNM_hi7t0qStIrBSclBeoyYHvXBILZ/exec";
 
                 fetch(webAppUrl, {
-                  method: "POST",
-                  mode: "no-cors",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(payload)
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
                 })
-                .then(function() {
-                  document.getElementById('leadModal').style.display = 'none';
-                  document.getElementById('estimate-output-container').style.display = 'block';
-                  document.getElementById('cta-button-container').style.display = 'none';
-                })
-                .catch(function(err) {
-                  console.error("Transmission Error:", err);
-                  document.getElementById('leadModal').style.display = 'none';
-                  document.getElementById('estimate-output-container').style.display = 'block';
-                  document.getElementById('cta-button-container').style.display = 'none';
-                });
-              };
+                    .then(function () {
+                        // 1. Turn off the lead pop-up sheet cleanly
+                        document.getElementById('leadModal').style.display = 'none';
+
+                        // 2. Compute numbers and update calculations text rows
+                        if (typeof updateCalculations === "function") {
+                            updateCalculations();
+                        }
+
+                        // 3. Target and reveal your pricing block container
+                        var targetPane = document.getElementById('estimate-output-container');
+                        if (targetPane) {
+                            targetPane.style.display = 'block';
+                        }
+
+                        // 4. JUST RUN THE TOOL (Replace the duplicate function definitions with this)
+                        sendHeightToParent();
+
+                        // 5. Roll phone screen view directly to center on final pricing figures card box
+                        if (targetPane) {
+                            setTimeout(function () {
+                                targetPane.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }, 150);
+                        }
+                    })
+                    .catch(function (err) {
+                        console.error("Transmission Error:", err);
+                        document.getElementById('leadModal').style.display = 'none';
+
+                        if (typeof updateCalculations === "function") {
+                            updateCalculations();
+                        }
+
+                        var targetPane = document.getElementById('estimate-output-container');
+                        if (targetPane) {
+                            targetPane.style.display = 'block';
+                        }
+
+                        // JUST RUN THE TOOL HERE AS WELL
+                        sendHeightToParent();
+
+                        if (targetPane) {
+                            setTimeout(function () {
+                                targetPane.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }, 150);
+                        }
+                    });
+
+                // Make sure to DELETE that stray window.parent.postMessage line that was hanging off the absolute end here!
+
+            };
+
+            function sendHeightToParent() {
+                // Measures the exact container height of the calculator page right now
+                const currentHeight = document.body.scrollHeight;
+                // Broadcasts the height up to the Free Quote.html parent page securely
+                window.parent.postMessage({ type: 'resizeIframe', height: currentHeight }, '*');
+            }
+
+            // Watch for user interactions (clicks, checkbox selections, adding rows)
+            // and update the page length automatically after a tiny 100ms cushion delay
+            window.addEventListener('click', function () {
+                setTimeout(sendHeightToParent, 100);
+            });
+            window.addEventListener('change', function () {
+                setTimeout(sendHeightToParent, 100);
+            });
+
+            // Run immediately when the widget loads up
+            if (document.readyState === 'complete') {
+                sendHeightToParent();
+            } else {
+                window.addEventListener('load', sendHeightToParent);
+            }
+
 
 
 
         }
     </script>
-    <!-- START OF PICTURE PERFECT CTA BUTTON -->
-    <div id="cta-button-container" style="display: none; text-align: center; margin-top: 30px; margin-bottom: 20px; width: 100%;">
-        <a target="_blank"
-           href="https://www.pictureperfectwindowsolutions.com/contact-us"
-           style="display: inline-block;
-            background-color: var(--primary-blue);
-            color: #ffffff;
-            padding: 15px 30px;
-            font-family: 'Arial', sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-            transition: background-color 0.2s ease, transform 0.1s ease; ">
-            Click Here to Book Your On-Site Measurement ➡️
-        </a>
-    </div>
-    <!-- END OF PICTURE PERFECT CTA BUTTON -->
+
     <!-- AUTO-RESIZE FOR FREE QUOTE IFRAME BRIDGE -->
     <script>
-        (function() {
+        (function () {
             function sendHeightToParent() {
                 // Measures the exact container height of the calculator page right now
                 const currentHeight = document.body.scrollHeight;
@@ -1394,41 +1465,77 @@
 
             // Watch for user interactions (clicks, checkbox selections, adding rows)
             // and update the page length automatically after a tiny 100ms cushion delay
-            window.addEventListener('click', function() {
+            window.addEventListener('click', function () {
                 setTimeout(sendHeightToParent, 100);
             });
-            window.addEventListener('change', function() {
+            window.addEventListener('change', function () {
                 setTimeout(sendHeightToParent, 100);
             });
         })();
     </script>
 
     <!-- START OF PICTURE PERFECT LEAD CAPTURE MODAL -->
-    <div id="leadModal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); align-items: center; justify-content: center;">
-        <div style="background-color: #ffffff; padding: 30px; border-radius: 8px; width: 90%; max-width: 450px; box-shadow: 0 4px 20px rgba(0,0,0,0.25); font-family: 'Arial', sans-serif;">
-            <h3 style="margin-top: 0; color: #333333; text-align: center; font-size: 20px;">🔒 Unlock Your Rough Estimate</h3>
-            <p style="color: #666666; font-size: 14px; text-align: center; margin-bottom: 20px;">Enter your details below to instantly view your custom price baseline and lock in your local 10% discount profile.</p>
+    <!-- UNBREAKABLE INLINE LEAD CAPTURE SYSTEM -->
+    <!-- BOTTOM-ANCHORED UNBREAKABLE POP-UP MODAL -->
+    <div id="leadModal" style="display: none; position: fixed; z-index: 100000; left: 0; top: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); align-items: flex-end; justify-content: center; box-sizing: border-box;">
 
-            <form id="leadForm">
-                <label style="display:block; font-weight:bold; margin-bottom:5px; font-size:13px; color:#444;">First Name *</label>
-                <input type="text" id="leadFirstName" required style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
+        <!-- Pop-Up Card: Anchors to bottom on mobile, centers neatly on desktop -->
+        <div style="background-color: #ffffff; padding: 24px; border-top-left-radius: 16px; border-top-right-radius: 16px; width: 100%; max-width: 480px; box-shadow: 0 -4px 20px rgba(0,0,0,0.25); font-family: 'Arial', sans-serif; box-sizing: border-box; max-height: 85vh; overflow-y: auto; margin-bottom: 0;">
 
-                <label style="display:block; font-weight:bold; margin-bottom:5px; font-size:13px; color:#444;">Last Name *</label>
-                <input type="text" id="leadLastName" required style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
+            <!-- Decorative Center Drag Bar for Mobile Feel -->
+            <div style="width: 40px; height: 5px; background-color: #cbd5e1; border-radius: 3px; margin: 0 auto 15px auto;"></div>
 
-                <label style="display:block; font-weight:bold; margin-bottom:5px; font-size:13px; color:#444;">Phone Number *</label>
-                <input type="tel" id="leadPhone" required style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
+            <h3 style="margin-top: 0; color: #333333; text-align: center; font-size: 20px; font-weight: 800;">🔒 Unlock Your Rough Estimate</h3>
 
-                <label style="display:block; font-weight:bold; margin-bottom:5px; font-size:13px; color:#444;">Email Address *</label>
-                <input type="email" id="leadEmail" required style="width:100%; padding:10px; margin-bottom:20px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;">
+            <p style="color: #666666; font-size: 14px; text-align: center; margin-bottom: 20px; line-height: 1.4;">
+                Enter your details below to instantly view your custom price baseline and lock in your local 10% discount profile.
+            </p>
 
-                <button type="submit" id="submitLeadBtn" style="width:100%; background-color:#0056b3; color:white; padding:14px; border:none; border-radius:4px; font-weight:bold; font-size:16px; cursor:pointer; transition:0.2s;">
-                    View My Estimate ➡️
+            <form id="leadForm" style="margin: 0; padding-bottom: 10px;">
+                <div style="margin-bottom: 12px;">
+                    <label style="display:block; font-weight:bold; margin-bottom:4px; font-size:13px; color:#444;">First Name *</label>
+                    <input type="text" id="leadFirstName" required style="width:100%; padding:11px; border:1px solid #ccc; border-radius:6px; box-sizing:border-box; font-size:16px;">
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                    <label style="display:block; font-weight:bold; margin-bottom:4px; font-size:13px; color:#444;">Last Name *</label>
+                    <input type="text" id="leadLastName" required style="width:100%; padding:11px; border:1px solid #ccc; border-radius:6px; box-sizing:border-box; font-size:16px;">
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                    <label style="display:block; font-weight:bold; margin-bottom:4px; font-size:13px; color:#444;">Phone Number *</label>
+                    <input type="tel" id="leadPhone" required style="width:100%; padding:11px; border:1px solid #ccc; border-radius:6px; box-sizing:border-box; font-size:16px;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display:block; font-weight:bold; margin-bottom:4px; font-size:13px; color:#444;">Email Address *</label>
+                    <input type="email" id="leadEmail" required style="width:100%; padding:11px; border:1px solid #ccc; border-radius:6px; box-sizing:border-box; font-size:16px;">
+                </div>
+
+                <button type="submit" id="submitLeadBtn" style="width:100%; background-color:#0056b3; color:white; padding:14px; border:none; border-radius:6px; font-weight:bold; font-size:16px; cursor:pointer; transition:0.2s; display: block; text-align: center;">
+                    View My Estimate ➡
                 </button>
             </form>
         </div>
+
+        <!-- Add a tiny bit of CSS to switch to perfect centering if they happen to look on a desktop computer -->
+        <style>
+            @media (min-width: 768px) {
+                #leadModal {
+                    align-items: center !important;
+                }
+
+                    #leadModal > div {
+                        border-radius: 12px !important;
+                        margin-bottom: 20px !important;
+                    }
+            }
+        </style>
     </div>
+
+
     <!-- END OF PICTURE PERFECT LEAD CAPTURE MODAL -->
+
 
 
 </body>
