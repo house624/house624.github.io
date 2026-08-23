@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
-            --primary-blue: #0076CE; /* Brand primary blue matching "Get a Free Quote" */
+            --primary-blue: #0076CE; /* Brand primary blue matching "Get a Free Quote" weatherising */
             --dark-text: #2C2C2C; /* Body copy charcoal tone */
             --light-gray: #F8FAFC;
             --border-color: #E2E8F0;
@@ -320,8 +320,8 @@
                     Window Washing
                 </label>
                 <label class="checkbox-label">
-                    <input type="checkbox" id="master-weatherising-chk" onchange="updateCalculations()">
-                    Weatherising
+                    <input type="checkbox" id="master-weatherizing-chk" onchange="updateCalculations()">
+                    Weatherizing
                 </label>
                 <label class="checkbox-label">
                     <input type="checkbox" id="master-broken-chk" onchange="updateCalculations()">
@@ -403,12 +403,12 @@
             </div>
         </div>
 
-        <!-- Section 3 Wrapper: Weatherising Specs Container Block -->
-        <div id="wrapper-weatherising" style="display: none; margin-bottom: 24px; padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; background: #ffffff;">
-            <h3 style="font-size: 15px; font-weight: 600; margin-top: 0; margin-bottom: 12px; color: var(--primary-blue);">Weatherising Specs</h3>
+        <!-- Section 3 Wrapper: Weatherizing Specs Container Block -->
+        <div id="wrapper-weatherizing" style="display: none; margin-bottom: 24px; padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; background: #ffffff;">
+            <h3 style="font-size: 15px; font-weight: 600; margin-top: 0; margin-bottom: 12px; color: var(--primary-blue);">Weatherizing Specs</h3>
             <div class="field-group">
                 <label>How many window frames?</label>
-                <input type="number" id="weatherising-qty" value="1" min="0" oninput="updateCalculations()" onfocus="this.select()" onblur="validateWeatherisingInput(this, 1)">
+                <input type="number" id="weatherizing-qty" value="1" min="0" oninput="updateCalculations()" onfocus="this.select()" onblur="validateWeatherizingInput(this, 1)">
             </div>
         </div>
 
@@ -501,7 +501,7 @@
             <div class="summary-row"><span class="summary-label">Second Story Broken Windows:</span><span class="summary-value" id="broken-second-story-display">0</span></div>
             <div class="summary-row" style="margin-top: 4px; padding-top: 4px; border-top: 1px dashed var(--border-color);"><span class="summary-label">Total Foggy Window Panes:</span><span class="summary-value" id="total-qty-display">0</span></div>
             <div class="summary-row"><span class="summary-label">Total Washing Panes:</span><span class="summary-value" id="washing-display">0</span></div>
-            <div class="summary-row"><span class="summary-label">Total Weatherising Frames:</span><span class="summary-value" id="weatherising-display">0</span></div>
+            <div class="summary-row"><span class="summary-label">Total Weatherizing Frames:</span><span class="summary-value" id="weatherizing-display">0</span></div>
             <div class="summary-row"><span class="summary-label">Total Broken Glass Panes:</span><span class="summary-value" id="total-broken-qty-display">0</span></div>
             <div class="summary-row"><span class="summary-label">Total Mirror Panels:</span><span class="summary-value" id="total-mirror-display">0</span></div>
             <div class="summary-row"><span class="summary-label">Total Shower Glass Walls:</span><span class="summary-value" id="shower-display">0</span></div>
@@ -737,7 +737,7 @@
             updateCalculations();
         }
 
-        function validateWeatherisingInput(input, defaultValue) {
+        function validateWeatherizingInput(input, defaultValue) {
             let val = parseInt(input.value);
 
             if (isNaN(val) || val < 0 || input.value.trim() === "") {
@@ -813,7 +813,7 @@
             // Evaluate Master Activation Toggle Inputs Checkboxes
             const isFoggyActive = document.getElementById('master-foggy-chk').checked;
             const isWashingActive = document.getElementById('master-washing-chk').checked;
-            const isWeatherisingActive = document.getElementById('master-weatherising-chk').checked;
+            const isWeatherizingActive = document.getElementById('master-weatherizing-chk').checked;
             const isBrokenActive = document.getElementById('master-broken-chk').checked;
             const isMirrorActive = document.getElementById('master-mirror-chk').checked;
             const isShowerActive = document.getElementById('master-shower-chk').checked;
@@ -822,7 +822,7 @@
             document.getElementById('wrapper-foggy').style.display = isFoggyActive ? 'block' : 'none';
 
             document.getElementById('wrapper-washing').style.display = isWashingActive ? 'block' : 'none';
-            document.getElementById('wrapper-weatherising').style.display = isWeatherisingActive ? 'block' : 'none';
+            document.getElementById('wrapper-weatherizing').style.display = isWeatherizingActive ? 'block' : 'none';
             document.getElementById('wrapper-broken').style.display = isBrokenActive ? 'block' : 'none';
             document.getElementById('wrapper-mirror').style.display = isMirrorActive ? 'block' : 'none';
             document.getElementById('wrapper-shower').style.display = isShowerActive ? 'block' : 'none';
@@ -1021,13 +1021,13 @@
                 }
             }
 
-            // 5. Process Section 3: Weatherising
-            let weatherisingCount = 0;
-            if (isWeatherisingActive) {
-                const weatherisingQtyInput = document.getElementById('weatherising-qty');
+            // 5. Process Section 3: Weatherizing
+            let weatherizingCount = 0;
+            if (isWeatherizingActive) {
+                const weatherizingQtyInput = document.getElementById('weatherizing-qty');
 
-                if (weatherisingQtyInput && weatherisingQtyInput.value !== "") {
-                    weatherisingCount = parseInt(weatherisingQtyInput.value) || 0;
+                if (weatherizingQtyInput && weatherizingQtyInput.value !== "") {
+                    weatherizingCount = parseInt(weatherizingQtyInput.value) || 0;
                 }
             }
 
@@ -1049,7 +1049,7 @@
             document.getElementById('total-mirror-display').innerText = totalMirrors;
             document.getElementById('shower-display').innerText = showerWallsCount;
             document.getElementById('washing-display').innerText = washingCount;
-            document.getElementById('weatherising-display').innerText = weatherisingCount;
+            document.getElementById('weatherizing-display').innerText = weatherizingCount;
         }
 
         // Static pricing processor triggered only by click event listener
@@ -1059,7 +1059,7 @@
 
             const isFoggyActive = document.getElementById('master-foggy-chk').checked;
             const isWashingActive = document.getElementById('master-washing-chk').checked;
-            const isWeatherisingActive = document.getElementById('master-weatherising-chk').checked;
+            const isWeatherizingActive = document.getElementById('master-weatherizing-chk').checked;
             const isBrokenActive = document.getElementById('master-broken-chk').checked;
             const isMirrorActive = document.getElementById('master-mirror-chk').checked;
             const isShowerActive = document.getElementById('master-shower-chk').checked;
@@ -1138,12 +1138,12 @@
 
             }
 
-            // C. Process Weatherising Section Calculations
-            if (isWeatherisingActive) {
+            // C. Process Weatherizing Section Calculations
+            if (isWeatherizingActive) {
                 activeServiceDetected = true;
-                const weatherisingQty = parseInt(document.getElementById('weatherising-qty').value) || 0;
-                // Rule: Weatherising is $10 per window unit framework, no labor surcharge
-                runningCostSum += (weatherisingQty * 10);                          // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                const weatherizingQty = parseInt(document.getElementById('weatherizing-qty').value) || 0;
+                // Rule: Weatherizing is $10 per window unit framework, no labor surcharge
+                runningCostSum += (weatherizingQty * 10);                          // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
             }
 
             // D. Process Residential Broken Panes Section Calculations
@@ -1293,7 +1293,7 @@
                 "Washing_Windows Cost": 12,
 
                 // 🛡️ Weatherizing Section
-                "Weatherizing_Windows Qty": parseInt(document.getElementById('weatherising-display')?.innerText) || 0,
+                "Weatherizing_Windows Qty": parseInt(document.getElementById('weatherizing-display')?.innerText) || 0,
                 "Weatherizing_Windows Cost": 10,
 
                 // 🪞 Mirrored Walls Section

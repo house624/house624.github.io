@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Picture Perfect Window Solutions</title>
+    <link rel="icon" type="image/jpg" href="4110dc67616da56f9c61ba9bc10cdbff.jpg">
+    <!-- Tailwind CSS CDN for modern responsive grid layouts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Styles matching Google Sites Theme */
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+        }
+
+            .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-radius: 4px;
+            }
+        /* Dropdown custom behavior rules */
+        .dropdown-menu {
+            display: none;
+        }
+
+        .dropdown-container:hover .dropdown-menu,
+        .dropdown-container:focus-within .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="custom-header">
+        <div class="header-inner-wrap">
+
+            <!-- Title Area (Pushed to its own clean row on mobile screens) -->
+            <div class="business-brand-title">
+                Picture Perfect Window Solutions
+            </div>
+
+            <!-- Toggle Actions System -->
+            <nav class="navigation-box">
+
+                <!-- 1. MOBILE ONLY HAMBURGER TRIGGER BUTTON -->
+                <button class="mobile-hamburger-btn" onclick="handleMenuToggle(event)" aria-label="Toggle Navigation Menu">☰</button>
+
+                <!-- 2. THE DROPDOWN PANEL PACK -->
+                <ul id="main-navigation-menu" class="nav-links-list" onclick="handleMenuContentClick(event)">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Our Work.html">Our Work</a></li>
+                    <li><a href="How to Measure.html">How to Measure</a></li>
+                    <li><a href="FAQ.html" class="active-tab">FAQ</a></li>
+
+                    <!-- NESTED SERVICE AREA DROPDOWN -->
+                    <li class="nested-dropdown-item" onclick="handleSubmenuToggle(event)">
+                        <span class="dropdown-trigger-text">Service Areas <span class="arrow-indicator">▾</span></span>
+                        <ul id="service-submenu-list" class="submenu-inner-list">
+                            <li><a href="Fort Worth TX - Glass  Window Services.html">Fort Worth</a></li>
+                            <li><a href="Dallas TX - Glass  Window Services.html">Dallas</a></li>
+                            <li><a href="Burleson TX - Glass  Window Services.html">Burleson</a></li>
+                            <li><a href="Crowley TX - Glass  Window Services.html">Crowley</a></li>
+                            <li><a href="Cleburne TX - Glass  Window Services.html">Cleburne</a></li>
+                            <li><a href="Alvarado TX - Glass  Window Services.html">Alvarado</a></li>
+                            <li><a href="Mansfield TX - Glass  Window Services.html">Mansfield</a></li>
+                            <li><a href="Midlothian TX - Glass  Window Services.html">Midlothian</a></li>
+                            <li><a href="Godley TX - Glass  Window Services.html">Godley</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="contact-cta-button"><a href="Contact us.html">Contact us</a></li>
+                </ul>
+
+            </nav>
+        </div>
+
+        <!-- EMBEDDED STYLESHEET CORE RULES -->
+        <style>
+            /* ========================================================
+            DESKTOP & GENERAL STYLES (Widescreens)
+            ======================================================== */
+            .custom-header {
+                background-color: #0056b3;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 14px 24px;
+                font-family: system-ui, -apple-system, sans-serif;
+                box-shadow: 0 2px 8 rgba(0,0,0,0.15);
+                position: relative;
+                z-index: 9999;
+            }
+
+            .header-inner-wrap {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .business-brand-title {
+                color: #ffffff;
+                font-weight: 800;
+                font-size: 20px;
+                letter-spacing: 0.3px;
+            }
+
+            .mobile-hamburger-btn {
+                display: none; /* Hidden completely on desktop systems */
+            }
+
+            .nav-links-list {
+                display: flex;
+                list-style: none;
+                gap: 22px;
+                margin: 0;
+                padding: 0;
+                align-items: center;
+            }
+
+                .nav-links-list a, .dropdown-trigger-text {
+                    color: #ffffff;
+                    text-decoration: none;
+                    font-size: 15px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    display: block;
+                    padding: 4px 0;
+                }
+
+                    .nav-links-list a:hover, .nested-dropdown-item:hover .dropdown-trigger-text {
+                        color: #f1f5f9;
+                        text-decoration: underline;
+                    }
+
+            .active-tab {
+                font-weight: 700 !important;
+                border-bottom: 2px solid #ffffff;
+            }
+
+            /* Desktop Dropdown Mechanisms (Controlled cleanly via JavaScript clicks) */
+            .nested-dropdown-item {
+                position: relative;
+            }
+
+            .submenu-inner-list {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #ffffff;
+                min-width: 160px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                border-radius: 6px;
+                padding: 6px 0;
+                margin-top: 10px;
+                list-style: none;
+            }
+
+                .submenu-inner-list a {
+                    color: #1e293b !important;
+                    padding: 8px 16px;
+                    font-size: 14px;
+                }
+
+                    .submenu-inner-list a:hover {
+                        background-color: #f1f5f9;
+                        text-decoration: none !important;
+                    }
+
+                /* Explicit active state rules for click management toggle */
+                .submenu-inner-list.submenu-active {
+                    display: block !important;
+                }
+
+            .contact-cta-button a {
+                background-color: #f59e0b;
+                color: #0f172a !important;
+                padding: 6px 14px !important;
+                border-radius: 4px;
+                font-weight: 700;
+            }
+
+                .contact-cta-button a:hover {
+                    background-color: #d97706;
+                    text-decoration: none;
+                }
+
+            /* ========================================================
+            MOBILE LAYOUT CORRECTIONS (Screens under 768px wide)
+            ======================================================== */
+            @media (max-width: 767px) {
+                .header-inner-wrap {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 12px;
+                }
+                /* Compact, perfect-sized hamburger icon button alignment */
+                .mobile-hamburger-btn {
+                    display: block;
+                    background: transparent;
+                    border: 1px solid rgba(255, 255, 255, 0.4);
+                    color: #ffffff;
+                    font-size: 22px;
+                    padding: 2px 10px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    line-height: 1.2;
+                    margin-top: 2px;
+                }
+                /* Hide navigation drop layout completely by default */
+                .nav-links-list {
+                    display: none;
+                    flex-direction: column;
+                    width: 100%;
+                    background-color: #004cb4;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    padding: 12px 20px;
+                    gap: 4px;
+                    box-sizing: border-box;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                }
+                    /* Utilities classes targeted dynamically via the click scripts */
+                    .nav-links-list.menu-active {
+                        display: flex !important;
+                    }
+
+                    .nav-links-list li {
+                        width: 100%;
+                        border-bottom: 1px solid rgba(255,255,255,0.08);
+                    }
+
+                    .nav-links-list a, .dropdown-trigger-text {
+                        padding: 12px 4px;
+                        font-size: 16px;
+                    }
+
+                .active-tab {
+                    border-bottom: none;
+                    color: #f59e0b !important;
+                }
+
+                /* Mobile Submenu Behavior (Accordion layout style inside the list block) */
+                .submenu-inner-list {
+                    position: static;
+                    transform: none;
+                    background-color: #003b8c;
+                    box-shadow: none;
+                    padding: 0;
+                    margin: 0;
+                    border-radius: 0;
+                    width: 100%;
+                }
+
+                    .submenu-inner-list a {
+                        color: #ffffff !important;
+                        padding: 10px 24px;
+                        font-size: 15px;
+                        border-bottom: 1px solid rgba(255,255,255,0.05);
+                    }
+
+                .contact-cta-button {
+                    border-bottom: none !important;
+                    margin-top: 10px;
+                }
+
+                    .contact-cta-button a {
+                        text-align: center;
+                    }
+            }
+        </style>
+
+        <!-- RE-ENGINEERED COMPREHENSIVE EVENT DROPDOWN ACTION CONTROLLERS -->
+        <script>
+            function handleMenuToggle(e) {
+                e.stopPropagation();
+                const menu = document.getElementById('main-navigation-menu');
+                menu.classList.toggle('menu-active');
+            }
+
+            function handleSubmenuToggle(e) {
+                // Isolate click actions to the dropdown trigger header item specifically
+                const trigger = e.target.closest('.dropdown-trigger-text');
+                if (trigger) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const submenu = document.getElementById('service-submenu-list');
+                    submenu.classList.toggle('submenu-active');
+
+                    // Dynamically point up or down arrow indicators based on current open/close visibility
+                    const arrow = trigger.querySelector('.arrow-indicator');
+                    arrow.innerHTML = submenu.classList.contains('submenu-active') ? '▴' : '▾';
+                }
+            }
+
+            function handleMenuContentClick(e) {
+                // Stops list background container click event bubbles from breaking links actioning
+                e.stopPropagation();
+            }
+
+            // Comprehensive outside area surface click watchdog
+            window.addEventListener('click', function () {
+                const menu = document.getElementById('main-navigation-menu');
+                const submenu = document.getElementById('service-submenu-list');
+                const arrowIndicator = document.querySelector('.arrow-indicator');
+
+                // Desktop close: collapse dropdown smoothly when consumer hits body background
+                if (window.innerWidth >= 768) {
+                    if (submenu.classList.contains('submenu-active')) {
+                        submenu.classList.remove('submenu-active');
+                        if (arrowIndicator) arrowIndicator.innerHTML = '▾';
+                    }
+                } else {
+                    // Mobile phone reset behavior adjustments
+                    menu.classList.remove('menu-active');
+                }
+            });
+        </script>
+    </header>
+
+    <!-- MAIN BODY CONTENT CONTAINER -->
+    <!-- MAIN FAQ CONTAINER SECTION -->
+    <main class="max-w-4xl mx-auto px-4 py-12 font-sans text-gray-700 leading-relaxed">
+
+        <!-- Page Header Grouping -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-3">
+                Frequently Asked Questions
+            </h1>
+            <p class="text-lg text-blue-700 font-semibold max-w-2xl mx-auto">
+                Clear, honest answers about residential window repair, foggy glass replacement, and weatherization in the DFW area.
+            </p>
+        </div>
+
+        <!-- FAQ Q&A Grid Layout -->
+        <div class="space-y-8 max-w-3xl mx-auto">
+
+            <!-- Question 1: Foggy Windows -->
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-start gap-2">
+                    <span class="text-blue-600 font-extrabold">Q:</span>
+                    What causes home windows to get foggy or cloudy?
+                </h3>
+                <p class="pl-6 text-gray-600">
+                    Foggy windows are caused by a phenomenon called "failed thermal seals." Modern residential windows use double-pane insulated glass units (IGUs) sealed tightly together with a dead airspace in between. North Texas weather puts massive stress on these seals through hot-and-cold cycles (solar pumping). Once the seal ruptures, outside humidity creeps into the airspace, creating condensation, dampness, or a white haze that you cannot wipe away.
+                </p>
+            </div>
+
+            <!-- Question 2: Glass vs Frame Replacement -->
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-start gap-2">
+                    <span class="text-blue-600 font-extrabold">Q:</span>
+                    Do I have to replace the whole window frame if only the glass is bad?
+                </h3>
+                <p class="pl-6 text-gray-600">
+                    Absolutely not! Many large window sales companies will try to convince you to tear out your entire vinyl or aluminum window frame system, which can cost thousands of dollars. At Picture Perfect Window Solutions, we specialize in high-efficiency <strong class="text-gray-900">glass-only replacement</strong>. We leave your perfectly good existing frames completely untouched and simply install a brand-new, sealed double-pane glass unit inside them. This saves you significant money, creates zero structural mess, and restores your energy efficiency.
+                </p>
+            </div>
+
+            <!-- Question 3: Measurement Guarantees -->
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-start gap-2">
+                    <span class="text-blue-600 font-extrabold">Q:</span>
+                    Can I use your online calculator if I don't know the exact window measurements?
+                </h3>
+                <p class="pl-6 text-gray-600">
+                    Yes! Our homepage tool is designed to give you a quick, rough budget estimate. You can simply measure the visible glass area from the inside of your home using a standard tape measure to get your rough dimensions. Don't worry about being off by a fraction of an inch—our crew will always come out to your house to take exact, professional, laser-verified measurements before cutting any replacement glass pane.
+                </p>
+            </div>
+
+            <!-- Question 4: Weatherization Benefits -->
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-start gap-2">
+                    <span class="text-blue-600 font-extrabold">Q:</span>
+                    What is window weatherizing and do I need it?
+                </h3>
+                <p class="pl-6 text-gray-600">
+                    Weatherization involves replacing old, brittle, or torn perimeter seals, bulb seals, and pile weatherstripping directly inside your window frame architecture. Over time, Texas heat shrinks these seals, allowing outside drafts, wind, moisture, and fine dust to blow directly into your home. Weatherizing stops drafts instantly, locks your expensive air-conditioned HVAC air inside, and drops your monthly energy bills significantly.
+                </p>
+            </div>
+
+            <!-- Question 5: Travel Fees -->
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-start gap-2">
+                    <span class="text-blue-600 font-extrabold">Q:</span>
+                    Do you charge extra trip fees for different DFW cities?
+                </h3>
+                <p class="pl-6 text-gray-600">
+                    No. We maintain clear, honest, upfront pricing across our entire south DFW service territory. Whether your home is located in Burleson, Fort Worth, Mansfield, Crowley, Alvarado, or Midlothian, our base rates and diagnostic estimates remain identical with zero surprise trip charges or hidden mileage fees attached to your final bill.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Bottom Conversion Bridge (Strategic SEO Move) -->
+        <div class="mt-16 bg-blue-50 border border-blue-100 rounded-2xl p-8 text-center max-w-2xl mx-auto">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-2">
+                Ready to Check Your Estimated Price?
+            </h2>
+            <p class="text-gray-600 mb-6">
+                Skip the guesswork. Use our fast home tool to calculate a quick, rough estimate for your foggy windows or glass pane repairs instantly.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <!-- Triggers immediate return to home page and instant snap to calculator widget -->
+                <a href="index.html#quote-calculator" class="w-full sm:w-auto bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold px-8 py-3.5 rounded-lg shadow-md transition duration-200 text-center">
+                    Open Instant Calculator
+                </a>
+                <a href="tel:8176470229" class="w-full sm:w-auto bg-white border border-gray-300 hover:border-gray-400 text-gray-700 font-medium px-8 py-3.5 rounded-lg transition duration-200 text-center shadow-sm">
+                    Call/Text: (817) 647-0229
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+
+
+</body>
+</html>
+
+

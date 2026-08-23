@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Picture Perfect Window Solutions</title>
     <link rel="icon" type="image/jpg" href="4110dc67616da56f9c61ba9bc10cdbff.jpg">
+    <meta name="description" content="Affordable home window glass pane replacement, foggy window repair, and weatherizing in Fort Worth, Burleson, Mansfield, and Midlothian. Get an instant rough estimate today!">
+    <meta name="keywords" content="foggy window repair dfw, glass pane replacement burleson, window repair fort worth, home window glass replacement tx">
 
     <!-- Tailwind CSS CDN for modern responsive grid layouts -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -32,9 +34,10 @@
         .dropdown-container:hover .dropdown-menu, .dropdown-container:focus-within .dropdown-menu {
             display: block;
         }
-
-
     </style>
+
+
+
 </head>
 <body class="min-h-screen flex flex-col">
 
@@ -43,9 +46,10 @@
         <div class="header-inner-wrap">
 
             <!-- Title Area (Pushed to its own clean row on mobile screens) -->
-            <div class="business-brand-title">
+            <!-- Find your header navigation and change your text title to this -->
+            <a href="index.html" class="text-xl font-bold text-white hover:text-amber-400 transition">
                 Picture Perfect Window Solutions
-            </div>
+            </a>
 
             <!-- Toggle Actions System -->
             <nav class="navigation-box">
@@ -58,7 +62,7 @@
                     <li><a href="index.html" class="active-tab">Home</a></li>
                     <li><a href="Our Work.html">Our Work</a></li>
                     <li><a href="How to Measure.html">How to Measure</a></li>
-                    <li><a href="Free Quote.html">Free Quote</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
 
                     <!-- NESTED SERVICE AREA DROPDOWN -->
                     <li class="nested-dropdown-item" onclick="handleSubmenuToggle(event)">
@@ -84,201 +88,201 @@
 
         <!-- EMBEDDED STYLESHEET CORE RULES -->
         <style>
-                 /* ========================================================
+            /* ========================================================
             DESKTOP & GENERAL STYLES (Widescreens)
             ======================================================== */
-                 .custom-header {
-                     background-color: #0056b3;
-                     width: 100%;
-                     box-sizing: border-box;
-                     padding: 14px 24px;
-                     font-family: system-ui, -apple-system, sans-serif;
-                     box-shadow: 0 2px 8 rgba(0,0,0,0.15);
-                     position: relative;
-                     z-index: 9999;
-                 }
+            .custom-header {
+                background-color: #0056b3;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 14px 24px;
+                font-family: system-ui, -apple-system, sans-serif;
+                box-shadow: 0 2px 8 rgba(0,0,0,0.15);
+                position: relative;
+                z-index: 9999;
+            }
 
-                 .header-inner-wrap {
-                     max-width: 1200px;
-                     margin: 0 auto;
-                     display: flex;
-                     align-items: center;
-                     justify-content: space-between;
-                 }
+            .header-inner-wrap {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
 
-                 .business-brand-title {
-                     color: #ffffff;
-                     font-weight: 800;
-                     font-size: 20px;
-                     letter-spacing: 0.3px;
-                 }
+            .business-brand-title {
+                color: #ffffff;
+                font-weight: 800;
+                font-size: 20px;
+                letter-spacing: 0.3px;
+            }
 
-                 .mobile-hamburger-btn {
-                     display: none; /* Hidden completely on desktop systems */
-                 }
+            .mobile-hamburger-btn {
+                display: none; /* Hidden completely on desktop systems */
+            }
 
-                 .nav-links-list {
-                     display: flex;
-                     list-style: none;
-                     gap: 22px;
-                     margin: 0;
-                     padding: 0;
-                     align-items: center;
-                 }
+            .nav-links-list {
+                display: flex;
+                list-style: none;
+                gap: 22px;
+                margin: 0;
+                padding: 0;
+                align-items: center;
+            }
 
-                     .nav-links-list a, .dropdown-trigger-text {
-                         color: #ffffff;
-                         text-decoration: none;
-                         font-size: 15px;
-                         font-weight: 500;
-                         cursor: pointer;
-                         display: block;
-                         padding: 4px 0;
-                     }
+                .nav-links-list a, .dropdown-trigger-text {
+                    color: #ffffff;
+                    text-decoration: none;
+                    font-size: 15px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    display: block;
+                    padding: 4px 0;
+                }
 
-                         .nav-links-list a:hover, .nested-dropdown-item:hover .dropdown-trigger-text {
-                             color: #f1f5f9;
-                             text-decoration: underline;
-                         }
+                    .nav-links-list a:hover, .nested-dropdown-item:hover .dropdown-trigger-text {
+                        color: #f1f5f9;
+                        text-decoration: underline;
+                    }
 
-                 .active-tab {
-                     font-weight: 700 !important;
-                     border-bottom: 2px solid #ffffff;
-                 }
+            .active-tab {
+                font-weight: 700 !important;
+                border-bottom: 2px solid #ffffff;
+            }
 
-                 /* Desktop Dropdown Mechanisms (Controlled cleanly via JavaScript clicks) */
-                 .nested-dropdown-item {
-                     position: relative;
-                 }
+            /* Desktop Dropdown Mechanisms (Controlled cleanly via JavaScript clicks) */
+            .nested-dropdown-item {
+                position: relative;
+            }
 
-                 .submenu-inner-list {
-                     display: none;
-                     position: absolute;
-                     top: 100%;
-                     left: 50%;
-                     transform: translateX(-50%);
-                     background-color: #ffffff;
-                     min-width: 160px;
-                     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                     border-radius: 6px;
-                     padding: 6px 0;
-                     margin-top: 10px;
-                     list-style: none;
-                 }
+            .submenu-inner-list {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #ffffff;
+                min-width: 160px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                border-radius: 6px;
+                padding: 6px 0;
+                margin-top: 10px;
+                list-style: none;
+            }
 
-                     .submenu-inner-list a {
-                         color: #1e293b !important;
-                         padding: 8px 16px;
-                         font-size: 14px;
-                     }
+                .submenu-inner-list a {
+                    color: #1e293b !important;
+                    padding: 8px 16px;
+                    font-size: 14px;
+                }
 
-                         .submenu-inner-list a:hover {
-                             background-color: #f1f5f9;
-                             text-decoration: none !important;
-                         }
+                    .submenu-inner-list a:hover {
+                        background-color: #f1f5f9;
+                        text-decoration: none !important;
+                    }
 
-                     /* Explicit active state rules for click management toggle */
-                     .submenu-inner-list.submenu-active {
-                         display: block !important;
-                     }
+                /* Explicit active state rules for click management toggle */
+                .submenu-inner-list.submenu-active {
+                    display: block !important;
+                }
 
-                 .contact-cta-button a {
-                     background-color: #f59e0b;
-                     color: #0f172a !important;
-                     padding: 6px 14px !important;
-                     border-radius: 4px;
-                     font-weight: 700;
-                 }
+            .contact-cta-button a {
+                background-color: #f59e0b;
+                color: #0f172a !important;
+                padding: 6px 14px !important;
+                border-radius: 4px;
+                font-weight: 700;
+            }
 
-                     .contact-cta-button a:hover {
-                         background-color: #d97706;
-                         text-decoration: none;
-                     }
+                .contact-cta-button a:hover {
+                    background-color: #d97706;
+                    text-decoration: none;
+                }
 
-                 /* ========================================================
+            /* ========================================================
             MOBILE LAYOUT CORRECTIONS (Screens under 768px wide)
             ======================================================== */
-                 @media (max-width: 767px) {
-                     .header-inner-wrap {
-                         flex-direction: column;
-                         align-items: flex-start;
-                         gap: 12px;
-                     }
-                     /* Compact, perfect-sized hamburger icon button alignment */
-                     .mobile-hamburger-btn {
-                         display: block;
-                         background: transparent;
-                         border: 1px solid rgba(255, 255, 255, 0.4);
-                         color: #ffffff;
-                         font-size: 22px;
-                         padding: 2px 10px;
-                         border-radius: 4px;
-                         cursor: pointer;
-                         line-height: 1.2;
-                         margin-top: 2px;
-                     }
-                     /* Hide navigation drop layout completely by default */
-                     .nav-links-list {
-                         display: none;
-                         flex-direction: column;
-                         width: 100%;
-                         background-color: #004cb4;
-                         position: absolute;
-                         top: 100%;
-                         left: 0;
-                         padding: 12px 20px;
-                         gap: 4px;
-                         box-sizing: border-box;
-                         box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-                     }
-                         /* Utilities classes targeted dynamically via the click scripts */
-                         .nav-links-list.menu-active {
-                             display: flex !important;
-                         }
+            @media (max-width: 767px) {
+                .header-inner-wrap {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 12px;
+                }
+                /* Compact, perfect-sized hamburger icon button alignment */
+                .mobile-hamburger-btn {
+                    display: block;
+                    background: transparent;
+                    border: 1px solid rgba(255, 255, 255, 0.4);
+                    color: #ffffff;
+                    font-size: 22px;
+                    padding: 2px 10px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    line-height: 1.2;
+                    margin-top: 2px;
+                }
+                /* Hide navigation drop layout completely by default */
+                .nav-links-list {
+                    display: none;
+                    flex-direction: column;
+                    width: 100%;
+                    background-color: #004cb4;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    padding: 12px 20px;
+                    gap: 4px;
+                    box-sizing: border-box;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                }
+                    /* Utilities classes targeted dynamically via the click scripts */
+                    .nav-links-list.menu-active {
+                        display: flex !important;
+                    }
 
-                         .nav-links-list li {
-                             width: 100%;
-                             border-bottom: 1px solid rgba(255,255,255,0.08);
-                         }
+                    .nav-links-list li {
+                        width: 100%;
+                        border-bottom: 1px solid rgba(255,255,255,0.08);
+                    }
 
-                         .nav-links-list a, .dropdown-trigger-text {
-                             padding: 12px 4px;
-                             font-size: 16px;
-                         }
+                    .nav-links-list a, .dropdown-trigger-text {
+                        padding: 12px 4px;
+                        font-size: 16px;
+                    }
 
-                     .active-tab {
-                         border-bottom: none;
-                         color: #f59e0b !important;
-                     }
+                .active-tab {
+                    border-bottom: none;
+                    color: #f59e0b !important;
+                }
 
-                     /* Mobile Submenu Behavior (Accordion layout style inside the list block) */
-                     .submenu-inner-list {
-                         position: static;
-                         transform: none;
-                         background-color: #003b8c;
-                         box-shadow: none;
-                         padding: 0;
-                         margin: 0;
-                         border-radius: 0;
-                         width: 100%;
-                     }
+                /* Mobile Submenu Behavior (Accordion layout style inside the list block) */
+                .submenu-inner-list {
+                    position: static;
+                    transform: none;
+                    background-color: #003b8c;
+                    box-shadow: none;
+                    padding: 0;
+                    margin: 0;
+                    border-radius: 0;
+                    width: 100%;
+                }
 
-                         .submenu-inner-list a {
-                             color: #ffffff !important;
-                             padding: 10px 24px;
-                             font-size: 15px;
-                             border-bottom: 1px solid rgba(255,255,255,0.05);
-                         }
+                    .submenu-inner-list a {
+                        color: #ffffff !important;
+                        padding: 10px 24px;
+                        font-size: 15px;
+                        border-bottom: 1px solid rgba(255,255,255,0.05);
+                    }
 
-                     .contact-cta-button {
-                         border-bottom: none !important;
-                         margin-top: 10px;
-                     }
+                .contact-cta-button {
+                    border-bottom: none !important;
+                    margin-top: 10px;
+                }
 
-                         .contact-cta-button a {
-                             text-align: center;
-                         }
-                 }
+                    .contact-cta-button a {
+                        text-align: center;
+                    }
+            }
         </style>
 
         <!-- RE-ENGINEERED COMPREHENSIVE EVENT DROPDOWN ACTION CONTROLLERS -->
@@ -337,29 +341,43 @@
     <main class="flex-grow max-w-5xl mx-auto w-full px-4 py-12">
 
         <!-- Hero Header Branding Section -->
-        <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-16 text-center md:text-left">
-            <!-- Circular Logo Artwork pointing to local relative folder asset file -->
-            <div class="w-48 h-48 flex-shrink-0">
-                <img src="Home\logo.jpg" alt="Picture Perfect Window Solutions Logo" class="w-full h-full object-contain">
-            </div>
+        <div class="flex flex-col items-center justify-center gap-6 mb-16 text-center">
             <div>
+                <!-- Replaced with the optimized, high-impact localized main header -->
                 <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl mb-2">
-                    Picture Perfect Window Solutions
+                    Residential & Commercial Window Repair | Glass Replacement in DFW
                 </h1>
-                <h2 class="text-xl font-semibold text-blue-700 mb-4">Serving the DFW area</h2>
-                <p class="text-base text-gray-700 max-w-xl leading-relaxed">
-                    Call or text: <strong class="text-gray-900">(817)647-0229</strong> or fill out the form on our
-                    <a href="Contact us.html" class="text-[#0056b3] underline font-medium hover:text-blue-800">Contact us page</a>
+                <!-- Your original subheader style -->
+                <h2 class="text-xl font-semibold text-blue-700 mb-6">Serving Burleson, Fort Worth, Mansfield, and Surrounding Areas</h2>
 
-                </p>
+                <!-- Interactive Call/Text Container - Clicking the number on a phone opens the dialer instantly -->
+                <div class="inline-block bg-blue-50 rounded-lg px-6 py-3 mb-8 border border-blue-100">
+                    <p class="text-sm font-medium uppercase tracking-wider text-blue-700">Fast Local Response</p>
+                    <p class="text-xl md:text-2xl font-bold mt-1 text-gray-900">
+                        Call or Text: <a href="tel:8176470229" class="hover:underline hover:text-blue-700 transition">(817) 647-0229</a>
+                    </p>
+                </div>
+
+                <!-- Action CTA Buttons Layout Block -->
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <!-- The High-Contrast Yellow Action Button to jump straight to the home page calculator -->
+                    <a href="#quote-calculator" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3.5 rounded-lg shadow-md transition duration-200 text-center">
+                        Get an Instant Rough Estimate
+                    </a>
+                    <!-- The Secondary Button linked directly to your work showcase folder asset file -->
+                    <a href="Our Work.html" class="w-full sm:w-auto bg-white border border-gray-300 hover:border-gray-400 text-gray-700 font-medium px-8 py-3.5 rounded-lg transition duration-200 text-center shadow-sm">
+                        View Our Work
+                    </a>
+                </div>
             </div>
         </div>
+
 
         <!-- Layout Grid splitting Core Services and Sidebar Image -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
             <!-- Left Side: Window / Brick Frame Showcase Image pointing to local relative folder asset file -->
             <div class="lg:col-span-5 bg-gray-200 rounded-xl overflow-hidden shadow-sm border border-gray-200 aspect-[4/3] sm:aspect-video lg:aspect-auto lg:h-[480px]">
-                <img src="Home\showcase.jpg" alt="Window showcase installation" class="w-full h-full object-cover">
+                <img src="Home\showcase.jpg" alt="Double pane foggy window repair showcase in Burleson Texas by Picture Perfect Window Solutions" class="w-full h-full object-cover">
             </div>
 
             <!-- Right Side: Clean Core Services Index Layout -->
@@ -380,7 +398,7 @@
                         Professional, streak-free window cleaning for crystal-clear exterior views. Ask about our multi-service bundles while we clean!
                     </li>
                     <li class="pl-4 border-l-4 border-blue-500">
-                        <strong class="text-gray-900">Weatherising:</strong>
+                        <strong class="text-gray-900">Weatherizing:</strong>
                         Replace worn frame seals to stop leaks, lock in HVAC air, and cut energy bills.
                     </li>
                     <li class="pl-4 border-l-4 border-blue-500">
@@ -399,72 +417,106 @@
                 </ul>
 
                 <div class="pt-4">
-                    <a href="Free Quote.html" class="inline-block text-center bg-[#0056b3] text-white font-medium py-3 px-8 rounded-lg shadow-sm hover:bg-blue-700 transition-all text-sm tracking-wide">
+                    <a href="#quote-calculator" class="inline-block text-center bg-[#0056b3] text-white font-medium py-3 px-8 rounded-lg shadow-sm hover:bg-blue-700 transition-all text-sm tracking-wide">
                         Get a Free Quote
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- Value Propositions Matrix Sections -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-gray-200 pt-12 mb-16">
-            <div class="space-y-2">
-                <h4 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+        <!-- SEO BLOCK 1: THE LOCAL CLIMATE PROBLEM -->
+        <article class="prose max-w-none mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Why North Texas Homes Face Foggy Windows & Blown Seals</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                If you live in the Dallas / Fort Worth Metroplex, you are likely familiar with the extreme weather shifts that take place between scorching summer heat waves and unexpected winter freezes. This dramatic temperature fluctuation causes a phenomenon known as "solar pumping." Over time, the continuous expansion and contraction of your window panes place immense pressure on the insulated glass unit (IGU) seals.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+                Eventually, every thermal double-pane window seal will fail. When this happens, moisture, dampness, and a blue haze crawl into the dead airspace between your glass panels, leaving you with unsightly condensation that you cannot wipe away. Wood framed windows typically average a lifespan of 20 to 24 years, aluminum frames hold up for roughly 16 to 18 years, while premium vinyl replacement windows carry a much stronger thermal defense against the elements.
+            </p>
+        </article>
 
-                    <span>📍</span> 100% Local & Reliable
-                </h4>
-                <p class="text-sm text-gray-600 leading-relaxed">
-                    Based right here in the South DFW area. We are active members of our local community, arriving on time, every time, with reliable Texas service.
-                </p>
-            </div>
-            <div class="space-y-2">
-                <h4 class="text-lg font-bold text-gray-900 flex items-center gap-2">
-                    <span>💰</span> Fair, Upfront Pricing
-                </h4>
-                <p class="text-sm text-gray-600 leading-relaxed">
-                    No hidden trip fees or surprise charges. Your travel and fuel are factored entirely into our clear, straightforward invoice estimates.
-                </p>
-            </div>
-            <div class="space-y-2">
-                <h4 class="text-lg font-bold text-gray-900 flex items-center gap-2">
-                    <span>🛠️</span> Quality Craftsmanship
-                </h4>
-                <p class="text-sm text-gray-600 leading-relaxed">
+        <!-- SEO BLOCK 2: VALUE & SOLUTIONS -->
+        <article class="prose max-w-none mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Is it Cheaper to Replace Window Glass or the Whole Window Frame?</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Many homeowners mistakenly believe that fixing a cloudy or broken window requires tearing out the entire window vinyl or aluminum framework. This is a costly misconception. If your existing window frames are structurally sound, you do not need a complete, messy window replacement.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+                At Picture Perfect Window Solutions, we specialize in high-efficiency insulated glass replacement. By swapping out only the failed double-pane glass unit and leaving your original frames perfectly intact, we eliminate condensation and restore your home's energy efficiency at a fraction of the cost of full replacements. Glass repair costs are significantly lower, the installation process is substantially cleaner, and it keeps perfectly good framing material out of Texas landfills.
+            </p>
+        </article>
 
-                    We take immense pride in our attention to detail. Every window, mirror, and shower enclosure is treated with the highest professional care to protect your home.
-                </p>
-            </div>
-        </div>
 
-        <!-- About the Owners Segment -->
-        <div class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-16">
-            <h3 class="text-xl font-bold text-gray-900 mb-4">About the Owners</h3>
-            <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
-                <p>
-                    We are long-time DFW residents who founded Picture Perfect Window Solutions out of a passion for working with our hands and serving our local community. After seeing how big glass corporations often overcharge homeowners with hidden fees and impersonal service, we decided to build a business rooted in honesty, fair pricing, and true local reliability.
-                </p>
-                <p>
-                    When we step onto your property, our promise to you is simple: polite communication, immaculate workspaces, and treating your home with the exact same care and respect as our own. We aren't here just to fix windows; we are here to build lasting relationships with our neighbors.
-                </p>
+        <!-- VALUE PROPOSITION TRIPLE GRID -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                <span class="text-2xl block mb-2">📍</span>
+                <h4 class="font-bold text-gray-900 text-lg mb-1">100% Local & Reliable</h4>
+                <p class="text-sm text-gray-600">Based right here in the South DFW area. Active members of our community arriving on time, every time.</p>
             </div>
-        </div>
-
-        <!-- DFW Service Area Footer Text List -->
-
-        <div class="text-center border-t border-gray-200 pt-8">
-            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-3">Our DFW Service Area</span>
-            <div class="flex flex-wrap justify-center gap-3 md:gap-6 text-sm font-medium text-gray-700">
-                <span>Fort Worth</span> <span class="text-gray-300">|</span>
-                <span>Dallas</span> <span class="text-gray-300">|</span>
-                <span>Burleson</span> <span class="text-gray-300">|</span>
-                <span>Crowley</span> <span class="text-gray-300">|</span>
-                <span>Cleburne</span> <span class="text-gray-300">|</span>
-                <span>Alvarado</span> <span class="text-gray-300">|</span>
-                <span>Godley</span> <span class="text-gray-300">|</span>
-                <span>Midlothian</span> <span class="text-gray-300">|</span>
-                <span>Mansfield</span>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                <span class="text-2xl block mb-2">💰</span>
+                <h4 class="font-bold text-gray-900 text-lg mb-1">Fair, Upfront Pricing</h4>
+                <p class="text-sm text-gray-600">No hidden trip fees or surprise charges. Travel and fuel costs are factored transparently into our initial estimates.</p>
             </div>
-        </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                <span class="text-2xl block mb-2">🛠</span>
+                <h4 class="font-bold text-gray-900 text-lg mb-1">Quality Craftsmanship</h4>
+                <p class="text-sm text-gray-600">Highest professional care to protect your property. Every glass pane and mirror is aligned with precision.</p>
+            </div>
+        </section>
+
+        <!-- ABOUT THE OWNERS & EXPERIENCE -->
+        <article class="prose max-w-none bg-blue-50 p-8 rounded-xl border border-blue-100 mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Over 25 Years of Trusted Glass Expertise in the DFW Metroplex</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                We are long-time DFW residents who founded Picture Perfect Window Solutions out of a deep passion for craftsmanship and serving our local community. With over 25 years of combined field experience handling complex foggy window restorations and custom residential glass designs, our seasoned team manages every step of the process with strict precision.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+                We intentionally blanket a broad regional footprint to ensure our neighbors get rapid response times when glass breaks or thermal seals fail. Our standard service areas extend heavily through Fort Worth, Dallas, Crowley, Burleson, Cleburne, Alvarado, Mansfield, Midlothian, and Godley. When we step onto your property, our promise is simple: polite communication, immaculate workspaces, and treating your home with the exact same care and respect as our own.
+            </p>
+        </article>
+
+        <!-- EMBEDDED CALCULATOR HTML WIDGET FRAME CONTAINER -->
+        <section id="quote-calculator" class="bg-white p-8 rounded-xl shadow-md border border-gray-200 scroll-mt-20">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden max-w-2xl mx-auto flex flex-col">
+
+                <div class="bg-gray-50 border-b border-gray-200 px-6 py-4">
+                    <h2 class="text-lg font-bold text-gray-800">Rough Estimate Quote</h2>
+                </div>
+
+                <!--
+               IFRAME WITH AUTOMATIC AUTO-HEIGHT RESIZING LOGIC
+               - id="calcWidget" lets our script control its size.
+               - min-height starts at a solid default baseline.
+            -->
+                <iframe id="calcWidget"
+                        src="calculator.html"
+                        title="Window Pricing Calculator Widget"
+                        class="w-full min-h-[700px] border-none flex-grow transition-all duration-150"
+                        scrolling="no"
+                        loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
+
+            <!-- DFW Service Area Footer Text List -->
+
+            <div class="text-center border-t border-gray-200 pt-8">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-3">Our DFW Service Area</span>
+                <div class="flex flex-wrap justify-center gap-3 md:gap-6 text-sm font-medium text-gray-700">
+                    <span>Fort Worth</span> <span class="text-gray-300">|</span>
+                    <span>Dallas</span> <span class="text-gray-300">|</span>
+                    <span>Burleson</span> <span class="text-gray-300">|</span>
+                    <span>Crowley</span> <span class="text-gray-300">|</span>
+                    <span>Cleburne</span> <span class="text-gray-300">|</span>
+                    <span>Alvarado</span> <span class="text-gray-300">|</span>
+                    <span>Godley</span> <span class="text-gray-300">|</span>
+                    <span>Midlothian</span> <span class="text-gray-300">|</span>
+                    <span>Mansfield</span>
+                </div>
+            </div>
 
     </main>
 
@@ -482,6 +534,58 @@
             </div>
         </div>
     </footer>
+
+    <!-- INTER-FRAME HEIGHT COMMUNICATION LISTENER SCRIPT -->
+    <script>
+        // Listen for dimension update message dispatches from inside the calculator file
+        window.addEventListener('message', function (event) {
+            // Verify message structure contains height updates to prevent data loop issues
+
+            if (event.data && event.data.type === 'resizeIframe' && event.data.height) {
+                const iframe = document.getElementById('calcWidget');
+                if (iframe) {
+                    // Update layout frame height dynamically with a 20px padding fallback cushion
+                    iframe.style.height = event.data.height + 20 + 'px';
+                }
+            }
+        }, false);
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const serviceBtn = document.getElementById('serviceAreasBtn');
+            const serviceMenu = document.getElementById('serviceAreasMenu');
+            const dropdownArrow = document.getElementById('dropdownArrow');
+
+            if (serviceBtn && serviceMenu) {
+                serviceBtn.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const isOpen = !serviceMenu.classList.contains('hidden');
+
+                    if (isOpen) {
+                        serviceMenu.classList.add('hidden');
+                        serviceMenu.classList.remove('opacity-100');
+                        serviceBtn.setAttribute('aria-expanded', 'false');
+                        if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+                    } else {
+                        serviceMenu.classList.remove('hidden');
+                        // Short delay to allow smooth opacity transition
+                        setTimeout(() => serviceMenu.classList.add('opacity-100'), 10);
+                        serviceBtn.setAttribute('aria-expanded', 'true');
+                        if (dropdownArrow) dropdownArrow.classList.add('rotate-180');
+                    }
+                });
+
+                // Close the dropdown when tapping anywhere else on the screen
+                document.addEventListener('click', (event) => {
+                    if (!serviceMenu.contains(event.target) && !serviceBtn.contains(event.target)) {
+                        serviceMenu.classList.add('hidden');
+                        serviceMenu.classList.remove('opacity-100');
+                        serviceBtn.setAttribute('aria-expanded', 'false');
+                        if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+                    }
+                });
+            }
+        });</script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
