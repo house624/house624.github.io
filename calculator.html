@@ -279,25 +279,6 @@
             margin-top: 20px;
             animation: fadeIn 0.3s ease-in-out;
         }
-        /* ========================================================
-   IFRAME HEIGHT BLOCK & CLIPPING ELIMINATION
-   ======================================================== */
-        html,
-        body {
-            height: auto !important; /* Keeps page size flexible instead of locked */
-            min-height: 100% !important;
-            overflow-y: visible !important; /* Allows container elements to scale naturally */
-            overflow-x: hidden !important; /* Prevents horizontal layout shifting */
-        }
-
-        /* Unlocks the elements ONLY when they are actively called by your script */
-        .estimate-container,
-        #estimate-output-container,
-        #main-calculator-wrapper {
-            height: auto !important;
-            max-height: none !important;
-            overflow: visible !important; /* Eliminates the cut-off boundary line */
-        }
 
     </style>
 </head>
