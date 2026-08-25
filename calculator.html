@@ -475,7 +475,7 @@
             <div style="font-size: 13px; color: #B45309; background-color: #FFFBEB; border: 1px solid #FDE68A; padding: 10px; border-radius: 6px; margin-top: 8px; line-height: 1.4; display: flex; align-items: flex-start; gap: 6px;">
                 <span>💡</span>
 
-                <span><strong>Important Hint:</strong> Do not count the shower door panel. Please ignore the door entirely and only enter the total number of fixed stationary glass walls.</span>
+                <span><strong>Important Hint:</strong> Do not count the shower door panel. Please ignore the $0 price, we will need to go in person to measure and give a quote.</span>
             </div>
         </div>
 
@@ -523,9 +523,9 @@
 
         // Base glass pricing tables configuration records matching criteria
         const section1Rates = {
-            'Select Glass Type': 15,
-            'Single Pane': 7.98,                           // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
-            'Double Pane': 15                               // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+            'Select Glass Type': 10.48,
+            'Single Pane': 8.95,                           // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+            'Double Pane': 10.48                               // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
         };
 
         window.onload = function () {
@@ -1111,13 +1111,13 @@
                 // Rule: Add window base labor of $100 per window pane
                 runningCostSum += (100 * foggyQtySum);                        // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
 
-                // Rule: If second story windows are active, append $150 per unit onto labor budget
+                // Rule: If second story windows are active, append $0 per unit onto labor budget
                 const storyChk = document.getElementById('top-story-chk');
                 if (storyChk.checked) {
                     let storyQty = parseInt(document.getElementById('second-story-qty').value) || 0;
 
                     if (storyQty > foggyQtySum) storyQty = foggyQtySum;
-                    runningCostSum += (150 * storyQty);                        // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                    runningCostSum += (0 * storyQty);                        // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
                 }
 
                 // Rule: Foggy windows with arches add an extra $100 per arched window unit
@@ -1176,7 +1176,7 @@
                         rowSquareFootage = 3; // Rule: Apply 3 sq ft production minimum
                     }
 
-                    // Rule: Broken glass default the glass base price to extra $5 per square foot     //Includes product materials, specialized labor parameters, and base flat gas fees.
+                    // Rule: Broken glass default the glass base price to extra $10 per square foot     //Includes product materials, specialized labor parameters, and base flat gas fees.
                     let finalRate = 20 + (hasTemperedUpgrade ? 10 : 0);                     // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
                     let productUnitCost = Math.ceil(rowSquareFootage * finalRate);
 
@@ -1186,15 +1186,15 @@
                 }
 
 
-                // Rule: Window base labor of $150 per window pane
-                runningCostSum += (150 * brokenQtySum);                                  // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                // Rule: Window base labor of $100 per window pane
+                runningCostSum += (100 * brokenQtySum);                                  // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
 
-                // Rule: Second story broken windows surcharge of $200 per pane
+                // Rule: Second story broken windows surcharge of $0 per pane
                 const brokenStoryChk = document.getElementById('broken-story-chk');
                 if (brokenStoryChk.checked) {
                     let brokenStoryQty = parseInt(document.getElementById('broken-second-story-qty').value) || 0;
                     if (brokenStoryQty > brokenQtySum) brokenStoryQty = brokenQtySum;
-                    runningCostSum += (200 * brokenStoryQty);                               // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                    runningCostSum += (0 * brokenStoryQty);                               // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
                 }
 
                 // Rule: Broken glass windows with arches add an extra $120 per arched window unit
@@ -1202,7 +1202,7 @@
                 if (brokenArchChk && brokenArchChk.checked) {
                     let brokenArchQty = parseInt(document.getElementById('broken-arch-qty').value) || 0;
                     if (brokenArchQty > brokenQtySum) brokenArchQty = brokenQtySum;
-                    runningCostSum += (120 * brokenArchQty);                             // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                    runningCostSum += (100 * brokenArchQty);                             // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
                 }
             }
 
@@ -1232,7 +1232,7 @@
                         rowSquareFootage = 3; // Rule: Enforce 3 sq ft baseline parameter
                     }
 
-                    // Rule: Mirror pricing is $12 per square foot base asset charge
+                    // Rule: Mirror pricing is $7.21 per square foot base asset charge
                     let productUnitCost = Math.ceil(rowSquareFootage * 7.21);               // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
 
                     // Rule: Double product price criteria matrix loop matching
@@ -1240,8 +1240,8 @@
                     let doubledProductRowCost = (productUnitCost * 2) * qty;
                     runningCostSum += doubledProductRowCost;
 
-                    // Rule: Mirrors add $200 labor surcharge directly per unit row pane item
-                    runningCostSum += (200 * qty);                                        // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                    // Rule: Mirrors add $100 labor surcharge directly per unit row pane item
+                    runningCostSum += (100 * qty);                                        // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
                 }
             }
 
@@ -1250,14 +1250,14 @@
                 activeServiceDetected = true;
                 const showerWalls = parseInt(document.getElementById('shower-walls-qty').value) || 0;
                 // Rule: Shower framework is flat $1200 per stationary wall panel structure, no manual labor add
-                runningCostSum += (showerWalls * 1336);                                  // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                runningCostSum += (showerWalls * 0);                                  // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
             }
 
             // G. Process Global Base Utilities Surcharges (Gas Fee Layer)
             if (activeServiceDetected) {
                 // Rule: Add a flat gas transport operational fee tracking overhead parameter of $30
 
-                runningCostSum += 30;                                                     // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
+                runningCostSum += 33;                                                     // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing // pricing
             }
 
             // Reveal container and output calculated balance safely into the structural display nodes
@@ -1304,18 +1304,18 @@
 
                 // 🚿 Showers Section
                 "Showers_Shower Wall Panels Qty": parseInt(document.getElementById('shower-display')?.innerText) || 0,
-                "Showers_Shower Walls Cost Per Wall": 1336,
+                "Showers_Shower Walls Cost Per Wall": 0,
 
                 // 💼 Labor & Fees Section
                 "Fees_Labor for foggy Glass": 100,
-                "Fees_Second Story Glass Fee": 150,
+                "Fees_Second Story Glass Fee": 0,
                 "Fees_Arched Glass Fee": 100,
-                "Fees_Labor for Broken Glass": 150,
-                "Fees_Second Story Broken Glass Fee": 200,
-                "Fees_Broken Arched Glass Fee": 120,
+                "Fees_Labor for Broken Glass": 100,
+                "Fees_Second Story Broken Glass Fee": 0,
+                "Fees_Broken Arched Glass Fee": 100,
                 "Fees_Added Tempered Glass Fee Per Sq Ft": 10,
-                "Fees_Labor For Mirrors": 200,
-                "Fees_Gas": 30,
+                "Fees_Labor For Mirrors": 100,
+                "Fees_Gas": 33,
 
                 // 📈 Totals Section
                 "Totals_Sub Total Cost": runningCostSum || 0,
