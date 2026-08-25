@@ -81,201 +81,201 @@
 
         <!-- EMBEDDED STYLESHEET CORE RULES -->
         <style>
-                /* ========================================================
+            /* ========================================================
             DESKTOP & GENERAL STYLES (Widescreens)
             ======================================================== */
-                .custom-header {
-                    background-color: #0056b3;
-                    width: 100%;
-                    box-sizing: border-box;
-                    padding: 14px 24px;
-                    font-family: system-ui, -apple-system, sans-serif;
-                    box-shadow: 0 2px 8 rgba(0,0,0,0.15);
-                    position: relative;
-                    z-index: 9999;
-                }
+            .custom-header {
+                background-color: #0056b3;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 14px 24px;
+                font-family: system-ui, -apple-system, sans-serif;
+                box-shadow: 0 2px 8 rgba(0,0,0,0.15);
+                position: relative;
+                z-index: 9999;
+            }
 
-                .header-inner-wrap {
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                }
+            .header-inner-wrap {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
 
-                .business-brand-title {
+            .business-brand-title {
+                color: #ffffff;
+                font-weight: 800;
+                font-size: 20px;
+                letter-spacing: 0.3px;
+            }
+
+            .mobile-hamburger-btn {
+                display: none; /* Hidden completely on desktop systems */
+            }
+
+            .nav-links-list {
+                display: flex;
+                list-style: none;
+                gap: 22px;
+                margin: 0;
+                padding: 0;
+                align-items: center;
+            }
+
+                .nav-links-list a, .dropdown-trigger-text {
                     color: #ffffff;
-                    font-weight: 800;
-                    font-size: 20px;
-                    letter-spacing: 0.3px;
+                    text-decoration: none;
+                    font-size: 15px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    display: block;
+                    padding: 4px 0;
                 }
 
-                .mobile-hamburger-btn {
-                    display: none; /* Hidden completely on desktop systems */
-                }
-
-                .nav-links-list {
-                    display: flex;
-                    list-style: none;
-                    gap: 22px;
-                    margin: 0;
-                    padding: 0;
-                    align-items: center;
-                }
-
-                    .nav-links-list a, .dropdown-trigger-text {
-                        color: #ffffff;
-                        text-decoration: none;
-                        font-size: 15px;
-                        font-weight: 500;
-                        cursor: pointer;
-                        display: block;
-                        padding: 4px 0;
+                    .nav-links-list a:hover, .nested-dropdown-item:hover .dropdown-trigger-text {
+                        color: #f1f5f9;
+                        text-decoration: underline;
                     }
 
-                        .nav-links-list a:hover, .nested-dropdown-item:hover .dropdown-trigger-text {
-                            color: #f1f5f9;
-                            text-decoration: underline;
-                        }
+            .active-tab {
+                font-weight: 700 !important;
+                border-bottom: 2px solid #ffffff;
+            }
 
-                .active-tab {
-                    font-weight: 700 !important;
-                    border-bottom: 2px solid #ffffff;
+            /* Desktop Dropdown Mechanisms (Controlled cleanly via JavaScript clicks) */
+            .nested-dropdown-item {
+                position: relative;
+            }
+
+            .submenu-inner-list {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #ffffff;
+                min-width: 160px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                border-radius: 6px;
+                padding: 6px 0;
+                margin-top: 10px;
+                list-style: none;
+            }
+
+                .submenu-inner-list a {
+                    color: #1e293b !important;
+                    padding: 8px 16px;
+                    font-size: 14px;
                 }
 
-                /* Desktop Dropdown Mechanisms (Controlled cleanly via JavaScript clicks) */
-                .nested-dropdown-item {
-                    position: relative;
+                    .submenu-inner-list a:hover {
+                        background-color: #f1f5f9;
+                        text-decoration: none !important;
+                    }
+
+                /* Explicit active state rules for click management toggle */
+                .submenu-inner-list.submenu-active {
+                    display: block !important;
                 }
 
-                .submenu-inner-list {
+            .contact-cta-button a {
+                background-color: #f59e0b;
+                color: #0f172a !important;
+                padding: 6px 14px !important;
+                border-radius: 4px;
+                font-weight: 700;
+            }
+
+                .contact-cta-button a:hover {
+                    background-color: #d97706;
+                    text-decoration: none;
+                }
+
+            /* ========================================================
+            MOBILE LAYOUT CORRECTIONS (Screens under 768px wide)
+            ======================================================== */
+            @media (max-width: 767px) {
+                .header-inner-wrap {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 12px;
+                }
+                /* Compact, perfect-sized hamburger icon button alignment */
+                .mobile-hamburger-btn {
+                    display: block;
+                    background: transparent;
+                    border: 1px solid rgba(255, 255, 255, 0.4);
+                    color: #ffffff;
+                    font-size: 22px;
+                    padding: 2px 10px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    line-height: 1.2;
+                    margin-top: 2px;
+                }
+                /* Hide navigation drop layout completely by default */
+                .nav-links-list {
                     display: none;
+                    flex-direction: column;
+                    width: 100%;
+                    background-color: #004cb4;
                     position: absolute;
                     top: 100%;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background-color: #ffffff;
-                    min-width: 160px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                    border-radius: 6px;
-                    padding: 6px 0;
-                    margin-top: 10px;
-                    list-style: none;
+                    left: 0;
+                    padding: 12px 20px;
+                    gap: 4px;
+                    box-sizing: border-box;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                }
+                    /* Utilities classes targeted dynamically via the click scripts */
+                    .nav-links-list.menu-active {
+                        display: flex !important;
+                    }
+
+                    .nav-links-list li {
+                        width: 100%;
+                        border-bottom: 1px solid rgba(255,255,255,0.08);
+                    }
+
+                    .nav-links-list a, .dropdown-trigger-text {
+                        padding: 12px 4px;
+                        font-size: 16px;
+                    }
+
+                .active-tab {
+                    border-bottom: none;
+                    color: #f59e0b !important;
+                }
+
+                /* Mobile Submenu Behavior (Accordion layout style inside the list block) */
+                .submenu-inner-list {
+                    position: static;
+                    transform: none;
+                    background-color: #003b8c;
+                    box-shadow: none;
+                    padding: 0;
+                    margin: 0;
+                    border-radius: 0;
+                    width: 100%;
                 }
 
                     .submenu-inner-list a {
-                        color: #1e293b !important;
-                        padding: 8px 16px;
-                        font-size: 14px;
+                        color: #ffffff !important;
+                        padding: 10px 24px;
+                        font-size: 15px;
+                        border-bottom: 1px solid rgba(255,255,255,0.05);
                     }
 
-                        .submenu-inner-list a:hover {
-                            background-color: #f1f5f9;
-                            text-decoration: none !important;
-                        }
-
-                    /* Explicit active state rules for click management toggle */
-                    .submenu-inner-list.submenu-active {
-                        display: block !important;
-                    }
-
-                .contact-cta-button a {
-                    background-color: #f59e0b;
-                    color: #0f172a !important;
-                    padding: 6px 14px !important;
-                    border-radius: 4px;
-                    font-weight: 700;
+                .contact-cta-button {
+                    border-bottom: none !important;
+                    margin-top: 10px;
                 }
 
-                    .contact-cta-button a:hover {
-                        background-color: #d97706;
-                        text-decoration: none;
+                    .contact-cta-button a {
+                        text-align: center;
                     }
-
-                /* ========================================================
-            MOBILE LAYOUT CORRECTIONS (Screens under 768px wide)
-            ======================================================== */
-                @media (max-width: 767px) {
-                    .header-inner-wrap {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        gap: 12px;
-                    }
-                    /* Compact, perfect-sized hamburger icon button alignment */
-                    .mobile-hamburger-btn {
-                        display: block;
-                        background: transparent;
-                        border: 1px solid rgba(255, 255, 255, 0.4);
-                        color: #ffffff;
-                        font-size: 22px;
-                        padding: 2px 10px;
-                        border-radius: 4px;
-                        cursor: pointer;
-                        line-height: 1.2;
-                        margin-top: 2px;
-                    }
-                    /* Hide navigation drop layout completely by default */
-                    .nav-links-list {
-                        display: none;
-                        flex-direction: column;
-                        width: 100%;
-                        background-color: #004cb4;
-                        position: absolute;
-                        top: 100%;
-                        left: 0;
-                        padding: 12px 20px;
-                        gap: 4px;
-                        box-sizing: border-box;
-                        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-                    }
-                        /* Utilities classes targeted dynamically via the click scripts */
-                        .nav-links-list.menu-active {
-                            display: flex !important;
-                        }
-
-                        .nav-links-list li {
-                            width: 100%;
-                            border-bottom: 1px solid rgba(255,255,255,0.08);
-                        }
-
-                        .nav-links-list a, .dropdown-trigger-text {
-                            padding: 12px 4px;
-                            font-size: 16px;
-                        }
-
-                    .active-tab {
-                        border-bottom: none;
-                        color: #f59e0b !important;
-                    }
-
-                    /* Mobile Submenu Behavior (Accordion layout style inside the list block) */
-                    .submenu-inner-list {
-                        position: static;
-                        transform: none;
-                        background-color: #003b8c;
-                        box-shadow: none;
-                        padding: 0;
-                        margin: 0;
-                        border-radius: 0;
-                        width: 100%;
-                    }
-
-                        .submenu-inner-list a {
-                            color: #ffffff !important;
-                            padding: 10px 24px;
-                            font-size: 15px;
-                            border-bottom: 1px solid rgba(255,255,255,0.05);
-                        }
-
-                    .contact-cta-button {
-                        border-bottom: none !important;
-                        margin-top: 10px;
-                    }
-
-                        .contact-cta-button a {
-                            text-align: center;
-                        }
-                }
+            }
         </style>
 
         <!-- RE-ENGINEERED COMPREHENSIVE EVENT DROPDOWN ACTION CONTROLLERS -->
@@ -332,52 +332,55 @@
         <!-- Header Section Card Container -->
         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 md:p-10 mb-8 text-center">
             <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 mb-4 flex items-center justify-center gap-3">
-                <span>📍</span> Fort Worth, TX | Picture Perfect Window Solutions
+                <span>📍</span> Glass Repair & Replacement in Fort Worth, TX
             </h1>
             <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                We are proud to serve homeowners throughout the vibrant Fort Worth community with premium glass installations and reliable home care.
+                Picture Perfect Window Solutions provides professional, fast residential glass replacement and emergency window repair services throughout the entire Fort Worth community.
             </p>
         </div>
 
         <!-- Core Service Content Block -->
         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 md:p-10 mb-8">
             <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <span>🛠️</span> Our Specialized Fort Worth Services Include:
+                <span>🛠️</span> Our Fort Worth Glass Replacement Services Include:
             </h2>
-
             <div class="space-y-4">
+
                 <!-- Item 1 -->
                 <div class="flex items-start border-l-4 border-amber-500 bg-amber-50/40 p-4 rounded-r-lg">
                     <div class="ml-2">
-                        <h3 class="font-bold text-slate-900 text-base mb-0.5">Luxury Frameless Showers</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Custom-fit glass enclosures designed to elevate your master bathroom.</p>
+                        <h3 class="font-bold text-slate-900 text-base mb-0.5">Luxury Frameless Shower Doors & Enclosures</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Custom-fit heavy glass enclosures and seamless shower doors designed to perfectly elevate your master bathroom layout.</p>
                     </div>
                 </div>
 
                 <!-- Item 2 -->
                 <div class="flex items-start border-l-4 border-blue-500 bg-blue-50/40 p-4 rounded-r-lg">
                     <div class="ml-2">
-                        <h3 class="font-bold text-slate-900 text-base mb-0.5">Residential Window Glass Repair</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Quick, professional replacement for foggy or broken window panes.</p>
+                        <h3 class="font-bold text-slate-900 text-base mb-0.5">Fort Worth Foggy Window & Broken Glass Repair</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Quick, affordable glass replacement for failed double-pane thermal seals, cloudy window panes, and shattered residential glass.</p>
                     </div>
                 </div>
 
                 <!-- Item 3 -->
                 <div class="flex items-start border-l-4 border-blue-500 bg-blue-50/40 p-4 rounded-r-lg">
                     <div class="ml-2">
-                        <h3 class="font-bold text-slate-900 text-base mb-0.5">Custom Mirror Installation</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Tailored glass solutions and mirrored walls built to fit your space perfectly.</p>
+                        <h3 class="font-bold text-slate-900 text-base mb-0.5">Custom Home Mirror Installation</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Tailored residential glass solutions, vanity mirrors, and floor-to-ceiling mirrored walls cut to fit your home's unique space perfectly.</p>
                     </div>
                 </div>
+
             </div>
         </div>
 
         <!-- Geographic Quote Box Area -->
         <div class="bg-[#0056b3] rounded-xl shadow-md text-white p-6 md:p-8 text-center mb-8">
             <p class="text-base md:text-lg font-medium italic leading-relaxed">
-                "Whether your home is in the historic Southside, down near TCU, over in the fast-growing Alliance area, or right off I-35W, contact our local team today for an upfront, honest quote!"
+                "Whether your home is in the historic Southside, down near TCU, over in the fast-growing Alliance area, or right off I-35W, contact our local Fort Worth team today for an upfront, honest quote!"
             </p>
         </div>
+    </main>
+
 
 
 
@@ -397,7 +400,7 @@
         </div>
     </footer>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const serviceBtn = document.getElementById('serviceAreasBtn');
             const serviceMenu = document.getElementById('serviceAreasMenu');
             const dropdownArrow = document.getElementById('dropdownArrow');
