@@ -1069,7 +1069,7 @@
                     // --- ADD THESE LINES TO BUILD YOUR ITEMISED TEXT LINE ---
                     if (qty > 0) {
                         let temperedText = hasTemperedUpgrade ? "Tempered⚠️ " : "";
-                        globalFoggySummaryText += `${temperedText}Size: ${w}" x ${h}" | Qty: ${qty}<br>`;
+                        globalFoggySummaryText += `${temperedText}Size: ${w}" x ${h}" | Qty: ${qty}<br> Glass base price: $${Math.floor(((w * h) / 144) * qty * section1Rates[document.getElementById('global-glass-type').value])}<br> Profit for these: $${Math.floor(((w * h) / 144) * qty * section1Rates[document.getElementById('global-glass-type').value]) + (100 * qty) }<br>`; // $100 for labor
                         windowIndex++;
                     }
 
@@ -1148,7 +1148,7 @@
                     // --- ADD THESE LINES TO BUILD YOUR ITEMISED TEXT LINE ---
                     if (qty > 0) {
                         let temperedText = hasTemperedUpgrade ? "Tempered⚠️ " : "";
-                        globalBrokenSummaryText += `${temperedText}Size: ${w}" x ${h}" | Qty: ${qty}<br>`;
+                        globalBrokenSummaryText += `${temperedText}Size: ${w}" x ${h}" | Qty: ${qty}<br> Glass base price: $$${Math.floor(((w * h) / 144) * qty * section1Rates[document.getElementById('global-glass-type').value])}<br> Profit for these: $${Math.floor(((w * h) / 144) * qty * section1Rates[document.getElementById('global-glass-type').value] + (100 * qty)) }<br>`; //$100 for labor
                         windowIndex++;
                     }
 
