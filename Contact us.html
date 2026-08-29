@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Picture Perfect Window Solutions</title>
+    <meta name="description" content="Contact Picture Perfect Window Solutions for premium residential glass repairs, window replacements, and custom shower glass installations across the DFW area.">
     <link rel="icon" type="image/jpg" href="4110dc67616da56f9c61ba9bc10cdbff.jpg">
 
     <!-- Tailwind CSS CDN for modern responsive grid layouts -->
@@ -82,201 +83,201 @@
 
         <!-- EMBEDDED STYLESHEET CORE RULES -->
         <style>
-                /* ========================================================
+            /* ========================================================
             DESKTOP & GENERAL STYLES (Widescreens)
             ======================================================== */
-                .custom-header {
-                    background-color: #0056b3;
-                    width: 100%;
-                    box-sizing: border-box;
-                    padding: 14px 24px;
-                    font-family: system-ui, -apple-system, sans-serif;
-                    box-shadow: 0 2px 8 rgba(0,0,0,0.15);
-                    position: relative;
-                    z-index: 9999;
-                }
+            .custom-header {
+                background-color: #0056b3;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 14px 24px;
+                font-family: system-ui, -apple-system, sans-serif;
+                box-shadow: 0 2px 8 rgba(0,0,0,0.15);
+                position: relative;
+                z-index: 9999;
+            }
 
-                .header-inner-wrap {
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                }
+            .header-inner-wrap {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
 
-                .business-brand-title {
+            .business-brand-title {
+                color: #ffffff;
+                font-weight: 800;
+                font-size: 20px;
+                letter-spacing: 0.3px;
+            }
+
+            .mobile-hamburger-btn {
+                display: none; /* Hidden completely on desktop systems */
+            }
+
+            .nav-links-list {
+                display: flex;
+                list-style: none;
+                gap: 22px;
+                margin: 0;
+                padding: 0;
+                align-items: center;
+            }
+
+                .nav-links-list a, .dropdown-trigger-text {
                     color: #ffffff;
-                    font-weight: 800;
-                    font-size: 20px;
-                    letter-spacing: 0.3px;
+                    text-decoration: none;
+                    font-size: 15px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    display: block;
+                    padding: 4px 0;
                 }
 
-                .mobile-hamburger-btn {
-                    display: none; /* Hidden completely on desktop systems */
-                }
-
-                .nav-links-list {
-                    display: flex;
-                    list-style: none;
-                    gap: 22px;
-                    margin: 0;
-                    padding: 0;
-                    align-items: center;
-                }
-
-                    .nav-links-list a, .dropdown-trigger-text {
-                        color: #ffffff;
-                        text-decoration: none;
-                        font-size: 15px;
-                        font-weight: 500;
-                        cursor: pointer;
-                        display: block;
-                        padding: 4px 0;
+                    .nav-links-list a:hover, .nested-dropdown-item:hover .dropdown-trigger-text {
+                        color: #f1f5f9;
+                        text-decoration: underline;
                     }
 
-                        .nav-links-list a:hover, .nested-dropdown-item:hover .dropdown-trigger-text {
-                            color: #f1f5f9;
-                            text-decoration: underline;
-                        }
+            .active-tab {
+                font-weight: 700 !important;
+                border-bottom: 2px solid #ffffff;
+            }
 
-                .active-tab {
-                    font-weight: 700 !important;
-                    border-bottom: 2px solid #ffffff;
+            /* Desktop Dropdown Mechanisms (Controlled cleanly via JavaScript clicks) */
+            .nested-dropdown-item {
+                position: relative;
+            }
+
+            .submenu-inner-list {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #ffffff;
+                min-width: 160px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                border-radius: 6px;
+                padding: 6px 0;
+                margin-top: 10px;
+                list-style: none;
+            }
+
+                .submenu-inner-list a {
+                    color: #1e293b !important;
+                    padding: 8px 16px;
+                    font-size: 14px;
                 }
 
-                /* Desktop Dropdown Mechanisms (Controlled cleanly via JavaScript clicks) */
-                .nested-dropdown-item {
-                    position: relative;
+                    .submenu-inner-list a:hover {
+                        background-color: #f1f5f9;
+                        text-decoration: none !important;
+                    }
+
+                /* Explicit active state rules for click management toggle */
+                .submenu-inner-list.submenu-active {
+                    display: block !important;
                 }
 
-                .submenu-inner-list {
+            .contact-cta-button a {
+                background-color: #f59e0b;
+                color: #0f172a !important;
+                padding: 6px 14px !important;
+                border-radius: 4px;
+                font-weight: 700;
+            }
+
+                .contact-cta-button a:hover {
+                    background-color: #d97706;
+                    text-decoration: none;
+                }
+
+            /* ========================================================
+            MOBILE LAYOUT CORRECTIONS (Screens under 768px wide)
+            ======================================================== */
+            @media (max-width: 767px) {
+                .header-inner-wrap {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 12px;
+                }
+                /* Compact, perfect-sized hamburger icon button alignment */
+                .mobile-hamburger-btn {
+                    display: block;
+                    background: transparent;
+                    border: 1px solid rgba(255, 255, 255, 0.4);
+                    color: #ffffff;
+                    font-size: 22px;
+                    padding: 2px 10px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    line-height: 1.2;
+                    margin-top: 2px;
+                }
+                /* Hide navigation drop layout completely by default */
+                .nav-links-list {
                     display: none;
+                    flex-direction: column;
+                    width: 100%;
+                    background-color: #004cb4;
                     position: absolute;
                     top: 100%;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background-color: #ffffff;
-                    min-width: 160px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                    border-radius: 6px;
-                    padding: 6px 0;
-                    margin-top: 10px;
-                    list-style: none;
+                    left: 0;
+                    padding: 12px 20px;
+                    gap: 4px;
+                    box-sizing: border-box;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                }
+                    /* Utilities classes targeted dynamically via the click scripts */
+                    .nav-links-list.menu-active {
+                        display: flex !important;
+                    }
+
+                    .nav-links-list li {
+                        width: 100%;
+                        border-bottom: 1px solid rgba(255,255,255,0.08);
+                    }
+
+                    .nav-links-list a, .dropdown-trigger-text {
+                        padding: 12px 4px;
+                        font-size: 16px;
+                    }
+
+                .active-tab {
+                    border-bottom: none;
+                    color: #f59e0b !important;
+                }
+
+                /* Mobile Submenu Behavior (Accordion layout style inside the list block) */
+                .submenu-inner-list {
+                    position: static;
+                    transform: none;
+                    background-color: #003b8c;
+                    box-shadow: none;
+                    padding: 0;
+                    margin: 0;
+                    border-radius: 0;
+                    width: 100%;
                 }
 
                     .submenu-inner-list a {
-                        color: #1e293b !important;
-                        padding: 8px 16px;
-                        font-size: 14px;
+                        color: #ffffff !important;
+                        padding: 10px 24px;
+                        font-size: 15px;
+                        border-bottom: 1px solid rgba(255,255,255,0.05);
                     }
 
-                        .submenu-inner-list a:hover {
-                            background-color: #f1f5f9;
-                            text-decoration: none !important;
-                        }
-
-                    /* Explicit active state rules for click management toggle */
-                    .submenu-inner-list.submenu-active {
-                        display: block !important;
-                    }
-
-                .contact-cta-button a {
-                    background-color: #f59e0b;
-                    color: #0f172a !important;
-                    padding: 6px 14px !important;
-                    border-radius: 4px;
-                    font-weight: 700;
+                .contact-cta-button {
+                    border-bottom: none !important;
+                    margin-top: 10px;
                 }
 
-                    .contact-cta-button a:hover {
-                        background-color: #d97706;
-                        text-decoration: none;
+                    .contact-cta-button a {
+                        text-align: center;
                     }
-
-                /* ========================================================
-            MOBILE LAYOUT CORRECTIONS (Screens under 768px wide)
-            ======================================================== */
-                @media (max-width: 767px) {
-                    .header-inner-wrap {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        gap: 12px;
-                    }
-                    /* Compact, perfect-sized hamburger icon button alignment */
-                    .mobile-hamburger-btn {
-                        display: block;
-                        background: transparent;
-                        border: 1px solid rgba(255, 255, 255, 0.4);
-                        color: #ffffff;
-                        font-size: 22px;
-                        padding: 2px 10px;
-                        border-radius: 4px;
-                        cursor: pointer;
-                        line-height: 1.2;
-                        margin-top: 2px;
-                    }
-                    /* Hide navigation drop layout completely by default */
-                    .nav-links-list {
-                        display: none;
-                        flex-direction: column;
-                        width: 100%;
-                        background-color: #004cb4;
-                        position: absolute;
-                        top: 100%;
-                        left: 0;
-                        padding: 12px 20px;
-                        gap: 4px;
-                        box-sizing: border-box;
-                        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-                    }
-                        /* Utilities classes targeted dynamically via the click scripts */
-                        .nav-links-list.menu-active {
-                            display: flex !important;
-                        }
-
-                        .nav-links-list li {
-                            width: 100%;
-                            border-bottom: 1px solid rgba(255,255,255,0.08);
-                        }
-
-                        .nav-links-list a, .dropdown-trigger-text {
-                            padding: 12px 4px;
-                            font-size: 16px;
-                        }
-
-                    .active-tab {
-                        border-bottom: none;
-                        color: #f59e0b !important;
-                    }
-
-                    /* Mobile Submenu Behavior (Accordion layout style inside the list block) */
-                    .submenu-inner-list {
-                        position: static;
-                        transform: none;
-                        background-color: #003b8c;
-                        box-shadow: none;
-                        padding: 0;
-                        margin: 0;
-                        border-radius: 0;
-                        width: 100%;
-                    }
-
-                        .submenu-inner-list a {
-                            color: #ffffff !important;
-                            padding: 10px 24px;
-                            font-size: 15px;
-                            border-bottom: 1px solid rgba(255,255,255,0.05);
-                        }
-
-                    .contact-cta-button {
-                        border-bottom: none !important;
-                        margin-top: 10px;
-                    }
-
-                        .contact-cta-button a {
-                            text-align: center;
-                        }
-                }
+            }
         </style>
 
         <!-- RE-ENGINEERED COMPREHENSIVE EVENT DROPDOWN ACTION CONTROLLERS -->
@@ -334,42 +335,54 @@
         <!-- Contact Page Main Title -->
         <div class="text-center mb-10">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-2">
-                Contact us
+                Contact Picture Perfect Window Solutions
             </h1>
-            <p class="text-base text-gray-600 max-w-xl mx-auto">
-                Get in touch with Picture Perfect Window Solutions for premium glass repairs, window replacements, and washing service solutions.
+            <p class="text-base text-gray-600 max-w-xl mx-auto leading-relaxed">
+                Get in touch with Picture Perfect Window Solutions for premium glass repairs, residential window pane replacements, and custom glazing solutions.
+            </p>
+        </div>
+
+        <!-- Operational Explanations Section (Added for Word Count Expansion & Technical SEO) -->
+        <div class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-12">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">What to Expect When Requesting Your Residential Glass Service</h2>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                At Picture Perfect Window Solutions, we make it simple and entirely stress-free to organize home glass window replacement projects. Whether you are dealing with an urgent broken glass situation, a hazy double-pane thermal seal blowout, or are beginning a luxury bathroom master remodeling configuration, our local team is here to manage the process cleanly. By filling out our responsive communication intake layout below or calling our service line, you connect directly with qualified, professional regional glaziers.
+            </p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                To help our tracking desk compile an exceptionally precise rough cost estimate for you, consider taking a brief glance at our standard measurement instructions guide before dropping in your query. Noting down the approximate height and width values of your visible window pane surface area ensures we can cross-reference our price framework variables with excellent accuracy. Sharing details about your home's unique layout helps us prioritize materials and scheduling preferences smoothly.
+            </p>
+            <p class="text-sm text-gray-600 leading-relaxed">
+                Once you submit your informational inquiry details, a support specialist will review your project needs. We formulate a clear budget blueprint and follow up with a clear action path. For qualified projects, our technicians schedule a prompt on-site visit to run a final absolute verification check on structural tolerances before moving your glass panes straight into custom safety glass cutting or premium argon gas processing profiles.
             </p>
         </div>
 
         <!-- Contact Options Container Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto mb-12">
 
             <!-- Quick Contact / Info Card -->
-
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between">
                 <div>
                     <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Business Information</h2>
                     <div class="space-y-4 text-sm text-gray-600">
                         <div>
                             <span class="font-bold block text-gray-700">Phone Number:</span>
-                            (817)647-0229
+                            <a href="tel:8176470229" class="text-blue-600 hover:underline">(817) 647-0229</a>
                         </div>
                         <div>
                             <span class="font-bold block text-gray-700">Operating Hours:</span>
-                            Mon – Sat: 7 A.M. – 3 P.M. <br> Sun: Closed
+                            Monday – Saturday: 7:00 A.M. – 3:00 P.M. <br>
+                            Sunday: Closed
                         </div>
                         <div>
                             <span class="font-bold block text-gray-700">Payment Methods Accepted:</span>
-                            Cash | Debit | Credit Card
+                            Cash | Debit Card | Credit Card
                         </div>
                     </div>
                 </div>
-
                 <div class="mt-8 pt-4 border-t border-gray-100">
                     <p class="text-xs text-gray-400 italic">
-                        Located in Alvarado, TX. Serving Dallas, Fort Worth, and surrounding local areas.
+                        Located in Alvarado, TX. Serving Dallas, Fort Worth, Mansfield, Midlothian, Burleson, Crowley, Cleburne, Godley, and surrounding local areas.
                     </p>
-
                 </div>
             </div>
 
@@ -387,13 +400,10 @@
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-gray-600 mb-1">Message Detail</label>
-                        <textarea id="formMessage" rows="3" required class="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                        <textarea id="formMessage" rows="3" required placeholder="Tell us about your project, approximate glass dimensions, or location details..." class="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
                     </div>
-
-
                     <!-- Dynamic form feedback status alert box placeholder -->
                     <div id="formStatus" class="hidden p-3 rounded-md text-xs font-medium text-center"></div>
-
                     <button type="submit" id="submitBtn" class="w-full bg-[#0056b3] text-white font-medium py-2 rounded-lg text-sm shadow-sm hover:bg-blue-700 focus:outline-none transition-all">
                         Submit Inquiry
                     </button>
@@ -402,7 +412,16 @@
 
         </div>
 
+        <!-- Geographic Focus Section (Added for Comprehensive Local Search Coverage) -->
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
+            <h2 class="text-base font-bold text-gray-900 mb-2">Our Comprehensive North Texas Service Footprint</h2>
+            <p class="text-xs text-gray-500 leading-relaxed max-w-2xl mx-auto">
+                Picture Perfect Window Solutions proudly offers top-tier residential window glass repairs, dual-pane frame restoration, custom layout mirror cutting, and frameless safety glass shower enclosures to communities across the greater DFW region. We deploy fully equipped utility service trucks straight to properties located across Mansfield, Midlothian, Burleson, Crowley, Cleburne, Alvarado, Godley, Fort Worth, and Dallas, TX. Get in touch with our team today to organize an on-site consultation.
+            </p>
+        </div>
+
     </main>
+
 
     <!-- FOOTER BANNER ARCHITECTURE -->
     <footer class="bg-gray-800 text-gray-300 text-xs py-6 border-t border-gray-700 mt-auto">
@@ -467,7 +486,7 @@
         });
     </script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const serviceBtn = document.getElementById('serviceAreasBtn');
             const serviceMenu = document.getElementById('serviceAreasMenu');
             const dropdownArrow = document.getElementById('dropdownArrow');
