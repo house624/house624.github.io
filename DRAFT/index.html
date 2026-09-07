@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <link rel="canonical" href="https://pictureperfectwindowsolutions.com/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="4110dc67616da56f9c61ba9bc10cdbff.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture Perfect Window Solutions</title>
+    <link rel="icon" type="image/jpg" href="4110dc67616da56f9c61ba9bc10cdbff.jpg">
+    <meta name="description" content="Affordable home window glass pane replacement and foggy window repair in the DFW and surrounding areas. Get an instant rough estimate today!">
+    <meta name="keywords" content="foggy window repair dfw, glass pane replacement burleson, window repair fort worth, home window glass replacement tx">
+    <script>
+        if (window.location.pathname.endsWith('/index.html')) {
+            window.location.replace("https://pictureperfectwindowsolutions.com");
+        }
+    </script>
+
+
+    <!-- Tailwind CSS CDN for modern responsive grid layouts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Styles matching Google Sites Theme <link */
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+        }
+
+            .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-radius: 4px;
+            }
+        /* Dropdown custom behavior rules */
+        .dropdown-menu {
+            display: none;
+        }
+
+        .dropdown-container:hover .dropdown-menu, .dropdown-container:focus-within .dropdown-menu {
+            display: block;
+        }
+    </style>
+
+
+
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="custom-header">
+        <div class="header-inner-wrap">
+
+            <!-- Title Area (Pushed to its own clean row on mobile screens) -->
+            <!-- Find your header navigation and change your text title to this -->
+            <a href="index.html" class="text-xl font-bold text-white hover:text-amber-400 transition">
+                Picture Perfect Window Solutions
+            </a>
+
+            <!-- Toggle Actions System -->
+            <nav class="navigation-box">
+
+                <!-- 1. MOBILE ONLY HAMBURGER TRIGGER BUTTON -->
+                <button class="mobile-hamburger-btn" onclick="handleMenuToggle(event)" aria-label="Toggle Navigation Menu">☰</button>
+
+                <!-- 2. THE DROPDOWN PANEL PACK -->
+                <ul id="main-navigation-menu" class="nav-links-list" onclick="handleMenuContentClick(event)">
+                    <li><a href="index.html" class="active-tab">Home</a></li>
+                    <li><a href="Our Work.html">Our Work</a></li>
+                    <li><a href="How to Measure.html">How to Measure</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+
+                    <!-- NESTED SERVICE AREA DROPDOWN -->
+                    <li class="nested-dropdown-item" onclick="handleSubmenuToggle(event)">
+                        <span class="dropdown-trigger-text">Service Areas <span class="arrow-indicator">▾</span></span>
+                        <ul id="service-submenu-list" class="submenu-inner-list">
+                            <li><a href="Fort Worth TX - Glass  Window Services.html">Fort Worth</a></li>
+                            <li><a href="Dallas TX - Glass  Window Services.html">Dallas</a></li>
+                            <li><a href="Burleson TX - Glass  Window Services.html">Burleson</a></li>
+                            <li><a href="Crowley TX - Glass  Window Services.html">Crowley</a></li>
+                            <li><a href="Cleburne TX - Glass  Window Services.html">Cleburne</a></li>
+                            <li><a href="Alvarado TX - Glass  Window Services.html">Alvarado</a></li>
+                            <li><a href="Mansfield TX - Glass  Window Services.html">Mansfield</a></li>
+                            <li><a href="Midlothian TX - Glass  Window Services.html">Midlothian</a></li>
+                            <li><a href="Godley TX - Glass  Window Services.html">Godley</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="contact-cta-button"><a href="Contact us.html">Contact us</a></li>
+                </ul>
+
+            </nav>
+        </div>
+
+        <!-- EMBEDDED STYLESHEET CORE RULES -->
+        <style>
+            /* ========================================================
+            DESKTOP & GENERAL STYLES (Widescreens)
+            ======================================================== */
+            .custom-header {
+                background-color: #0056b3;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 14px 24px;
+                font-family: system-ui, -apple-system, sans-serif;
+                box-shadow: 0 2px 8 rgba(0,0,0,0.15);
+                position: relative;
+                z-index: 9999;
+            }
+
+            .header-inner-wrap {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .business-brand-title {
+                color: #ffffff;
+                font-weight: 800;
+                font-size: 20px;
+                letter-spacing: 0.3px;
+            }
+
+            .mobile-hamburger-btn {
+                display: none; /* Hidden completely on desktop systems */
+            }
+
+            .nav-links-list {
+                display: flex;
+                list-style: none;
+                gap: 22px;
+                margin: 0;
+                padding: 0;
+                align-items: center;
+            }
+
+                .nav-links-list a, .dropdown-trigger-text {
+                    color: #ffffff;
+                    text-decoration: none;
+                    font-size: 15px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    display: block;
+                    padding: 4px 0;
+                }
+
+                    .nav-links-list a:hover, .nested-dropdown-item:hover .dropdown-trigger-text {
+                        color: #f1f5f9;
+                        text-decoration: underline;
+                    }
+
+            .active-tab {
+                font-weight: 700 !important;
+                border-bottom: 2px solid #ffffff;
+            }
+
+            /* Desktop Dropdown Mechanisms (Controlled cleanly via JavaScript clicks) */
+            .nested-dropdown-item {
+                position: relative;
+            }
+
+            .submenu-inner-list {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #ffffff;
+                min-width: 160px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                border-radius: 6px;
+                padding: 6px 0;
+                margin-top: 10px;
+                list-style: none;
+            }
+
+                .submenu-inner-list a {
+                    color: #1e293b !important;
+                    padding: 8px 16px;
+                    font-size: 14px;
+                }
+
+                    .submenu-inner-list a:hover {
+                        background-color: #f1f5f9;
+                        text-decoration: none !important;
+                    }
+
+                /* Explicit active state rules for click management toggle */
+                .submenu-inner-list.submenu-active {
+                    display: block !important;
+                }
+
+            .contact-cta-button a {
+                background-color: #f59e0b;
+                color: #0f172a !important;
+                padding: 6px 14px !important;
+                border-radius: 4px;
+                font-weight: 700;
+            }
+
+                .contact-cta-button a:hover {
+                    background-color: #d97706;
+                    text-decoration: none;
+                }
+
+            /* ========================================================
+            MOBILE LAYOUT CORRECTIONS (Screens under 768px wide)
+            ======================================================== */
+            @media (max-width: 767px) {
+                .header-inner-wrap {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 12px;
+                }
+                /* Compact, perfect-sized hamburger icon button alignment */
+                .mobile-hamburger-btn {
+                    display: block;
+                    background: transparent;
+                    border: 1px solid rgba(255, 255, 255, 0.4);
+                    color: #ffffff;
+                    font-size: 22px;
+                    padding: 2px 10px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    line-height: 1.2;
+                    margin-top: 2px;
+                }
+                /* Hide navigation drop layout completely by default */
+                .nav-links-list {
+                    display: none;
+                    flex-direction: column;
+                    width: 100%;
+                    background-color: #004cb4;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    padding: 12px 20px;
+                    gap: 4px;
+                    box-sizing: border-box;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                }
+                    /* Utilities classes targeted dynamically via the click scripts */
+                    .nav-links-list.menu-active {
+                        display: flex !important;
+                    }
+
+                    .nav-links-list li {
+                        width: 100%;
+                        border-bottom: 1px solid rgba(255,255,255,0.08);
+                    }
+
+                    .nav-links-list a, .dropdown-trigger-text {
+                        padding: 12px 4px;
+                        font-size: 16px;
+                    }
+
+                .active-tab {
+                    border-bottom: none;
+                    color: #f59e0b !important;
+                }
+
+                /* Mobile Submenu Behavior (Accordion layout style inside the list block) */
+                .submenu-inner-list {
+                    position: static;
+                    transform: none;
+                    background-color: #003b8c;
+                    box-shadow: none;
+                    padding: 0;
+                    margin: 0;
+                    border-radius: 0;
+                    width: 100%;
+                }
+
+                    .submenu-inner-list a {
+                        color: #ffffff !important;
+                        padding: 10px 24px;
+                        font-size: 15px;
+                        border-bottom: 1px solid rgba(255,255,255,0.05);
+                    }
+
+                .contact-cta-button {
+                    border-bottom: none !important;
+                    margin-top: 10px;
+                }
+
+                    .contact-cta-button a {
+                        text-align: center;
+                    }
+            }
+        </style>
+
+        <!-- RE-ENGINEERED COMPREHENSIVE EVENT DROPDOWN ACTION CONTROLLERS -->
+        <script>
+            function handleMenuToggle(e) {
+                e.stopPropagation();
+                const menu = document.getElementById('main-navigation-menu');
+                menu.classList.toggle('menu-active');
+            }
+
+            function handleSubmenuToggle(e) {
+                // Isolate click actions to the dropdown trigger header item specifically
+                const trigger = e.target.closest('.dropdown-trigger-text');
+                if (trigger) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const submenu = document.getElementById('service-submenu-list');
+                    submenu.classList.toggle('submenu-active');
+
+                    // Dynamically point up or down arrow indicators based on current open/close visibility
+                    const arrow = trigger.querySelector('.arrow-indicator');
+                    arrow.innerHTML = submenu.classList.contains('submenu-active') ? '▴' : '▾';
+                }
+            }
+
+            function handleMenuContentClick(e) {
+                // Stops list background container click event bubbles from breaking links actioning
+                e.stopPropagation();
+            }
+
+            // Comprehensive outside area surface click watchdog
+            window.addEventListener('click', function () {
+                const menu = document.getElementById('main-navigation-menu');
+                const submenu = document.getElementById('service-submenu-list');
+                const arrowIndicator = document.querySelector('.arrow-indicator');
+
+                // Desktop close: collapse dropdown smoothly when consumer hits body background
+                if (window.innerWidth >= 768) {
+                    if (submenu.classList.contains('submenu-active')) {
+                        submenu.classList.remove('submenu-active');
+                        if (arrowIndicator) arrowIndicator.innerHTML = '▾';
+                    }
+                } else {
+                    // Mobile phone reset behavior adjustments
+                    menu.classList.remove('menu-active');
+                }
+            });
+        </script>
+    </header>
+
+
+
+
+
+    <!-- NEW HOME MAIN BODY CONTENT CONTAINER -->
+    <main class="flex-grow max-w-5xl mx-auto w-full px-4 py-12">
+
+        <!-- Hero Header Branding Section -->
+        <div class="flex flex-col items-center justify-center gap-6 mb-16 text-center">
+            <div>
+                <!-- Replaced with the optimized, high-impact localized main header -->
+                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl mb-2">
+                    Residential & Commercial Window Repair | Glass Replacement in DFW
+                </h1>
+                <!-- Your original subheader style -->
+                <h2 class="text-xl font-semibold text-blue-700 mb-6">Serving Burleson, Fort Worth, Mansfield, and Surrounding Areas</h2>
+
+                <!-- Interactive Call/Text Container - Clicking the number on a phone opens the dialer instantly -->
+                <div class="inline-block bg-blue-50 rounded-lg px-6 py-3 mb-8 border border-blue-100">
+                    <p class="text-sm font-medium uppercase tracking-wider text-blue-700">Fast Local Response</p>
+                    <p class="text-xl md:text-2xl font-bold mt-1 text-gray-900"> Call or Text: <a href="tel:8176470229" class="hover:underline hover:text-blue-700 transition">(817) 647-0229</a> </p>
+                </div>
+
+                <!-- Action CTA Buttons Layout Block -->
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <!-- The High-Contrast Yellow Action Button to jump straight to the home page calculator -->
+                    <a href="#quote-calculator" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3.5 rounded-lg shadow-md transition duration-200 text-center"> Get an Instant Rough Estimate </a>
+                    <!-- The Secondary Button linked directly to your work showcase folder asset file -->
+                    <a href="Our Work.html" class="w-full sm:w-auto bg-white border border-gray-300 hover:border-gray-400 text-gray-700 font-medium px-8 py-3.5 rounded-lg transition duration-200 text-center shadow-sm"> View Our Work </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layout Grid splitting Core Services and Sidebar Image -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
+            <!-- Left Side: Window / Brick Frame Showcase Image pointing to local relative folder asset file -->
+            <div class="lg:col-span-5 bg-gray-200 rounded-xl overflow-hidden shadow-sm border border-gray-200 aspect-[4/3] sm:aspect-video lg:aspect-auto lg:h-[480px]">
+                <img src="Home\showcase.jpg" alt="Double pane foggy window repair showcase in Burleson Texas by Picture Perfect Window Solutions" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Right Side: Clean Core Services Index Layout -->
+            <div class="lg:col-span-7 space-y-6">
+                <div class="flex items-center gap-3 border-b border-gray-200 pb-3">
+                    <span class="text-2xl">🛠️</span>
+                    <h3 class="text-2xl font-bold text-gray-900">Core Services</h3>
+                </div>
+                <ul class="space-y-4 text-sm text-gray-600 leading-relaxed">
+                    <li class="pl-4 border-l-4 border-amber-400"> <strong class="text-gray-900">Foggy Window Repair <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded ml-1">MOST POPULAR</span> :</strong> Restore clarity and eliminate moisture trapped inside double-pane glass. </li>
+                    <li class="pl-4 border-l-4 border-blue-500"> <strong class="text-gray-900">Window Washing:</strong> Professional, streak-free window cleaning for crystal-clear exterior views. Ask about our multi-service bundles while we clean! </li>
+                    <li class="pl-4 border-l-4 border-blue-500"> <strong class="text-gray-900">Weatherizing:</strong> Replace worn frame seals to stop leaks, lock in HVAC air, and cut energy bills. </li>
+                    <li class="pl-4 border-l-4 border-blue-500"> <strong class="text-gray-900">Residential Broken Panes:</strong> Fast glass replacement for cracked or shattered home windows. </li>
+                    <li class="pl-4 border-l-4 border-blue-500"> <strong class="text-gray-900">Custom Mirrored Walls:</strong> Expand your living space visually with custom-fit decorative wall mirrors. </li>
+                    <li class="pl-4 border-l-4 border-blue-500"> <strong class="text-gray-900">Frameless Glass Showers:</strong> Upgrade old framed enclosures into luxury, modern frameless showers. </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#quote-calculator" class="inline-block text-center bg-[#0056b3] text-white font-medium py-3 px-8 rounded-lg shadow-sm hover:bg-blue-700 transition-all text-sm tracking-wide"> Get a Free Quote </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO BLOCK 1: THE LOCAL CLIMATE PROBLEM -->
+        <article class="prose max-w-none mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Why North Texas Homes Face Foggy Windows & Blown Seals</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                If you live in the Dallas / Fort Worth Metroplex, you are likely familiar with the extreme weather shifts that take place between scorching summer heat waves and unexpected winter freezes. This dramatic temperature fluctuation causes a phenomenon known as "solar pumping." Over time, the continuous expansion and contraction of your window panes place immense pressure on the insulated glass unit (IGU) seals.
+            </p>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Eventually, every thermal double-pane window seal will fail. When this happens, moisture, dampness, and a blue haze crawl into the dead airspace between your glass panels, leaving you with unsightly condensation that you cannot wipe away. Wood framed windows typically average a lifespan of 20 to 24 years, aluminum frames hold up for roughly 16 to 18 years, while premium vinyl replacement windows carry a much stronger thermal defense against the elements.
+            </p>
+            <!-- FIX: Repeated the precise H1 keyword combination down here in a clean, natural sentence -->
+            <p class="text-gray-600 leading-relaxed">
+                Our experienced local team provides premium <strong>residential & commercial window repair | glass replacement in DFW</strong> to fix these failing seals quickly and affordably.
+            </p>
+        </article>
+
+        <!-- SEO BLOCK 2: VALUE & SOLUTIONS -->
+        <article class="prose max-w-none mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Is it Cheaper to Replace Window Glass or the Whole Window Frame?</h2>
+            <p class="text-gray-600 leading-relaxed mb-4"> Many homeowners mistakenly believe that fixing a cloudy or broken window requires tearing out the entire window vinyl or aluminum framework. This is a costly misconception. If your existing window frames are structurally sound, you do not need a complete, messy window replacement. </p>
+            <p class="text-gray-600 leading-relaxed"> At Picture Perfect Window Solutions, we specialize in high-efficiency insulated glass replacement. By swapping out only the failed double-pane glass unit and leaving your original frames perfectly intact, we eliminate condensation and restore your home's energy efficiency at a fraction of the cost of full replacements. Glass repair costs are significantly lower, the installation process is substantially cleaner, and it keeps perfectly good framing material out of Texas landfills. </p>
+        </article>
+
+        <!-- SOCIAL SHARING / NEIGHBOR RECOMMENDATION BLOCK -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 text-center mb-12">
+            <p class="text-gray-700 font-medium mb-3 text-base">
+                🏡 Happy with our window work? Help your neighborhood out!
+            </p>
+            <p class="text-sm text-gray-600 max-w-xl mx-auto mb-4">
+                Most foggy window seals fail around the exact same time in a subdivision due to weather cycles. Share our site with your neighbors or leave us a review to help others save on window repairs!
+            </p>
+            <div class="flex justify-center gap-4">
+                <!-- Nextdoor Share Link -->
+                <a href="https://nextdoor.com/page/picture-perfect-window-solutions-alvarado-tx?init_source=search&query=foggy+glass+repair&referrer=nextdoor" target="_blank" class="bg-[#00b050] hover:bg-[#009c46] text-white text-xs font-bold px-4 py-2 rounded transition shadow-sm">
+                    Share on Nextdoor
+                </a>
+                <!-- Facebook Share Link -->
+                <a href="https://facebook.com" target="_blank" class="bg-[#1877f2] hover:bg-[#166fe5] text-white text-xs font-bold px-4 py-2 rounded transition shadow-sm">
+                    Share on Facebook
+                </a>
+                <!-- Google Review -->
+                <a href="https://g.page/r/CaEarXFE5ngtEBM/review" target="_blank" class="bg-[#4285F4] hover:bg-[#3574de] text-white text-xs font-bold px-4 py-2 rounded transition shadow-sm">
+                    Review us on Google
+                </a>
+
+            </div>
+        </div>
+
+        <!-- VALUE PROPOSITION TRIPLE GRID -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                <span class="text-2xl block mb-2">📍</span>
+                <h4 class="font-bold text-gray-900 text-lg mb-1">100% Local & Reliable</h4>
+                <p class="text-sm text-gray-600">Based right here in the South DFW area. Active members of our community arriving on time, every time.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                <span class="text-2xl block mb-2">💰</span>
+                <h4 class="font-bold text-gray-900 text-lg mb-1">Fair, Upfront Pricing</h4>
+                <p class="text-sm text-gray-600">No hidden trip fees or surprise charges. Travel and fuel costs are factored transparently into our initial estimates.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                <span class="text-2xl block mb-2">🛠️</span>
+                <h4 class="font-bold text-gray-900 text-lg mb-1">Quality Craftsmanship</h4>
+                <p class="text-sm text-gray-600">Highest professional care to protect your property. Every glass pane and mirror is aligned with precision.</p>
+            </div>
+        </section>
+
+        <!-- ABOUT THE OWNERS & EXPERIENCE -->
+        <article class="prose max-w-none bg-blue-50 p-8 rounded-xl border border-blue-100 mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Over 25 Years of Trusted Glass Expertise in the DFW Metroplex</h2>
+            <p class="text-gray-600 leading-relaxed mb-4"> We are long-time DFW residents who founded Picture Perfect Window Solutions out of a deep passion for craftsmanship and serving our local community. With over 25 years of combined field experience handling complex foggy window restorations and custom residential glass designs, our seasoned team manages every step of the process with strict precision. </p>
+            <p class="text-gray-600 leading-relaxed"> We intentionally blanket a broad regional footprint to ensure our neighbors get rapid response times when glass breaks or thermal seals fail. Our standard service areas extend heavily through Fort Worth, Dallas, Crowley, Burleson, Cleburne, Alvarado, Mansfield, Midlothian, and Godley. When we step onto your property, our promise is simple: polite communication, immaculate workspaces, and treating your home with the exact same care and respect as our own. </p>
+        </article>
+
+        
+        <!-- EMBEDDED CALCULATOR HTML WIDGET FRAME CONTAINER -->
+        <section id="quote-calculator" class="bg-white p-8 rounded-xl shadow-md border border-gray-200 scroll-mt-20">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden max-w-2xl mx-auto flex flex-col">
+
+                
+
+                <div class="bg-gray-50 border-b border-gray-200 px-6 py-4">
+                    <h2 class="text-lg font-bold text-gray-800">Rough Estimate Quote</h2>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <!-- The High-Contrast Yellow Action Button to jump straight to the home page calculator -->
+                    <a href="How to Measure.html" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3.5 rounded-lg shadow-md transition duration-200 text-center"> View how to measure to get the most accurate quote </a>
+                    <!-- The Secondary Button linked directly to your work showcase folder asset file -->
+                    <a href="Our Work.html" class="w-full sm:w-auto bg-white border border-gray-300 hover:border-gray-400 text-gray-700 font-medium px-8 py-3.5 rounded-lg transition duration-200 text-center shadow-sm"> View Our Work </a>
+                </div>
+                <!--
+               IFRAME WITH AUTOMATIC AUTO-HEIGHT RESIZING LOGIC
+               - id="calcWidget" lets our script control its size.
+               - min-height starts at a solid default baseline.
+            -->
+                <iframe id="calcWidget"
+                        src="calculator.html"
+                        title="Window Pricing Calculator Widget"
+                        class="w-full min-h-[350px] border-none flex-grow transition-all duration-150"
+                        scrolling="no"
+                        loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
+
+        <!-- DFW Service Area Footer Text List -->
+
+        <div class="text-center border-t border-gray-200 pt-8">
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-3">Our DFW Service Area</span>
+            <div class="flex flex-wrap justify-center gap-3 md:gap-6 text-sm font-medium text-gray-700">
+                <span>Fort Worth</span> <span class="text-gray-300">|</span>
+                <span>Dallas</span> <span class="text-gray-300">|</span>
+                <span>Burleson</span> <span class="text-gray-300">|</span>
+                <span>Crowley</span> <span class="text-gray-300">|</span>
+                <span>Cleburne</span> <span class="text-gray-300">|</span>
+                <span>Alvarado</span> <span class="text-gray-300">|</span>
+                <span>Godley</span> <span class="text-gray-300">|</span>
+                <span>Midlothian</span> <span class="text-gray-300">|</span>
+                <span>Mansfield</span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER BANNER ARCHITECTURE -->
+    <footer class="bg-gray-800 text-gray-300 text-xs py-6 border-t border-gray-700 mt-auto">
+
+        <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <span class="font-bold block text-sm text-white mb-1">Hours</span>
+                Mon – Sat: 7 A.M. – 3 P.M. | Sun: Closed
+            </div>
+            <div class="sm:text-right">
+                <span class="font-bold block text-sm text-white mb-1">Payment Methods Accepted</span>
+                Cash | Debit | Credit Card
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTER-FRAME HEIGHT COMMUNICATION LISTENER SCRIPT -->
+    <script>
+        // Listen for dimension update message dispatches from inside the calculator file
+        window.addEventListener('message', function (event) {
+            // Verify message structure contains height updates to prevent data loop issues
+
+            if (event.data && event.data.type === 'resizeIframe' && event.data.height) {
+                const iframe = document.getElementById('calcWidget');
+                if (iframe) {
+                    // Update layout frame height dynamically with a 20px padding fallback cushion
+                    iframe.style.height = event.data.height + 20 + 'px';
+                }
+            }
+        }, false);
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const serviceBtn = document.getElementById('serviceAreasBtn');
+            const serviceMenu = document.getElementById('serviceAreasMenu');
+            const dropdownArrow = document.getElementById('dropdownArrow');
+
+            if (serviceBtn && serviceMenu) {
+                serviceBtn.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const isOpen = !serviceMenu.classList.contains('hidden');
+
+                    if (isOpen) {
+                        serviceMenu.classList.add('hidden');
+                        serviceMenu.classList.remove('opacity-100');
+                        serviceBtn.setAttribute('aria-expanded', 'false');
+                        if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+                    } else {
+                        serviceMenu.classList.remove('hidden');
+                        // Short delay to allow smooth opacity transition
+                        setTimeout(() => serviceMenu.classList.add('opacity-100'), 10);
+                        serviceBtn.setAttribute('aria-expanded', 'true');
+                        if (dropdownArrow) dropdownArrow.classList.add('rotate-180');
+                    }
+                });
+
+                // Close the dropdown when tapping anywhere else on the screen
+                document.addEventListener('click', (event) => {
+                    if (!serviceMenu.contains(event.target) && !serviceBtn.contains(event.target)) {
+                        serviceMenu.classList.add('hidden');
+                        serviceMenu.classList.remove('opacity-100');
+                        serviceBtn.setAttribute('aria-expanded', 'false');
+                        if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+                    }
+                });
+            }
+        });</script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const serviceBtn = document.getElementById('serviceAreasBtn');
+            const serviceMenu = document.getElementById('serviceAreasMenu');
+            const dropdownArrow = document.getElementById('dropdownArrow');
+
+            if (serviceBtn && serviceMenu) {
+                serviceBtn.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const isOpen = !serviceMenu.classList.contains('hidden');
+
+                    if (isOpen) {
+                        serviceMenu.classList.add('hidden');
+                        serviceMenu.classList.remove('opacity-100');
+                        serviceBtn.setAttribute('aria-expanded', 'false');
+                        if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+                    } else {
+                        serviceMenu.classList.remove('hidden');
+                        // Short delay to allow smooth opacity transition
+                        setTimeout(() => serviceMenu.classList.add('opacity-100'), 10);
+                        serviceBtn.setAttribute('aria-expanded', 'true');
+                        if (dropdownArrow) dropdownArrow.classList.add('rotate-180');
+                    }
+                });
+
+                // Close the dropdown when tapping anywhere else on the screen
+                document.addEventListener('click', (event) => {
+                    if (!serviceMenu.contains(event.target) && !serviceBtn.contains(event.target)) {
+                        serviceMenu.classList.add('hidden');
+                        serviceMenu.classList.remove('opacity-100');
+                        serviceBtn.setAttribute('aria-expanded', 'false');
+                        if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+                    }
+                });
+            }
+        });</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="4110dc67616da56f9c61ba9bc10cdbff.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Picture Perfect Window Solutions</title>
+    <meta name="description" content="Contact Picture Perfect Window Solutions for glass services across the DFW area.">
+    <link rel="icon" type="image/jpg" href="4110dc67616da56f9c61ba9bc10cdbff.jpg">
+
+    <!-- Tailwind CSS CDN for modern responsive grid layouts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Styles matching Google Sites Theme .jpg  */
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+        }
+
+            .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-radius: 4px;
+            }
+        /* Dropdown custom behavior rules */
+        .dropdown-menu {
+            display: none;
+        }
+
+        .dropdown-container:hover .dropdown-menu, .dropdown-container:focus-within .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="custom-header">
+        <div class="header-inner-wrap">
+
+            <!-- Title Area (Pushed to its own clean row on mobile screens) -->
+            <a href="index.html" class="text-xl font-bold text-white hover:text-amber-400 transition">
+                Picture Perfect Window Solutions
+            </a>
+
+            <!-- Toggle Actions System -->
+            <nav class="navigation-box">
+
+                <!-- 1. MOBILE ONLY HAMBURGER TRIGGER BUTTON -->
+                <button class="mobile-hamburger-btn" onclick="handleMenuToggle(event)" aria-label="Toggle Navigation Menu">☰</button>
+
+                <!-- 2. THE DROPDOWN PANEL PACK -->
+                <ul id="main-navigation-menu" class="nav-links-list" onclick="handleMenuContentClick(event)">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Our Work.html">Our Work</a></li>
+                    <li><a href="How to Measure.html">How to Measure</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+
+                    <!-- NESTED SERVICE AREA DROPDOWN -->
+                    <li class="nested-dropdown-item" onclick="handleSubmenuToggle(event)">
+                        <span class="dropdown-trigger-text">Service Areas <span class="arrow-indicator">▾</span></span>
+                        <ul id="service-submenu-list" class="submenu-inner-list">
+                            <li><a href="Fort Worth TX - Glass  Window Services.html">Fort Worth</a></li>
+                            <li><a href="Dallas TX - Glass  Window Services.html">Dallas</a></li>
+                            <li><a href="Burleson TX - Glass  Window Services.html">Burleson</a></li>
+                            <li><a href="Crowley TX - Glass  Window Services.html">Crowley</a></li>
+                            <li><a href="Cleburne TX - Glass  Window Services.html">Cleburne</a></li>
+                            <li><a href="Alvarado TX - Glass  Window Services.html">Alvarado</a></li>
+                            <li><a href="Mansfield TX - Glass  Window Services.html">Mansfield</a></li>
+                            <li><a href="Midlothian TX - Glass  Window Services.html">Midlothian</a></li>
+                            <li><a href="Godley TX - Glass  Window Services.html">Godley</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="contact-cta-button"><a href="Contact us.html">Contact us</a></li>
+                </ul>
+
+            </nav>
+        </div>
+
+        <!-- EMBEDDED STYLESHEET CORE RULES -->
+        <style>
+            /* ========================================================
+            DESKTOP & GENERAL STYLES (Widescreens)
+            ======================================================== */
+            .custom-header {
+                background-color: #0056b3;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 14px 24px;
+                font-family: system-ui, -apple-system, sans-serif;
+                box-shadow: 0 2px 8 rgba(0,0,0,0.15);
+                position: relative;
+                z-index: 9999;
+            }
+
+            .header-inner-wrap {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .business-brand-title {
+                color: #ffffff;
+                font-weight: 800;
+                font-size: 20px;
+                letter-spacing: 0.3px;
+            }
+
+            .mobile-hamburger-btn {
+                display: none; /* Hidden completely on desktop systems */
+            }
+
+            .nav-links-list {
+                display: flex;
+                list-style: none;
+                gap: 22px;
+                margin: 0;
+                padding: 0;
+                align-items: center;
+            }
+
+                .nav-links-list a, .dropdown-trigger-text {
+                    color: #ffffff;
+                    text-decoration: none;
+                    font-size: 15px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    display: block;
+                    padding: 4px 0;
+                }
+
+                    .nav-links-list a:hover, .nested-dropdown-item:hover .dropdown-trigger-text {
+                        color: #f1f5f9;
+                        text-decoration: underline;
+                    }
+
+            .active-tab {
+                font-weight: 700 !important;
+                border-bottom: 2px solid #ffffff;
+            }
+
+            /* Desktop Dropdown Mechanisms (Controlled cleanly via JavaScript clicks) */
+            .nested-dropdown-item {
+                position: relative;
+            }
+
+            .submenu-inner-list {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #ffffff;
+                min-width: 160px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                border-radius: 6px;
+                padding: 6px 0;
+                margin-top: 10px;
+                list-style: none;
+            }
+
+                .submenu-inner-list a {
+                    color: #1e293b !important;
+                    padding: 8px 16px;
+                    font-size: 14px;
+                }
+
+                    .submenu-inner-list a:hover {
+                        background-color: #f1f5f9;
+                        text-decoration: none !important;
+                    }
+
+                /* Explicit active state rules for click management toggle */
+                .submenu-inner-list.submenu-active {
+                    display: block !important;
+                }
+
+            .contact-cta-button a {
+                background-color: #f59e0b;
+                color: #0f172a !important;
+                padding: 6px 14px !important;
+                border-radius: 4px;
+                font-weight: 700;
+            }
+
+                .contact-cta-button a:hover {
+                    background-color: #d97706;
+                    text-decoration: none;
+                }
+
+            /* ========================================================
+            MOBILE LAYOUT CORRECTIONS (Screens under 768px wide)
+            ======================================================== */
+            @media (max-width: 767px) {
+                .header-inner-wrap {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 12px;
+                }
+                /* Compact, perfect-sized hamburger icon button alignment */
+                .mobile-hamburger-btn {
+                    display: block;
+                    background: transparent;
+                    border: 1px solid rgba(255, 255, 255, 0.4);
+                    color: #ffffff;
+                    font-size: 22px;
+                    padding: 2px 10px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    line-height: 1.2;
+                    margin-top: 2px;
+                }
+                /* Hide navigation drop layout completely by default */
+                .nav-links-list {
+                    display: none;
+                    flex-direction: column;
+                    width: 100%;
+                    background-color: #004cb4;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    padding: 12px 20px;
+                    gap: 4px;
+                    box-sizing: border-box;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                }
+                    /* Utilities classes targeted dynamically via the click scripts */
+                    .nav-links-list.menu-active {
+                        display: flex !important;
+                    }
+
+                    .nav-links-list li {
+                        width: 100%;
+                        border-bottom: 1px solid rgba(255,255,255,0.08);
+                    }
+
+                    .nav-links-list a, .dropdown-trigger-text {
+                        padding: 12px 4px;
+                        font-size: 16px;
+                    }
+
+                .active-tab {
+                    border-bottom: none;
+                    color: #f59e0b !important;
+                }
+
+                /* Mobile Submenu Behavior (Accordion layout style inside the list block) */
+                .submenu-inner-list {
+                    position: static;
+                    transform: none;
+                    background-color: #003b8c;
+                    box-shadow: none;
+                    padding: 0;
+                    margin: 0;
+                    border-radius: 0;
+                    width: 100%;
+                }
+
+                    .submenu-inner-list a {
+                        color: #ffffff !important;
+                        padding: 10px 24px;
+                        font-size: 15px;
+                        border-bottom: 1px solid rgba(255,255,255,0.05);
+                    }
+
+                .contact-cta-button {
+                    border-bottom: none !important;
+                    margin-top: 10px;
+                }
+
+                    .contact-cta-button a {
+                        text-align: center;
+                    }
+            }
+        </style>
+
+        <!-- RE-ENGINEERED COMPREHENSIVE EVENT DROPDOWN ACTION CONTROLLERS -->
+        <script>
+            function handleMenuToggle(e) {
+                e.stopPropagation();
+                const menu = document.getElementById('main-navigation-menu');
+                menu.classList.toggle('menu-active');
+            }
+
+            function handleSubmenuToggle(e) {
+                // Isolate click actions to the dropdown trigger header item specifically
+                const trigger = e.target.closest('.dropdown-trigger-text');
+                if (trigger) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const submenu = document.getElementById('service-submenu-list');
+                    submenu.classList.toggle('submenu-active');
+
+                    // Dynamically point up or down arrow indicators based on current open/close visibility
+                    const arrow = trigger.querySelector('.arrow-indicator');
+                    arrow.innerHTML = submenu.classList.contains('submenu-active') ? '▴' : '▾';
+                }
+            }
+
+            function handleMenuContentClick(e) {
+                // Stops list background container click event bubbles from breaking links actioning
+                e.stopPropagation();
+            }
+
+            // Comprehensive outside area surface click watchdog
+            window.addEventListener('click', function () {
+                const menu = document.getElementById('main-navigation-menu');
+                const submenu = document.getElementById('service-submenu-list');
+                const arrowIndicator = document.querySelector('.arrow-indicator');
+
+                // Desktop close: collapse dropdown smoothly when consumer hits body background
+                if (window.innerWidth >= 768) {
+                    if (submenu.classList.contains('submenu-active')) {
+                        submenu.classList.remove('submenu-active');
+                        if (arrowIndicator) arrowIndicator.innerHTML = '▾';
+                    }
+                } else {
+                    // Mobile phone reset behavior adjustments
+                    menu.classList.remove('menu-active');
+                }
+            });
+        </script>
+    </header>
+
+
+    <!-- MAIN BODY CONTENT CONTAINER -->
+    <main class="flex-grow max-w-4xl mx-auto w-full px-4 py-12">
+
+        <!-- Contact Page Main Title -->
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-2">
+                Contact Picture Perfect Window Solutions
+            </h1>
+            <p class="text-base text-gray-600 max-w-xl mx-auto leading-relaxed">
+                Get in touch with Picture Perfect Window Solutions for premium glass repairs, residential window pane replacements, and custom glazing solutions.
+            </p>
+        </div>
+
+        <!-- Operational Explanations Section (Added for Word Count Expansion & Technical SEO) -->
+        <div class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-12">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">What to Expect When Requesting Your Residential Glass Service</h2>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                At Picture Perfect Window Solutions, we make it simple and entirely stress-free to organize home glass window replacement projects. Whether you are dealing with an urgent broken glass situation, a hazy double-pane thermal seal blowout, or are beginning a luxury bathroom master remodeling configuration, our local team is here to manage the process cleanly. By filling out our responsive communication intake layout below or calling our service line, you connect directly with qualified, professional regional glaziers.
+            </p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                To help our tracking desk compile an exceptionally precise rough cost estimate for you, consider taking a brief glance at our standard measurement instructions guide before dropping in your query. Noting down the approximate height and width values of your visible window pane surface area ensures we can cross-reference our price framework variables with excellent accuracy. Sharing details about your home's unique layout helps us prioritize materials and scheduling preferences smoothly.
+            </p>
+            <p class="text-sm text-gray-600 leading-relaxed">
+                Once you submit your informational inquiry details, a support specialist will review your project needs. We formulate a clear budget blueprint and follow up with a clear action path. For qualified projects, our technicians schedule a prompt on-site visit to run a final absolute verification check on structural tolerances before moving your glass panes straight into custom safety glass cutting or premium argon gas processing profiles.
+            </p>
+        </div>
+
+        <!-- Contact Options Container Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto mb-12">
+
+            <!-- Quick Contact / Info Card -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Business Information</h2>
+                    <div class="space-y-4 text-sm text-gray-600">
+                        <div>
+                            <span class="font-bold block text-gray-700">Phone Number:</span>
+                            <a href="tel:8176470229" class="text-blue-600 hover:underline">(817) 647-0229</a>
+                        </div>
+                        <div>
+                            <span class="font-bold block text-gray-700">Operating Hours:</span>
+                            Monday – Saturday: 7:00 A.M. – 3:00 P.M. <br>
+                            Sunday: Closed
+                        </div>
+                        <div>
+                            <span class="font-bold block text-gray-700">Payment Methods Accepted:</span>
+                            Cash | Debit Card | Credit Card
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 pt-4 border-t border-gray-100">
+                    <p class="text-xs text-gray-400 italic">
+                        Located in Alvarado, TX. Serving Dallas, Fort Worth, Mansfield, Midlothian, Burleson, Crowley, Cleburne, Godley, and surrounding local areas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Reach Out Form Integrated with Google Script AJAX Handler -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Send a Message</h2>
+                <form id="contactForm" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Your Name</label>
+                        <input type="text" id="formName" required class="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Phone Number</label>
+                        <input type="tel" id="formPhone" required class="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Message Detail</label>
+                        <textarea id="formMessage" rows="3" required placeholder="Tell us about your project, approximate glass dimensions, or location details..." class="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                    </div>
+                    <!-- Dynamic form feedback status alert box placeholder -->
+                    <div id="formStatus" class="hidden p-3 rounded-md text-xs font-medium text-center"></div>
+                    <button type="submit" id="submitBtn" class="w-full bg-[#0056b3] text-white font-medium py-2 rounded-lg text-sm shadow-sm hover:bg-blue-700 focus:outline-none transition-all">
+                        Submit Inquiry
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Geographic Focus Section (Added for Comprehensive Local Search Coverage) -->
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
+            <h2 class="text-base font-bold text-gray-900 mb-2">Our Comprehensive North Texas Service Footprint</h2>
+            <p class="text-xs text-gray-500 leading-relaxed max-w-2xl mx-auto">
+                Picture Perfect Window Solutions proudly offers top-tier residential window glass repairs, dual-pane frame restoration, custom layout mirror cutting, and frameless safety glass shower enclosures to communities across the greater DFW region. We deploy fully equipped utility service trucks straight to properties located across Mansfield, Midlothian, Burleson, Crowley, Cleburne, Alvarado, Godley, Fort Worth, and Dallas, TX. Get in touch with our team today to organize an on-site consultation.
+            </p>
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER BANNER ARCHITECTURE -->
+    <footer class="bg-gray-800 text-gray-300 text-xs py-6 border-t border-gray-700 mt-auto">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <span class="font-bold block text-sm text-white mb-1">Hours</span>
+
+                Mon – Sat: 7 A.M. – 3 P.M. | Sun: Closed
+            </div>
+            <div class="sm:text-right">
+                <span class="font-bold block text-sm text-white mb-1">Payment Methods Accepted</span>
+                Cash | Debit | Credit Card
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE FORM SUBMISSION ROUTING ENGINE -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // PASTE YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL BETWEEN THE QUOTES BELOW:
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbxt2_fFM5m1ih2uB2R1hTSxdo-mTojG5roQ_cXv5pJG6tnByrzvPd4Lv6DwYte-5mjA/exec';
+            const statusBox = document.getElementById('formStatus');
+            const submitBtn = document.getElementById('submitBtn');
+
+
+            // Update UI components to visual loading state
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Sending...';
+            statusBox.classList.remove('hidden', 'bg-green-50', 'text-green-800', 'bg-red-50', 'text-red-800');
+
+            // Pack user input data strings together
+            const formData = new FormData();
+            formData.append('name', document.getElementById('formName').value);
+            formData.append('phone', document.getElementById('formPhone').value);
+            formData.append('message', document.getElementById('formMessage').value);
+
+            // Dispatch AJAX data stream to Google backend infrastructure setup
+            fetch(scriptUrl, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // Bypasses cross-origin validation checks securely
+            })
+                .then(() => {
+                    statusBox.innerText = 'Inquiry sent successfully! We will get back to you soon.';
+
+                    statusBox.classList.add('bg-green-50', 'text-green-800');
+                    statusBox.classList.remove('hidden');
+                    document.getElementById('contactForm').reset();
+                })
+                .catch(error => {
+                    statusBox.innerText = 'Something went wrong. Please try calling us directly.';
+                    statusBox.classList.add('bg-red-50', 'text-red-800');
+                    statusBox.classList.remove('hidden');
+                    console.error('Submission tracking breakdown:', error);
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = 'Submit Inquiry';
+                });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const serviceBtn = document.getElementById('serviceAreasBtn');
+            const serviceMenu = document.getElementById('serviceAreasMenu');
+            const dropdownArrow = document.getElementById('dropdownArrow');
+
+            if (serviceBtn && serviceMenu) {
+                serviceBtn.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const isOpen = !serviceMenu.classList.contains('hidden');
+
+                    if (isOpen) {
+                        serviceMenu.classList.add('hidden');
+                        serviceMenu.classList.remove('opacity-100');
+                        serviceBtn.setAttribute('aria-expanded', 'false');
+                        if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+                    } else {
+                        serviceMenu.classList.remove('hidden');
+                        // Short delay to allow smooth opacity transition
+                        setTimeout(() => serviceMenu.classList.add('opacity-100'), 10);
+                        serviceBtn.setAttribute('aria-expanded', 'true');
+                        if (dropdownArrow) dropdownArrow.classList.add('rotate-180');
+                    }
+                });
+
+                // Close the dropdown when tapping anywhere else on the screen
+                document.addEventListener('click', (event) => {
+                    if (!serviceMenu.contains(event.target) && !serviceBtn.contains(event.target)) {
+                        serviceMenu.classList.add('hidden');
+                        serviceMenu.classList.remove('opacity-100');
+                        serviceBtn.setAttribute('aria-expanded', 'false');
+                        if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+                    }
+                });
+            }
+        });</script>
+
+</body>
+</html>
+
+
+<!--
+======================================================================================
+     GOOGLE APPS SCRIPT BACKEND ENGINE CODE (PASTE THIS CODE INTO SCRIPT.GOOGLE.COM)
+======================================================================================
+function doPost(e) {
+  try {
+    // Extract data parameters sent from your Netlify website form layout
+    var name = e.parameter.name;
+    var phone = e.parameter.phone;
+    var message = e.parameter.message;
+
+    // Construct a professional text email notification layout message block
+    var emailBody = "New Lead Inquiry - Picture Perfect Window Solutions\n\n" +
+                    "Customer Name: " + name + "\n" +
+                    "Phone Number: " + phone + "\n\n" +
+                    "Message Details:\n" + message;
+
+    // CHANGE THE EMAIL ADDRESS BELOW TO YOUR OWN PERSONAL INBOX ADDRESS:
+    var myEmail = "YOUR_PERSONAL_EMAIL@GMAIL.COM";
+
+
+    // Send the email using your Google account's free native background mail app
+    MailApp.sendEmail(myEmail, "New Website Inquiry - " + name, emailBody);
+
+    // Return standard success response status parameters
+    return ContentService.createTextOutput(JSON.stringify({"result": "success"}))
+                         .setMimeType(ContentService.MimeType.JSON);
+
+  } catch(error) {
+    // Graceful error logging block routing configurations
+    return ContentService.createTextOutput(JSON.stringify({"result": "error", "error": error.toString()}))
+                         .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+======================================================================================
+-->
