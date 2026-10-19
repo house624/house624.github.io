@@ -9,11 +9,6 @@
     <link rel="icon" type="image/jpg" href="4110dc67616da56f9c61ba9bc10cdbff.jpg">
     <meta name="description" content="Affordable home window glass pane replacement and foggy window repair in the DFW and surrounding areas. Get an instant rough estimate today!">
     <meta name="keywords" content="foggy window repair dfw, glass pane replacement burleson, window repair fort worth, home window glass replacement tx">
-    <script>
-        if (window.location.pathname.endsWith('/index.html')) {
-            window.location.replace("https://pictureperfectwindowsolutions.com");
-        }
-    </script>
 
 
     <!-- Tailwind CSS CDN for modern responsive grid layouts -->
@@ -85,6 +80,14 @@
                             <li><a href="Mansfield TX - Glass  Window Services.html">Mansfield</a></li>
                             <li><a href="Midlothian TX - Glass  Window Services.html">Midlothian</a></li>
                             <li><a href="Godley TX - Glass  Window Services.html">Godley</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nested-dropdown-item" onclick="handleSubmenuToggle(event, 'services-submenu-list')">
+                        <span class="dropdown-trigger-text">Services <span class="arrow-indicator">?</span></span>
+                        <ul id="services-submenu-list" class="submenu-inner-list">
+                            <li><a href="Foggy and Broken Window Repair.html">Foggy &amp; Broken Window Repair</a></li>
+                            <li><a href="Custom Glass Showers.html">Custom Glass Showers</a></li>
                         </ul>
                     </li>
 
@@ -301,18 +304,16 @@
                 menu.classList.toggle('menu-active');
             }
 
-            function handleSubmenuToggle(e) {
-                // Isolate click actions to the dropdown trigger header item specifically
+            function handleSubmenuToggle(e, submenuId = 'service-submenu-list') {
                 const trigger = e.target.closest('.dropdown-trigger-text');
                 if (trigger) {
                     e.preventDefault();
                     e.stopPropagation();
-                    const submenu = document.getElementById('service-submenu-list');
+                    const submenu = document.getElementById(submenuId);
                     submenu.classList.toggle('submenu-active');
 
-                    // Dynamically point up or down arrow indicators based on current open/close visibility
                     const arrow = trigger.querySelector('.arrow-indicator');
-                    arrow.innerHTML = submenu.classList.contains('submenu-active') ? '▴' : '▾';
+                    arrow.innerHTML = submenu.classList.contains('submenu-active') ? '?' : '?';
                 }
             }
 
@@ -324,15 +325,17 @@
             // Comprehensive outside area surface click watchdog
             window.addEventListener('click', function () {
                 const menu = document.getElementById('main-navigation-menu');
-                const submenu = document.getElementById('service-submenu-list');
-                const arrowIndicator = document.querySelector('.arrow-indicator');
+                const submenus = document.querySelectorAll('.submenu-inner-list');
 
-                // Desktop close: collapse dropdown smoothly when consumer hits body background
+                // Desktop close: collapse open dropdowns when consumer hits body background
                 if (window.innerWidth >= 768) {
-                    if (submenu.classList.contains('submenu-active')) {
-                        submenu.classList.remove('submenu-active');
-                        if (arrowIndicator) arrowIndicator.innerHTML = '▾';
-                    }
+                    submenus.forEach((submenu) => {
+                        if (submenu.classList.contains('submenu-active')) {
+                            submenu.classList.remove('submenu-active');
+                            const arrow = submenu.parentElement.querySelector('.arrow-indicator');
+                            if (arrow) arrow.innerHTML = '▾';
+                        }
+                    });
                 } else {
                     // Mobile phone reset behavior adjustments
                     menu.classList.remove('menu-active');
@@ -393,7 +396,7 @@
                     <li class="pl-4 border-l-4 border-blue-500"> <strong class="text-gray-900">Weatherizing:</strong> Replace worn frame seals to stop leaks, lock in HVAC air, and cut energy bills. </li>
                     <li class="pl-4 border-l-4 border-blue-500"> <strong class="text-gray-900">Residential Broken Panes:</strong> Fast glass replacement for cracked or shattered home windows. </li>
                     <li class="pl-4 border-l-4 border-blue-500"> <strong class="text-gray-900">Custom Mirrored Walls:</strong> Expand your living space visually with custom-fit decorative wall mirrors. </li>
-                    <li class="pl-4 border-l-4 border-blue-500"> <strong class="text-gray-900">Frameless Glass Showers:</strong> Upgrade old framed enclosures into luxury, modern frameless showers. </li>
+                    <li class="pl-4 border-l-4 border-blue-500"> <strong class="text-gray-900">Custom Glass Showers:</strong> Choose framed, semi-frameless, or frameless glass enclosures tailored to your bathroom. </li>
                 </ul>
                 <div class="pt-4">
                     <a href="#quote-calculator" class="inline-block text-center bg-[#0056b3] text-white font-medium py-3 px-8 rounded-lg shadow-sm hover:bg-blue-700 transition-all text-sm tracking-wide"> Get a Free Quote </a>

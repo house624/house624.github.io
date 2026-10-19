@@ -77,6 +77,14 @@
                         </ul>
                     </li>
 
+                    <li class="nested-dropdown-item" onclick="handleSubmenuToggle(event, 'services-submenu-list')">
+                        <span class="dropdown-trigger-text">Services <span class="arrow-indicator">?</span></span>
+                        <ul id="services-submenu-list" class="submenu-inner-list">
+                            <li><a href="Foggy and Broken Window Repair.html">Foggy &amp; Broken Window Repair</a></li>
+                            <li><a href="Custom Glass Showers.html">Custom Glass Showers</a></li>
+                        </ul>
+                    </li>
+
                     <li class="contact-cta-button"><a href="Contact us.html">Contact us</a></li>
                 </ul>
 
@@ -290,18 +298,16 @@
                 menu.classList.toggle('menu-active');
             }
 
-            function handleSubmenuToggle(e) {
-                // Isolate click actions to the dropdown trigger header item specifically
+            function handleSubmenuToggle(e, submenuId = 'service-submenu-list') {
                 const trigger = e.target.closest('.dropdown-trigger-text');
                 if (trigger) {
                     e.preventDefault();
                     e.stopPropagation();
-                    const submenu = document.getElementById('service-submenu-list');
+                    const submenu = document.getElementById(submenuId);
                     submenu.classList.toggle('submenu-active');
 
-                    // Dynamically point up or down arrow indicators based on current open/close visibility
                     const arrow = trigger.querySelector('.arrow-indicator');
-                    arrow.innerHTML = submenu.classList.contains('submenu-active') ? '▴' : '▾';
+                    arrow.innerHTML = submenu.classList.contains('submenu-active') ? '?' : '?';
                 }
             }
 
@@ -313,15 +319,17 @@
             // Comprehensive outside area surface click watchdog
             window.addEventListener('click', function () {
                 const menu = document.getElementById('main-navigation-menu');
-                const submenu = document.getElementById('service-submenu-list');
-                const arrowIndicator = document.querySelector('.arrow-indicator');
+                const submenus = document.querySelectorAll('.submenu-inner-list');
 
-                // Desktop close: collapse dropdown smoothly when consumer hits body background
+                // Desktop close: collapse open dropdowns when consumer hits body background
                 if (window.innerWidth >= 768) {
-                    if (submenu.classList.contains('submenu-active')) {
-                        submenu.classList.remove('submenu-active');
-                        if (arrowIndicator) arrowIndicator.innerHTML = '▾';
-                    }
+                    submenus.forEach((submenu) => {
+                        if (submenu.classList.contains('submenu-active')) {
+                            submenu.classList.remove('submenu-active');
+                            const arrow = submenu.parentElement.querySelector('.arrow-indicator');
+                            if (arrow) arrow.innerHTML = '▾';
+                        }
+                    });
                 } else {
                     // Mobile phone reset behavior adjustments
                     menu.classList.remove('menu-active');

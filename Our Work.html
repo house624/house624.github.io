@@ -78,6 +78,14 @@
                         </ul>
                     </li>
 
+                    <li class="nested-dropdown-item" onclick="handleSubmenuToggle(event, 'services-submenu-list')">
+                        <span class="dropdown-trigger-text">Services <span class="arrow-indicator">?</span></span>
+                        <ul id="services-submenu-list" class="submenu-inner-list">
+                            <li><a href="Foggy and Broken Window Repair.html">Foggy &amp; Broken Window Repair</a></li>
+                            <li><a href="Custom Glass Showers.html">Custom Glass Showers</a></li>
+                        </ul>
+                    </li>
+
                     <li class="contact-cta-button"><a href="Contact us.html">Contact us</a></li>
                 </ul>
 
@@ -291,18 +299,16 @@
                 menu.classList.toggle('menu-active');
             }
 
-            function handleSubmenuToggle(e) {
-                // Isolate click actions to the dropdown trigger header item specifically
+            function handleSubmenuToggle(e, submenuId = 'service-submenu-list') {
                 const trigger = e.target.closest('.dropdown-trigger-text');
                 if (trigger) {
                     e.preventDefault();
                     e.stopPropagation();
-                    const submenu = document.getElementById('service-submenu-list');
+                    const submenu = document.getElementById(submenuId);
                     submenu.classList.toggle('submenu-active');
 
-                    // Dynamically point up or down arrow indicators based on current open/close visibility
                     const arrow = trigger.querySelector('.arrow-indicator');
-                    arrow.innerHTML = submenu.classList.contains('submenu-active') ? '▴' : '▾';
+                    arrow.innerHTML = submenu.classList.contains('submenu-active') ? '?' : '?';
                 }
             }
 
@@ -314,15 +320,17 @@
             // Comprehensive outside area surface click watchdog
             window.addEventListener('click', function () {
                 const menu = document.getElementById('main-navigation-menu');
-                const submenu = document.getElementById('service-submenu-list');
-                const arrowIndicator = document.querySelector('.arrow-indicator');
+                const submenus = document.querySelectorAll('.submenu-inner-list');
 
-                // Desktop close: collapse dropdown smoothly when consumer hits body background
+                // Desktop close: collapse open dropdowns when consumer hits body background
                 if (window.innerWidth >= 768) {
-                    if (submenu.classList.contains('submenu-active')) {
-                        submenu.classList.remove('submenu-active');
-                        if (arrowIndicator) arrowIndicator.innerHTML = '▾';
-                    }
+                    submenus.forEach((submenu) => {
+                        if (submenu.classList.contains('submenu-active')) {
+                            submenu.classList.remove('submenu-active');
+                            const arrow = submenu.parentElement.querySelector('.arrow-indicator');
+                            if (arrow) arrow.innerHTML = '▾';
+                        }
+                    });
                 } else {
                     // Mobile phone reset behavior adjustments
                     menu.classList.remove('menu-active');
@@ -354,7 +362,7 @@
                 At Picture Perfect Window Solutions, we believe that high-quality photography and true-to-life portfolio galleries help homeowners make informed choices for their properties. Every residential glass repair project or window layout configuration we take on is backed by meticulous measurements and precise custom glazing methods. We source architectural-grade glass substrates that meet or exceed regional thermal criteria to maximize energy performance across our entire Texas service footprint.
             </p>
             <p class="text-sm text-gray-600 leading-relaxed">
-                Whether your primary objective is to stop a thermal double-pane leak, replace a cracked patio window pane, upgrade your exterior window mesh screens, or conceptualize a striking floor-to-ceiling frameless shower door assembly, our portfolio reflects our versatility. Take a look at our core operational categories below to see the precision work we deliver daily to our neighbors in Midlothian, Mansfield, Crowley, Burleson, Cleburne, Alvarado, Godley, Fort Worth, and Dallas.
+                Whether your primary objective is to stop a thermal double-pane leak, replace a cracked patio window pane, upgrade your exterior window mesh screens, or plan a custom glass shower in a framed, semi-frameless, or frameless style, our portfolio reflects our versatility. Take a look at our core operational categories below to see the precision work we deliver daily to our neighbors in Midlothian, Mansfield, Crowley, Burleson, Cleburne, Alvarado, Godley, Fort Worth, and Dallas.
             </p>
         </div>
 
@@ -365,19 +373,19 @@
             <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
                 <!-- Slideshow Box Container Component -->
                 <div class="md:col-span-5 bg-gray-100 aspect-video md:aspect-[4/3] rounded-lg overflow-hidden relative group">
-                    <img id="showerImage" src="OurWork/frameless-glass-shower-installation-dallas-tx.jpg" alt="Luxury Frameless Glass Shower Installation" class="w-full h-full object-cover transition-all duration-300">
+                    <img id="showerImage" src="OurWork/frameless-glass-shower-installation-dallas-tx.jpg" alt="Custom glass shower installation" class="w-full h-full object-cover transition-all duration-300">
                     <!-- Left Arrow Control Action -->
                     <button onclick="changeImage('shower', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center focus:outline-none transition-colors"> ❮ </button>
                     <!-- Right Arrow Control Action -->
                     <button onclick="changeImage('shower', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center focus:outline-none transition-colors"> ❯ </button>
                 </div>
                 <div class="md:col-span-7 space-y-3">
-                    <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2"> <span>✨</span> Luxury Frameless Glass Showers </h2>
+                    <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2"> <span>✨</span> Custom Glass Showers </h2>
                     <p class="text-sm text-gray-600 leading-relaxed mb-2">
-                        A few samples of our previous works show custom-fit, modern frameless glass shower enclosures. Designed and precisely installed to elevate residential bathrooms with clean lines and luxury durability. These heavy structural configurations discard outdated metal frame borders that hold water and breed mold, generating an airy, spa-like environment that drastically drives up local home valuation metrics.
+                        Our project gallery includes custom glass showers in different styles, including framed, semi-frameless, and frameless enclosures. Each design is measured for the bathroom opening and selected to suit the homeowner?s layout, appearance, and hardware preferences.
                     </p>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        Our specialized remodeling team meticulously calculates structural weight profiles, checks tile surfaces for precise leveling configurations, and integrates premium heavy-duty clips, hinges, and pull handles. This ensures that every completed glass enclosure operates with fluid mechanics, prevents micro-leakage vectors, and introduces enduring luxury to your home's layout.
+                        We plan the glass layout, door configuration, and hardware around the room?s measurements and installation conditions. Explore the photos to see a range of custom shower designs and finishes.
                     </p>
                 </div>
             </div>
