@@ -64,6 +64,24 @@
             font-weight: 600;
         }
 
+        .tempered-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            min-height: 44px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .tempered-option input {
+            width: 17px;
+            height: 17px;
+            margin: 0;
+            accent-color: var(--primary-blue);
+        }
+
         .measurement-help {
             margin: -4px 0 12px;
             color: var(--muted-text);
@@ -316,6 +334,11 @@
                                         </div>
                                     </div>
 
+                                    <label class="tempered-option">
+                                        <input type="checkbox" class="tempered-upgrade-chk" aria-label="Tempered safety glass for window size ${windowCounter}">
+                                        Tempered safety glass
+                                    </label>
+
                                 `;
 
             panesList.appendChild(paneCard);
@@ -339,7 +362,7 @@
         }
 
         function updateCalculations() {
-            // Kept as a no-op so existing input event hooks stay simple.
+            // Input handlers use this hook to keep dynamic controls responsive.
         }
 
         // Calculate the tax-inclusive double-pane estimate after form submission.
@@ -349,20 +372,49 @@
             const baseGlassRatePerSqFt = section1Rates['Double Pane'];
 
             let windowQuantity = 0;
+            const windowSummary = [];
+            const sizeSummaryStrings = []; // 🔍 Added tracker to capture physical dimensions
+            let totalGlassCost = 0;
+            const pricingRatePerSquareFoot = [];
 
             for (let card of panesList) {
                 const width = parseFloat(card.querySelector('.pane-width').value) || 0;
                 const height = parseFloat(card.querySelector('.pane-height').value) || 0;
                 const quantity = parseInt(card.querySelector('.pane-qty').value, 10) || 0;
+                const tempered = card.querySelector('.tempered-upgrade-chk').checked;
                 windowQuantity += quantity;
+
+                // Compile physical sizing layout strings for this row if valid dimensions exist
+                if (width > 0 && height > 0 && quantity > 0) {
+                    let label = `${quantity}x (${width}" x ${height}")`;
+                    if (tempered) {
+                        label += " - Tempered"; // 🔍 Spelled out completely
+                    } else {
+                        label += " "; // Explicitly marked as Standard for clarity
+                    }
+                    sizeSummaryStrings.push(label);
+                }
 
                 let squareFeet = (width * height) / 144;
                 if (squareFeet < 3 && squareFeet > 0) {
                     squareFeet = 3;
                 }
 
-                const unitCost = Math.ceil(squareFeet * baseGlassRatePerSqFt);
-                runningCostSum += unitCost * 2 * quantity;
+                const ratePerSquareFoot = baseGlassRatePerSqFt + (tempered ? 10 : 0);
+                pricingRatePerSquareFoot.push(ratePerSquareFoot);
+                const unitCost = Math.ceil(squareFeet * ratePerSquareFoot);
+                const glassPrice = unitCost * 2 * quantity;
+                totalGlassCost += glassPrice;
+                runningCostSum += glassPrice;
+                const temperedStatus = tempered ? 'Yes' : 'No';
+                windowSummary.push({
+                    tempered: temperedStatus,
+                    width,
+                    height,
+                    quantity,
+                    ratePerSquareFoot,
+                    glassPrice
+                });
             }
 
             runningCostSum += 100 * windowQuantity;
@@ -371,6 +423,18 @@
                 // Apply existing $33 gas fee when panes are included in the estimate.
                 runningCostSum += 33;
             }
+            const gasFee = windowQuantity > 0 ? 33 : 0;
+            const totalProfitAfterGasAndGlass = runningCostSum - (totalGlassCost / 2) - gasFee;
+            const unitRates = [...new Set(pricingRatePerSquareFoot)].map(rate => `$${rate.toFixed(2)}/sq. ft.`).join(', ') || '$10.48/sq. ft.';
+
+            const emailWindowSummary = windowSummary.length
+                ? windowSummary.map((window, index) =>
+                    `Window ${index + 1}: ${window.tempered === 'Yes' ? 'Tempered' : 'Standard'} glass; ${window.width}" W x ${window.height}" H; quantity ${window.quantity}; ${window.ratePerSquareFoot.toFixed(2)}/sq. ft.; glass cost $${window.glassPrice.toFixed(2)}`
+                ).join('\n')
+                : 'No windows entered';
+
+            // Formats a clean list for data logging (e.g., "2x (24\" x 36\"), 1x (30\" x 40\") (T)")
+            const visualSizesSummary = sizeSummaryStrings.length ? sizeSummaryStrings.join('<br>') : 'None';
 
             // Reveal container and output calculated balance safely into the structural display nodes
             const estimatedTax = Math.round(runningCostSum * 0.0825 * 100) / 100;
@@ -380,42 +444,40 @@
 
 
             // ==========================================
-            // 🚨 UPDATED INTERCEPTOR WORKFLOW (PASTED INSIDE CALC FUNCTION)
+            // 🔒 UPDATED INTERCEPTOR WORKFLOW
             // ==========================================
 
-            // Pull exact quantities and text directly from your page elements.
-            // (Make sure these element IDs in quotes match the inputs on your page!)
             var pendingFormData = {
                 "Window_Repair Qty": windowQuantity,
-                "Window_Repair Unit Cost Per Sq Ft": section1Rates['Double Pane'],
+                "Window_Repair Unit Cost Per Sq Ft": unitRates,
                 "Window_Repair Labor Cost": windowQuantity * 100,
+                "Window_Repair_Sizes_Summary": visualSizesSummary, // 🎯 Matches data output fields from heavier setup
+                "Window_Repair_Summary": emailWindowSummary,
+                "Window_Repair_Glass_Summary": emailWindowSummary,
+                
 
                 // 💼 Labor & Fees Section
-                "Fees_Labor for window repair": 100,
+                "Fees_Labor per window repair": 100,
                 "Fees_Gas": 33,
 
                 // 📈 Totals Section
+                "Totals_Glass Cost": totalGlassCost,
+                "Totals_Gas Fee": gasFee,
+                "Totals_Profit After Gas And Glass Cost": totalProfitAfterGasAndGlass,
                 "Totals_Sub Total Cost": runningCostSum || 0,
                 "Totals_Estimated Tax (8.25%)": estimatedTax || 0,
                 "Totals_Grand Total Cost": taxInclusiveTotal || 0
+                
             };
 
             let hasSubmittedLead = false;
 
-
             // Force the lead capture pop-up modal overlay screen to open
-            // Keep this exactly where it is inside your generateEstimateTotal() function!
-            // Drop this exact block inside the bottom of your generateEstimateTotal() function
             var popModal = document.getElementById('leadModal');
             if (popModal) {
-                // Sets the overlay box to active flex mode so it anchors to the screen base instantly
                 popModal.style.display = 'flex';
-
-                // Freezes background layout scrolling while they type their information
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden'; // Freeze background layout scrolling
             }
-
-
 
             // Handle the backend form submission link tracking logic
             document.getElementById('leadForm').onsubmit = function (e) {
@@ -443,7 +505,7 @@
                     body: JSON.stringify(payload)
                 })
                     .then(function () {
-                        // 1. Turn off the lead pop-up sheet cleanly
+                        // Turn off the lead pop-up sheet cleanly
                         document.getElementById('leadModal').style.display = 'none';
 
                         // Reveal the already-computed estimate after the lead is sent.
@@ -452,10 +514,9 @@
                             targetPane.style.display = 'block';
                         }
 
-                        // 4. JUST RUN THE TOOL (Replace the duplicate function definitions with this)
                         sendHeightToParent();
 
-                        // 5. Roll phone screen view directly to center on final pricing figures card box
+                        // Roll screen view directly to center on final pricing figures card box
                         if (targetPane) {
                             setTimeout(function () {
                                 targetPane.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -469,20 +530,14 @@
                         document.getElementById('submitLeadBtn').disabled = false;
                         document.body.style.overflow = 'hidden';
                     });
-
-                // Make sure to DELETE that stray window.parent.postMessage line that was hanging off the absolute end here!
-
             };
 
             function sendHeightToParent() {
-                // Measures the exact container height of the calculator page right now
                 const currentHeight = document.body.scrollHeight;
-                // Broadcasts the height up to the Free Quote.html parent page securely
                 window.parent.postMessage({ type: 'resizeIframe', height: currentHeight }, '*');
             }
 
-            // Watch for user interactions (clicks, checkbox selections, adding rows)
-            // and update the page length automatically after a tiny 100ms cushion delay
+            // Manage frame sizing hooks downstream safely
             window.addEventListener('click', function () {
                 setTimeout(sendHeightToParent, 100);
             });
@@ -490,17 +545,13 @@
                 setTimeout(sendHeightToParent, 100);
             });
 
-            // Run immediately when the widget loads up
             if (document.readyState === 'complete') {
                 sendHeightToParent();
             } else {
                 window.addEventListener('load', sendHeightToParent);
             }
-
-
-
-
         }
+
     </script>
 
     <!-- AUTO-RESIZE FOR FREE QUOTE IFRAME BRIDGE -->
